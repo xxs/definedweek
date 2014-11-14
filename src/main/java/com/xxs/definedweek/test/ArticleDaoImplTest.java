@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -34,9 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Test - 文章
- * 
-
-
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:/applicationContext.xml", "classpath*:/applicationContext-mvc.xml" })

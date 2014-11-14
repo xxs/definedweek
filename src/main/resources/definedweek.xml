@@ -4,7 +4,7 @@
 	<setting name="siteName" value="SHOP++商城"/>  
 	<setting name="siteUrl" value="http://127.0.0.1:8080"/>  
 	<setting name="logo" value="/upload/image/logo.gif"/>  
-	<setting name="hotSearch" value="T恤,衬衫,西服,西裤,森马,七匹狼,梵希蔓,春夏新款,牛仔裤"/>  
+	<setting name="hotSearch" value="opencms,jeecms,jspxcms,"/>  
 	<setting name="address" value="湖南长沙经济技术开发区"/>  
 	<setting name="phone" value="400-8888888"/>  
 	<setting name="zipCode" value="400000"/>  

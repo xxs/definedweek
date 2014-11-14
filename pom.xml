@@ -218,12 +218,19 @@
 			<version>2012_u6</version>
 		</dependency>
 		<dependency>
+		  <groupId>org.wltea</groupId>
+		  <artifactId>IKAnalyzer</artifactId>
+		  <version>3.2.8</version>
+		</dependency>
+		<!-- 
+		<dependency>
 			<groupId>org.wltea</groupId>
 			<artifactId>IKAnalyzer</artifactId>
 			<version>3.2.8</version>
 			<scope>system</scope>
-			<systemPath>D:/repository/IKAnalyzer/IKAnalyzer-3.2.8.jar</systemPath>
+			<systemPath>D:/pt/repository/IKAnalyzer/IKAnalyzer-3.2.8.jar</systemPath>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>net.sourceforge.pjl-comp-filter</groupId>
 			<artifactId>pjl-comp-filter</artifactId>
@@ -530,7 +537,7 @@
 			<artifactId>jcaptcha</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>D:/repository/jcaptcha/jcaptcha-1.0.jar</systemPath>
+			<systemPath>D:/pt/repository/jcaptcha/jcaptcha-1.0.jar</systemPath>
 		</dependency>
 
 		<dependency>

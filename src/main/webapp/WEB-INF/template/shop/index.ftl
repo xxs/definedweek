@@ -7,9 +7,8 @@
 	<meta name="copyright" content="SHOP++" />
 [/@seo]
 <link rel="icon" href="${base}/favicon.ico" type="image/x-icon" />
-<link href="${base}/resources/shop/slider/slider.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/base.min.css" />
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/index.min.css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.tools.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.lazyload.js"></script>
@@ -308,5 +307,24 @@ $().ready(function() {
 		</div>
 	</div>
 	[#include "/shop/include/footer.ftl" /]
+	<script>
+        function createurlcdn(url, t) {
+            t = t || 5;
+            var date = new Date();
+            var hour = date.getHours();
+            hour = (hour < 10 ? "0" : "") + hour;
+            var min = date.getMinutes();
+            min = ( parseInt(min / t) < 10 ? "0" : "") + parseInt(min / 5);
+            var day = date.getDate();
+            day = (day < 10 ? "0" : "") + day;
+            var year = date.getFullYear().toString(),
+            month = (date.getMonth()+1).toString();
+            var version =year + month + day + hour + min;
+            document.write('<script src="' + url + '?ver=' + version + '"><\/script>');
+        }
+        createurlcdn("http://www.mi.com/c/service/js/categoryTree.js",5);
+    </script>
+    <script src="${base}/resources/shop/js/base.min.js"></script>
+	
 </body>
 </html>

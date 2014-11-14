@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.template.method;
 
 import java.util.List;
@@ -18,9 +13,6 @@ import freemarker.template.TemplateModelException;
 
 /**
  * 模板方法 - 多语言
- * 
-
-
  */
 @Component("messageMethod")
 public class MessageMethod implements TemplateMethodModel {

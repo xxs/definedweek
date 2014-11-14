@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.template.method;
 
 import java.math.BigDecimal;
@@ -20,9 +15,6 @@ import freemarker.template.TemplateModelException;
 
 /**
  * 模板方法 - 货币格式化
- * 
-
-
  */
 @Component("currencyMethod")
 public class CurrencyMethod implements TemplateMethodModel {

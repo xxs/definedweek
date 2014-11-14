@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.template.method;
 
 import java.util.List;
@@ -17,9 +12,6 @@ import freemarker.template.TemplateModelException;
 
 /**
  * 模板方法 - 字符串缩略
- * 
-
-
  */
 @Component("abbreviateMethod")
 public class AbbreviateMethod implements TemplateMethodModel {
