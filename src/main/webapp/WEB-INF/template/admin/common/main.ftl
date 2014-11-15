@@ -123,9 +123,8 @@ $().ready(function() {
 					</ul>
 				</div>
 				<div class="link">
-					<a href="http://www.shopxx.net" target="_blank">${message("admin.main.official")}</a>|
-					<a href="http://bbs.shopxx.net" target="_blank">${message("admin.main.bbs")}</a>|
-					<a href="http://www.shopxx.net/about.html" target="_blank">${message("admin.main.about")}</a>
+					<a href="../cache/clear.jhtml" target="_blank">${message("admin.main.cache")}</a>|
+					<a href="../static/build.jhtml" target="_blank">${message("admin.main.static")}</a>
 				</div>
 				<div class="link">
 					<strong>[@shiro.principal /]</strong>
