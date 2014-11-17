@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.shop;
 
 import java.util.HashMap;
@@ -13,6 +8,14 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xxs.definedweek.Message;
 import com.xxs.definedweek.entity.Cart;
@@ -25,19 +28,8 @@ import com.xxs.definedweek.service.MemberService;
 import com.xxs.definedweek.service.ProductService;
 import com.xxs.definedweek.util.WebUtils;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.RandomStringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 /**
  * Controller - 购物车
- * 
-
-
  */
 @Controller("shopCartController")
 @RequestMapping("/cart")
@@ -91,17 +83,11 @@ public class CartController extends BaseController {
 			if (CartItem.MAX_QUANTITY != null && cartItem.getQuantity() + quantity > CartItem.MAX_QUANTITY) {
 				return Message.warn("shop.cart.maxCartItemQuantity", CartItem.MAX_QUANTITY);
 			}
-			if (product.getStock() != null && cartItem.getQuantity() + quantity > product.getAvailableStock()) {
-				return Message.warn("shop.cart.productLowStock");
-			}
 			cartItem.add(quantity);
 			cartItemService.update(cartItem);
 		} else {
 			if (CartItem.MAX_QUANTITY != null && quantity > CartItem.MAX_QUANTITY) {
 				return Message.warn("shop.cart.maxCartItemQuantity", CartItem.MAX_QUANTITY);
-			}
-			if (product.getStock() != null && quantity > product.getAvailableStock()) {
-				return Message.warn("shop.cart.productLowStock");
 			}
 			CartItem cartItem = new CartItem();
 			cartItem.setQuantity(quantity);
@@ -153,17 +139,11 @@ public class CartController extends BaseController {
 			data.put("message", Message.warn("shop.cart.maxCartItemQuantity", CartItem.MAX_QUANTITY));
 			return data;
 		}
-		Product product = cartItem.getProduct();
-		if (product.getStock() != null && quantity > product.getAvailableStock()) {
-			data.put("message", Message.warn("shop.cart.productLowStock"));
-			return data;
-		}
 		cartItem.setQuantity(quantity);
 		cartItemService.update(cartItem);
 
 		data.put("message", SUCCESS_MESSAGE);
 		data.put("subtotal", cartItem.getSubtotal());
-		data.put("isLowStock", cartItem.getIsLowStock());
 		data.put("quantity", cart.getQuantity());
 		data.put("effectivePoint", cart.getEffectivePoint());
 		data.put("effectivePrice", cart.getEffectivePrice());
@@ -198,7 +178,6 @@ public class CartController extends BaseController {
 		data.put("effectivePoint", cart.getEffectivePoint());
 		data.put("effectivePrice", cart.getEffectivePrice());
 		data.put("promotions", cart.getPromotions());
-		data.put("isLowStock", cart.getIsLowStock());
 		return data;
 	}
 

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.util.HashSet;
@@ -26,9 +21,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity - 地区
- * 
-
-
  */
 @Entity
 @Table(name = "xx_area")
@@ -57,15 +49,6 @@ public class Area extends OrderEntity {
 
 	/** 会员 */
 	private Set<Member> members = new HashSet<Member>();
-
-	/** 收货地址 */
-	private Set<Receiver> receivers = new HashSet<Receiver>();
-
-	/** 订单 */
-	private Set<Order> orders = new HashSet<Order>();
-
-	/** 发货点 */
-	private Set<DeliveryCenter> deliveryCenters = new HashSet<DeliveryCenter>();
 
 	/**
 	 * 获取名称
@@ -191,66 +174,6 @@ public class Area extends OrderEntity {
 	}
 
 	/**
-	 * 获取收货地址
-	 * 
-	 * @return 收货地址
-	 */
-	@OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
-	public Set<Receiver> getReceivers() {
-		return receivers;
-	}
-
-	/**
-	 * 设置收货地址
-	 * 
-	 * @param receivers
-	 *            收货地址
-	 */
-	public void setReceivers(Set<Receiver> receivers) {
-		this.receivers = receivers;
-	}
-
-	/**
-	 * 获取订单
-	 * 
-	 * @return 订单
-	 */
-	@OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	/**
-	 * 设置订单
-	 * 
-	 * @param orders
-	 *            订单
-	 */
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-
-	/**
-	 * 获取发货点
-	 * 
-	 * @return 发货点
-	 */
-	@OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
-	public Set<DeliveryCenter> getDeliveryCenters() {
-		return deliveryCenters;
-	}
-
-	/**
-	 * 设置发货点
-	 * 
-	 * @param deliveryCenters
-	 *            发货点
-	 */
-	public void setDeliveryCenters(Set<DeliveryCenter> deliveryCenters) {
-		this.deliveryCenters = deliveryCenters;
-	}
-
-	/**
 	 * 持久化前处理
 	 */
 	@PrePersist
@@ -287,24 +210,6 @@ public class Area extends OrderEntity {
 		if (members != null) {
 			for (Member member : members) {
 				member.setArea(null);
-			}
-		}
-		Set<Receiver> receivers = getReceivers();
-		if (receivers != null) {
-			for (Receiver receiver : receivers) {
-				receiver.setArea(null);
-			}
-		}
-		Set<Order> orders = getOrders();
-		if (orders != null) {
-			for (Order order : orders) {
-				order.setArea(null);
-			}
-		}
-		Set<DeliveryCenter> deliveryCenters = getDeliveryCenters();
-		if (deliveryCenters != null) {
-			for (DeliveryCenter deliveryCenter : deliveryCenters) {
-				deliveryCenter.setArea(null);
 			}
 		}
 	}

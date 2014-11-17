@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek;
 
 import java.io.Serializable;
@@ -20,9 +15,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 系统设置
- * 
-
-
  */
 public class Setting implements Serializable {
 
@@ -107,21 +99,6 @@ public class Setting implements Serializable {
 
 		/** 管理员 */
 		admin
-	}
-
-	/**
-	 * 库存分配时间点
-	 */
-	public enum StockAllocationTime {
-
-		/** 下订单 */
-		order,
-
-		/** 订单支付 */
-		payment,
-
-		/** 订单发货 */
-		ship
 	}
 
 	/**
@@ -333,12 +310,6 @@ public class Setting implements Serializable {
 
 	/** 货币单位 */
 	private String currencyUnit;
-
-	/** 库存警告数 */
-	private Integer stockAlertCount;
-
-	/** 库存分配时间点 */
-	private StockAllocationTime stockAllocationTime;
 
 	/** 默认积分换算比例 */
 	private Double defaultPointScale;
@@ -1639,47 +1610,6 @@ public class Setting implements Serializable {
 	 */
 	public void setCurrencyUnit(String currencyUnit) {
 		this.currencyUnit = currencyUnit;
-	}
-
-	/**
-	 * 获取库存警告数
-	 * 
-	 * @return 库存警告数
-	 */
-	@NotNull
-	@Min(0)
-	public Integer getStockAlertCount() {
-		return stockAlertCount;
-	}
-
-	/**
-	 * 设置库存警告数
-	 * 
-	 * @param stockAlertCount
-	 *            库存警告数
-	 */
-	public void setStockAlertCount(Integer stockAlertCount) {
-		this.stockAlertCount = stockAlertCount;
-	}
-
-	/**
-	 * 获取库存分配时间点
-	 * 
-	 * @return 库存分配时间点
-	 */
-	@NotNull
-	public StockAllocationTime getStockAllocationTime() {
-		return stockAllocationTime;
-	}
-
-	/**
-	 * 设置库存分配时间点
-	 * 
-	 * @param stockAllocationTime
-	 *            库存分配时间点
-	 */
-	public void setStockAllocationTime(StockAllocationTime stockAllocationTime) {
-		this.stockAllocationTime = stockAllocationTime;
 	}
 
 	/**

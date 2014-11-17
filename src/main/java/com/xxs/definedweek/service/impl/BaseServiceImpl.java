@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service.impl;
 
 import java.beans.PropertyDescriptor;
@@ -31,9 +26,6 @@ import org.springframework.util.Assert;
 
 /**
  * Service - 基类
- * 
-
-
  */
 @Transactional
 public class BaseServiceImpl<T, ID extends Serializable> implements BaseService<T, ID> {

@@ -7,7 +7,6 @@ package com.xxs.definedweek.service;
 
 import java.util.Map;
 
-import com.xxs.definedweek.entity.ProductNotify;
 import com.xxs.definedweek.entity.SafeKey;
 
 /**
@@ -115,13 +114,5 @@ public interface MailService {
 	 *            安全密匙
 	 */
 	void sendFindPasswordMail(String toMail, String username, SafeKey safeKey);
-
-	/**
-	 * 发送到货通知邮件
-	 * 
-	 * @param productNotify
-	 *            到货通知
-	 */
-	void sendProductNotifyMail(ProductNotify productNotify);
 
 }

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.math.BigDecimal;
@@ -12,39 +7,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import javax.annotation.Resource;
-
-import com.xxs.definedweek.Message;
-import com.xxs.definedweek.Pageable;
-import com.xxs.definedweek.entity.Admin;
-import com.xxs.definedweek.entity.Area;
-import com.xxs.definedweek.entity.DeliveryCorp;
-import com.xxs.definedweek.entity.Member;
-import com.xxs.definedweek.entity.Order;
-import com.xxs.definedweek.entity.Order.OrderStatus;
-import com.xxs.definedweek.entity.Order.PaymentStatus;
-import com.xxs.definedweek.entity.Order.ShippingStatus;
-import com.xxs.definedweek.entity.OrderItem;
-import com.xxs.definedweek.entity.Payment;
-import com.xxs.definedweek.entity.Payment.Status;
-import com.xxs.definedweek.entity.Payment.Type;
-import com.xxs.definedweek.entity.PaymentMethod;
-import com.xxs.definedweek.entity.Product;
-import com.xxs.definedweek.entity.Refunds;
-import com.xxs.definedweek.entity.Returns;
-import com.xxs.definedweek.entity.ReturnsItem;
-import com.xxs.definedweek.entity.Shipping;
-import com.xxs.definedweek.entity.ShippingItem;
-import com.xxs.definedweek.entity.ShippingMethod;
-import com.xxs.definedweek.entity.Sn;
-import com.xxs.definedweek.service.AdminService;
-import com.xxs.definedweek.service.AreaService;
-import com.xxs.definedweek.service.DeliveryCorpService;
-import com.xxs.definedweek.service.OrderItemService;
-import com.xxs.definedweek.service.OrderService;
-import com.xxs.definedweek.service.PaymentMethodService;
-import com.xxs.definedweek.service.ProductService;
-import com.xxs.definedweek.service.ShippingMethodService;
-import com.xxs.definedweek.service.SnService;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
@@ -56,11 +18,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xxs.definedweek.Message;
+import com.xxs.definedweek.Pageable;
+import com.xxs.definedweek.entity.Admin;
+import com.xxs.definedweek.entity.Member;
+import com.xxs.definedweek.entity.Order;
+import com.xxs.definedweek.entity.Order.OrderStatus;
+import com.xxs.definedweek.entity.Order.PaymentStatus;
+import com.xxs.definedweek.entity.OrderItem;
+import com.xxs.definedweek.entity.Payment;
+import com.xxs.definedweek.entity.Payment.Status;
+import com.xxs.definedweek.entity.Payment.Type;
+import com.xxs.definedweek.entity.PaymentMethod;
+import com.xxs.definedweek.entity.Product;
+import com.xxs.definedweek.entity.Sn;
+import com.xxs.definedweek.service.AdminService;
+import com.xxs.definedweek.service.AreaService;
+import com.xxs.definedweek.service.OrderItemService;
+import com.xxs.definedweek.service.OrderService;
+import com.xxs.definedweek.service.PaymentMethodService;
+import com.xxs.definedweek.service.ProductService;
+import com.xxs.definedweek.service.SnService;
+
 /**
  * Controller - 订单
- * 
-
-
  */
 @Controller("adminOrderController")
 @RequestMapping("/admin/order")
@@ -76,10 +57,6 @@ public class OrderController extends BaseController {
 	private OrderService orderService;
 	@Resource(name = "orderItemServiceImpl")
 	private OrderItemService orderItemService;
-	@Resource(name = "shippingMethodServiceImpl")
-	private ShippingMethodService shippingMethodService;
-	@Resource(name = "deliveryCorpServiceImpl")
-	private DeliveryCorpService deliveryCorpService;
 	@Resource(name = "paymentMethodServiceImpl")
 	private PaymentMethodService paymentMethodService;
 	@Resource(name = "snServiceImpl")
@@ -116,10 +93,7 @@ public class OrderController extends BaseController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String view(Long id, ModelMap model) {
 		model.addAttribute("methods", Payment.Method.values());
-		model.addAttribute("refundsMethods", Refunds.Method.values());
 		model.addAttribute("paymentMethods", paymentMethodService.findAll());
-		model.addAttribute("shippingMethods", shippingMethodService.findAll());
-		model.addAttribute("deliveryCorps", deliveryCorpService.findAll());
 		model.addAttribute("order", orderService.find(id));
 		return "/admin/order/view";
 	}
@@ -217,147 +191,11 @@ public class OrderController extends BaseController {
 	}
 
 	/**
-	 * 退款
-	 */
-	@RequestMapping(value = "/refunds", method = RequestMethod.POST)
-	public String refunds(Long orderId, Long paymentMethodId, Refunds refunds, RedirectAttributes redirectAttributes) {
-		Order order = orderService.find(orderId);
-		refunds.setOrder(order);
-		PaymentMethod paymentMethod = paymentMethodService.find(paymentMethodId);
-		refunds.setPaymentMethod(paymentMethod != null ? paymentMethod.getName() : null);
-		if (!isValid(refunds)) {
-			return ERROR_VIEW;
-		}
-		if (order.isExpired() || order.getOrderStatus() != OrderStatus.confirmed) {
-			return ERROR_VIEW;
-		}
-		if (order.getPaymentStatus() != PaymentStatus.paid && order.getPaymentStatus() != PaymentStatus.partialPayment && order.getPaymentStatus() != PaymentStatus.partialRefunds) {
-			return ERROR_VIEW;
-		}
-		if (refunds.getAmount().compareTo(new BigDecimal(0)) <= 0 || refunds.getAmount().compareTo(order.getAmountPaid()) > 0) {
-			return ERROR_VIEW;
-		}
-		Admin admin = adminService.getCurrent();
-		if (order.isLocked(admin)) {
-			return ERROR_VIEW;
-		}
-		refunds.setSn(snService.generate(Sn.Type.refunds));
-		refunds.setOperator(admin.getUsername());
-		orderService.refunds(order, refunds, admin);
-		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
-		return "redirect:view.jhtml?id=" + orderId;
-	}
-
-	/**
-	 * 发货
-	 */
-	@RequestMapping(value = "/shipping", method = RequestMethod.POST)
-	public String shipping(Long orderId, Long shippingMethodId, Long deliveryCorpId, Long areaId, Shipping shipping, RedirectAttributes redirectAttributes) {
-		Order order = orderService.find(orderId);
-		if (order == null) {
-			return ERROR_VIEW;
-		}
-		for (Iterator<ShippingItem> iterator = shipping.getShippingItems().iterator(); iterator.hasNext();) {
-			ShippingItem shippingItem = iterator.next();
-			if (shippingItem == null || StringUtils.isEmpty(shippingItem.getSn()) || shippingItem.getQuantity() == null || shippingItem.getQuantity() <= 0) {
-				iterator.remove();
-				continue;
-			}
-			OrderItem orderItem = order.getOrderItem(shippingItem.getSn());
-			if (orderItem == null || shippingItem.getQuantity() > orderItem.getQuantity() - orderItem.getShippedQuantity()) {
-				return ERROR_VIEW;
-			}
-			if (orderItem.getProduct() != null && orderItem.getProduct().getStock() != null && shippingItem.getQuantity() > orderItem.getProduct().getStock()) {
-				return ERROR_VIEW;
-			}
-			shippingItem.setName(orderItem.getFullName());
-			shippingItem.setShipping(shipping);
-		}
-		shipping.setOrder(order);
-		ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
-		shipping.setShippingMethod(shippingMethod != null ? shippingMethod.getName() : null);
-		DeliveryCorp deliveryCorp = deliveryCorpService.find(deliveryCorpId);
-		shipping.setDeliveryCorp(deliveryCorp != null ? deliveryCorp.getName() : null);
-		shipping.setDeliveryCorpUrl(deliveryCorp != null ? deliveryCorp.getUrl() : null);
-		shipping.setDeliveryCorpCode(deliveryCorp != null ? deliveryCorp.getCode() : null);
-		Area area = areaService.find(areaId);
-		shipping.setArea(area != null ? area.getFullName() : null);
-		if (!isValid(shipping)) {
-			return ERROR_VIEW;
-		}
-		if (order.isExpired() || order.getOrderStatus() != OrderStatus.confirmed) {
-			return ERROR_VIEW;
-		}
-		if (order.getShippingStatus() != ShippingStatus.unshipped && order.getShippingStatus() != ShippingStatus.partialShipment) {
-			return ERROR_VIEW;
-		}
-		Admin admin = adminService.getCurrent();
-		if (order.isLocked(admin)) {
-			return ERROR_VIEW;
-		}
-		shipping.setSn(snService.generate(Sn.Type.shipping));
-		shipping.setOperator(admin.getUsername());
-		orderService.shipping(order, shipping, admin);
-		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
-		return "redirect:view.jhtml?id=" + orderId;
-	}
-
-	/**
-	 * 退货
-	 */
-	@RequestMapping(value = "/returns", method = RequestMethod.POST)
-	public String returns(Long orderId, Long shippingMethodId, Long deliveryCorpId, Long areaId, Returns returns, RedirectAttributes redirectAttributes) {
-		Order order = orderService.find(orderId);
-		if (order == null) {
-			return ERROR_VIEW;
-		}
-		for (Iterator<ReturnsItem> iterator = returns.getReturnsItems().iterator(); iterator.hasNext();) {
-			ReturnsItem returnsItem = iterator.next();
-			if (returnsItem == null || StringUtils.isEmpty(returnsItem.getSn()) || returnsItem.getQuantity() == null || returnsItem.getQuantity() <= 0) {
-				iterator.remove();
-				continue;
-			}
-			OrderItem orderItem = order.getOrderItem(returnsItem.getSn());
-			if (orderItem == null || returnsItem.getQuantity() > orderItem.getShippedQuantity() - orderItem.getReturnQuantity()) {
-				return ERROR_VIEW;
-			}
-			returnsItem.setName(orderItem.getFullName());
-			returnsItem.setReturns(returns);
-		}
-		returns.setOrder(order);
-		ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
-		returns.setShippingMethod(shippingMethod != null ? shippingMethod.getName() : null);
-		DeliveryCorp deliveryCorp = deliveryCorpService.find(deliveryCorpId);
-		returns.setDeliveryCorp(deliveryCorp != null ? deliveryCorp.getName() : null);
-		Area area = areaService.find(areaId);
-		returns.setArea(area != null ? area.getFullName() : null);
-		if (!isValid(returns)) {
-			return ERROR_VIEW;
-		}
-		if (order.isExpired() || order.getOrderStatus() != OrderStatus.confirmed) {
-			return ERROR_VIEW;
-		}
-		if (order.getShippingStatus() != ShippingStatus.shipped && order.getShippingStatus() != ShippingStatus.partialShipment && order.getShippingStatus() != ShippingStatus.partialReturns) {
-			return ERROR_VIEW;
-		}
-		Admin admin = adminService.getCurrent();
-		if (order.isLocked(admin)) {
-			return ERROR_VIEW;
-		}
-		returns.setSn(snService.generate(Sn.Type.returns));
-		returns.setOperator(admin.getUsername());
-		orderService.returns(order, returns, admin);
-		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
-		return "redirect:view.jhtml?id=" + orderId;
-	}
-
-	/**
 	 * 编辑
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Long id, ModelMap model) {
 		model.addAttribute("paymentMethods", paymentMethodService.findAll());
-		model.addAttribute("shippingMethods", shippingMethodService.findAll());
 		model.addAttribute("order", orderService.find(id));
 		return "/admin/order/edit";
 	}
@@ -378,14 +216,9 @@ public class OrderController extends BaseController {
 			data.put("message", Message.warn("admin.order.productNotMarketable"));
 			return data;
 		}
-		if (product.getIsOutOfStock()) {
-			data.put("message", Message.warn("admin.order.productOutOfStock"));
-			return data;
-		}
 		data.put("sn", product.getSn());
 		data.put("fullName", product.getFullName());
 		data.put("price", product.getPrice());
-		data.put("weight", product.getWeight());
 		data.put("isGift", product.getIsGift());
 		data.put("message", SUCCESS_MESSAGE);
 		return data;
@@ -404,9 +237,7 @@ public class OrderController extends BaseController {
 				iterator.remove();
 			}
 		}
-		order.setArea(areaService.find(areaId));
 		order.setPaymentMethod(paymentMethodService.find(paymentMethodId));
-		order.setShippingMethod(shippingMethodService.find(shippingMethodId));
 		if (!isValid(order)) {
 			data.put("message", Message.warn("admin.common.invalid"));
 			return data;
@@ -424,27 +255,10 @@ public class OrderController extends BaseController {
 					return data;
 				}
 				Product product = pOrderItem.getProduct();
-				if (product != null && product.getStock() != null) {
-					if (pOrder.getIsAllocatedStock()) {
-						if (orderItem.getQuantity() > product.getAvailableStock() + pOrderItem.getQuantity()) {
-							data.put("message", Message.warn("admin.order.lowStock"));
-							return data;
-						}
-					} else {
-						if (orderItem.getQuantity() > product.getAvailableStock()) {
-							data.put("message", Message.warn("admin.order.lowStock"));
-							return data;
-						}
-					}
-				}
 			} else {
 				Product product = productService.findBySn(orderItem.getSn());
 				if (product == null) {
 					data.put("message", Message.error("admin.common.invalid"));
-					return data;
-				}
-				if (product.getStock() != null && orderItem.getQuantity() > product.getAvailableStock()) {
-					data.put("message", Message.warn("admin.order.lowStock"));
 					return data;
 				}
 			}
@@ -453,11 +267,9 @@ public class OrderController extends BaseController {
 		for (OrderItem orderItem : order.getOrderItems()) {
 			orderItems.put(orderItem.getSn(), orderItem);
 		}
-		order.setFee(pOrder.getFee());
 		order.setPromotionDiscount(pOrder.getPromotionDiscount());
 		order.setCouponDiscount(pOrder.getCouponDiscount());
 		order.setAmountPaid(pOrder.getAmountPaid());
-		data.put("weight", order.getWeight());
 		data.put("price", order.getPrice());
 		data.put("quantity", order.getQuantity());
 		data.put("amount", order.getAmount());
@@ -477,9 +289,7 @@ public class OrderController extends BaseController {
 				iterator.remove();
 			}
 		}
-		order.setArea(areaService.find(areaId));
 		order.setPaymentMethod(paymentMethodService.find(paymentMethodId));
-		order.setShippingMethod(shippingMethodService.find(shippingMethodId));
 		if (!isValid(order)) {
 			return ERROR_VIEW;
 		}
@@ -505,17 +315,6 @@ public class OrderController extends BaseController {
 					return ERROR_VIEW;
 				}
 				Product product = pOrderItem.getProduct();
-				if (product != null && product.getStock() != null) {
-					if (pOrder.getIsAllocatedStock()) {
-						if (orderItem.getQuantity() > product.getAvailableStock() + pOrderItem.getQuantity()) {
-							return ERROR_VIEW;
-						}
-					} else {
-						if (orderItem.getQuantity() > product.getAvailableStock()) {
-							return ERROR_VIEW;
-						}
-					}
-				}
 				BeanUtils.copyProperties(pOrderItem, orderItem, new String[] { "price", "quantity" });
 				if (pOrderItem.getIsGift()) {
 					orderItem.setPrice(new BigDecimal(0));
@@ -525,19 +324,13 @@ public class OrderController extends BaseController {
 				if (product == null) {
 					return ERROR_VIEW;
 				}
-				if (product.getStock() != null && orderItem.getQuantity() > product.getAvailableStock()) {
-					return ERROR_VIEW;
-				}
 				orderItem.setName(product.getName());
 				orderItem.setFullName(product.getFullName());
 				if (product.getIsGift()) {
 					orderItem.setPrice(new BigDecimal(0));
 				}
-				orderItem.setWeight(product.getWeight());
 				orderItem.setThumbnail(product.getThumbnail());
 				orderItem.setIsGift(product.getIsGift());
-				orderItem.setShippedQuantity(0);
-				orderItem.setReturnQuantity(0);
 				orderItem.setProduct(product);
 				orderItem.setOrder(pOrder);
 			}
@@ -545,15 +338,12 @@ public class OrderController extends BaseController {
 		order.setSn(pOrder.getSn());
 		order.setOrderStatus(pOrder.getOrderStatus());
 		order.setPaymentStatus(pOrder.getPaymentStatus());
-		order.setShippingStatus(pOrder.getShippingStatus());
-		order.setFee(pOrder.getFee());
 		order.setPromotionDiscount(pOrder.getPromotionDiscount());
 		order.setCouponDiscount(pOrder.getCouponDiscount());
 		order.setAmountPaid(pOrder.getAmountPaid());
 		order.setPromotion(pOrder.getPromotion());
 		order.setExpire(pOrder.getExpire());
 		order.setLockExpire(null);
-		order.setIsAllocatedStock(pOrder.getIsAllocatedStock());
 		order.setOperator(null);
 		order.setMember(pOrder.getMember());
 		order.setCouponCode(pOrder.getCouponCode());
@@ -561,9 +351,6 @@ public class OrderController extends BaseController {
 		order.setOrderLogs(pOrder.getOrderLogs());
 		order.setDeposits(pOrder.getDeposits());
 		order.setPayments(pOrder.getPayments());
-		order.setRefunds(pOrder.getRefunds());
-		order.setShippings(pOrder.getShippings());
-		order.setReturns(pOrder.getReturns());
 
 		orderService.update(order, admin);
 		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
@@ -574,12 +361,11 @@ public class OrderController extends BaseController {
 	 * 列表
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(OrderStatus orderStatus, PaymentStatus paymentStatus, ShippingStatus shippingStatus, Boolean hasExpired, Pageable pageable, ModelMap model) {
+	public String list(OrderStatus orderStatus, PaymentStatus paymentStatus, Boolean hasExpired, Pageable pageable, ModelMap model) {
 		model.addAttribute("orderStatus", orderStatus);
 		model.addAttribute("paymentStatus", paymentStatus);
-		model.addAttribute("shippingStatus", shippingStatus);
 		model.addAttribute("hasExpired", hasExpired);
-		model.addAttribute("page", orderService.findPage(orderStatus, paymentStatus, shippingStatus, hasExpired, pageable));
+		model.addAttribute("page", orderService.findPage(orderStatus, paymentStatus, hasExpired, pageable));
 		return "/admin/order/list";
 	}
 

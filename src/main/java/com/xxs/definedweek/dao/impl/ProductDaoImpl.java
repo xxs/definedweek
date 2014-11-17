@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.dao.impl;
 
 import java.math.BigDecimal;
@@ -24,16 +19,19 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import com.xxs.definedweek.Filter;
 import com.xxs.definedweek.Order;
 import com.xxs.definedweek.Page;
 import com.xxs.definedweek.Pageable;
-import com.xxs.definedweek.Setting;
 import com.xxs.definedweek.dao.GoodsDao;
 import com.xxs.definedweek.dao.ProductDao;
 import com.xxs.definedweek.dao.SnDao;
@@ -51,18 +49,9 @@ import com.xxs.definedweek.entity.Promotion;
 import com.xxs.definedweek.entity.Sn.Type;
 import com.xxs.definedweek.entity.SpecificationValue;
 import com.xxs.definedweek.entity.Tag;
-import com.xxs.definedweek.util.SettingUtils;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.CompareToBuilder;
-import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
 
 /**
  * Dao - 商品
- * 
-
-
  */
 @Repository("productDaoImpl")
 public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements ProductDao {
@@ -117,7 +106,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		return super.findList(criteriaQuery, null, count, null, null);
 	}
 
-	public List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, OrderType orderType, Integer count, List<Filter> filters, List<Order> orders) {
+	public List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift,OrderType orderType, Integer count, List<Filter> filters, List<Order> orders) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
 		Root<Product> root = criteriaQuery.from(Product.class);
@@ -182,23 +171,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		}
 		if (isGift != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("isGift"), isGift));
-		}
-		Path<Integer> stock = root.get("stock");
-		Path<Integer> allocatedStock = root.get("allocatedStock");
-		if (isOutOfStock != null) {
-			if (isOutOfStock) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, allocatedStock));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, allocatedStock)));
-			}
-		}
-		if (isStockAlert != null) {
-			Setting setting = SettingUtils.get();
-			if (isStockAlert) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount())));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount()))));
-			}
 		}
 		criteriaQuery.where(restrictions);
 		if (orderType == OrderType.priceAsc) {
@@ -284,7 +256,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		return query.getResultList();
 	}
 
-	public Page<Product> findPage(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, OrderType orderType, Pageable pageable) {
+	public Page<Product> findPage(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, OrderType orderType, Pageable pageable) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
 		Root<Product> root = criteriaQuery.from(Product.class);
@@ -350,23 +322,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		if (isGift != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("isGift"), isGift));
 		}
-		Path<Integer> stock = root.get("stock");
-		Path<Integer> allocatedStock = root.get("allocatedStock");
-		if (isOutOfStock != null) {
-			if (isOutOfStock) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, allocatedStock));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, allocatedStock)));
-			}
-		}
-		if (isStockAlert != null) {
-			Setting setting = SettingUtils.get();
-			if (isStockAlert) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount())));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount()))));
-			}
-		}
 		criteriaQuery.where(restrictions);
 		List<Order> orders = pageable.getOrders();
 		if (orderType == OrderType.priceAsc) {
@@ -402,7 +357,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		return super.findPage(criteriaQuery, pageable);
 	}
 
-	public Long count(Member favoriteMember, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert) {
+	public Long count(Member favoriteMember, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
 		Root<Product> root = criteriaQuery.from(Product.class);
@@ -422,23 +377,6 @@ public class ProductDaoImpl extends BaseDaoImpl<Product, Long> implements Produc
 		}
 		if (isGift != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("isGift"), isGift));
-		}
-		Path<Integer> stock = root.get("stock");
-		Path<Integer> allocatedStock = root.get("allocatedStock");
-		if (isOutOfStock != null) {
-			if (isOutOfStock) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, allocatedStock));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, allocatedStock)));
-			}
-		}
-		if (isStockAlert != null) {
-			Setting setting = SettingUtils.get();
-			if (isStockAlert) {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.isNotNull(stock), criteriaBuilder.lessThanOrEqualTo(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount())));
-			} else {
-				restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.isNull(stock), criteriaBuilder.greaterThan(stock, criteriaBuilder.sum(allocatedStock, setting.getStockAlertCount()))));
-			}
 		}
 		criteriaQuery.where(restrictions);
 		return super.count(criteriaQuery, null);

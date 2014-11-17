@@ -49,9 +49,6 @@ public class OrderItem extends BaseEntity {
 	/** 商品价格 */
 	private BigDecimal price;
 
-	/** 商品重量 */
-	private Integer weight;
-
 	/** 商品缩略图 */
 	private String thumbnail;
 
@@ -60,12 +57,6 @@ public class OrderItem extends BaseEntity {
 
 	/** 数量 */
 	private Integer quantity;
-
-	/** 已发货数量 */
-	private Integer shippedQuantity;
-
-	/** 已退货数量 */
-	private Integer returnQuantity;
 
 	/** 商品 */
 	private Product product;
@@ -162,27 +153,6 @@ public class OrderItem extends BaseEntity {
 	}
 
 	/**
-	 * 获取商品重量
-	 * 
-	 * @return 商品重量
-	 */
-	@JsonProperty
-	@Column(updatable = false)
-	public Integer getWeight() {
-		return weight;
-	}
-
-	/**
-	 * 设置商品重量
-	 * 
-	 * @param weight
-	 *            商品重量
-	 */
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	/**
 	 * 获取商品缩略图
 	 * 
 	 * @return 商品缩略图
@@ -249,46 +219,6 @@ public class OrderItem extends BaseEntity {
 	}
 
 	/**
-	 * 获取已发货数量
-	 * 
-	 * @return 已发货数量
-	 */
-	@Column(nullable = false)
-	public Integer getShippedQuantity() {
-		return shippedQuantity;
-	}
-
-	/**
-	 * 设置已发货数量
-	 * 
-	 * @param shippedQuantity
-	 *            已发货数量
-	 */
-	public void setShippedQuantity(Integer shippedQuantity) {
-		this.shippedQuantity = shippedQuantity;
-	}
-
-	/**
-	 * 获取已退货数量
-	 * 
-	 * @return 已退货数量
-	 */
-	@Column(nullable = false)
-	public Integer getReturnQuantity() {
-		return returnQuantity;
-	}
-
-	/**
-	 * 设置已退货数量
-	 * 
-	 * @param returnQuantity
-	 *            已退货数量
-	 */
-	public void setReturnQuantity(Integer returnQuantity) {
-		this.returnQuantity = returnQuantity;
-	}
-
-	/**
 	 * 获取商品
 	 * 
 	 * @return 商品
@@ -327,21 +257,6 @@ public class OrderItem extends BaseEntity {
 	 */
 	public void setOrder(Order order) {
 		this.order = order;
-	}
-
-	/**
-	 * 获取商品总重量
-	 * 
-	 * @return 商品总重量
-	 */
-	@JsonProperty
-	@Transient
-	public int getTotalWeight() {
-		if (getWeight() != null && getQuantity() != null) {
-			return getWeight() * getQuantity();
-		} else {
-			return 0;
-		}
 	}
 
 	/**

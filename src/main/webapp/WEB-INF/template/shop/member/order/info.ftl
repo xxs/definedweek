@@ -15,18 +15,12 @@
 $().ready(function() {
 
 	var $dialogOverlay = $("#dialogOverlay");
-	var $receiverForm = $("#receiverForm");
-	var $receiver = $("#receiver ul");
 	var $otherReceiverButton = $("#otherReceiverButton");
-	var $newReceiverButton = $("#newReceiverButton");
-	var $newReceiver = $("#newReceiver");
-	var $areaId = $("#areaId");
 	var $newReceiverSubmit = $("#newReceiverSubmit");
 	var $newReceiverCancelButton = $("#newReceiverCancelButton");
 	var $orderForm = $("#orderForm");
 	var $receiverId = $("#receiverId");
 	var $paymentMethodId = $("#paymentMethod :radio");
-	var $shippingMethodId = $("#shippingMethod :radio");
 	var $isInvoice = $("#isInvoice");
 	var $invoiceTitleTr = $("#invoiceTitleTr");
 	var $invoiceTitle = $("#invoiceTitle");
@@ -41,7 +35,6 @@ $().ready(function() {
 	var $tax = $("#tax");
 	var $amountPayable = $("#amountPayable");
 	var $submit = $("#submit");
-	var shippingMethodIds = {};
 	
 	[@compress single_line = true]
 		[#list paymentMethods as paymentMethod]
@@ -52,51 +45,6 @@ $().ready(function() {
 			];
 		[/#list]
 	[/@compress]
-	
-	[#if !member.receivers?has_content]
-		$dialogOverlay.show();
-	[/#if]
-	
-	// 地区选择
-	$areaId.lSelect({
-		url: "${base}/common/area.jhtml"
-	});
-	
-	// 收货地址
-	$("#receiver li").live("click", function() {
-		var $this = $(this);
-		$receiverId.val($this.attr("receiverId"));
-		$("#receiver li").removeClass("selected");
-		$this.addClass("selected");
-		[#if setting.isInvoiceEnabled]
-			if ($.trim($invoiceTitle.val()) == "") {
-				$invoiceTitle.val($this.find("strong").text());
-			}
-		[/#if]
-	});
-	
-	// 其它收货地址
-	$otherReceiverButton.click(function() {
-		$otherReceiverButton.hide();
-		$newReceiverButton.show();
-		$("#receiver li").show();
-	});
-	
-	// 新收货地址
-	$newReceiverButton.click(function() {
-		$dialogOverlay.show();
-		$newReceiver.show();
-	});
-	
-	// 新收货地址取消
-	$newReceiverCancelButton.click(function() {
-		if ($receiverId.val() == "") {
-			$.message("warn", "${message("shop.order.receiverRequired")}");
-			return false;
-		}
-		$dialogOverlay.hide();
-		$newReceiver.hide();
-	});
 	
 	// 计算
 	function calculate() {
@@ -154,16 +102,6 @@ $().ready(function() {
 				$this.prop("disabled", true).prop("checked", false).closest("dd").removeClass("selected");
 			}
 		});
-		calculate();
-	});
-	
-	// 配送方式
-	$shippingMethodId.click(function() {
-		var $this = $(this);
-		if ($this.prop("disabled")) {
-			return false;
-		}
-		$this.closest("dd").addClass("selected").siblings().removeClass("selected");
 		calculate();
 	});
 	
@@ -318,96 +256,7 @@ $().ready(function() {
 				</ul>
 			</div>
 			<div class="info">
-				<form id="receiverForm" action="save_receiver.jhtml" method="post">
-					<div id="receiver" class="receiver clearfix">
-						<div class="title">${message("shop.order.receiver")}</div>
-						<ul>
-							[#list member.receivers as receiver]
-								<li[#if receiver_index == 0][#assign defaultReceiver = receiver /] class="selected"[#elseif receiver_index > 3] class="hidden"[/#if] receiverId="${receiver.id}">
-									<div>
-										<strong>${receiver.consignee}</strong> ${message("shop.order.receive")}
-									</div>
-									<div>
-										<span>${receiver.areaName}${receiver.address}</span>
-									</div>
-									<div>
-										${receiver.phone}
-									</div>
-								</li>
-							[/#list]
-						</ul>
-						<p>
-							[#if member.receivers?size > 4]
-								<a href="javascript:;" id="otherReceiverButton" class="button">${message("shop.order.otherReceiver")}</a>
-							[/#if]
-							<a href="javascript:;" id="newReceiverButton" class="button"[#if member.receivers?size > 4] style="display: none;"[/#if]>${message("shop.order.newReceiver")}</a>
-						</p>
-					</div>
-					<table id="newReceiver" class="newReceiver[#if member.receivers?has_content] hidden[/#if]">
-						<tr>
-							<th width="100">
-								<span class="requiredField">*</span>${message("shop.order.consignee")}:
-							</th>
-							<td>
-								<input type="text" id="consignee" name="consignee" class="text" maxlength="200" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<span class="requiredField">*</span>${message("shop.order.area")}:
-							</th>
-							<td>
-								<span class="fieldSet">
-									<input type="hidden" id="areaId" name="areaId" />
-								</span>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<span class="requiredField">*</span>${message("shop.order.address")}:
-							</th>
-							<td>
-								<input type="text" id="address" name="address" class="text" maxlength="200" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<span class="requiredField">*</span>${message("shop.order.zipCode")}:
-							</th>
-							<td>
-								<input type="text" id="zipCode" name="zipCode" class="text" maxlength="200" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<span class="requiredField">*</span>${message("shop.order.phone")}:
-							</th>
-							<td>
-								<input type="text" id="phone" name="phone" class="text" maxlength="200" />
-							</td>
-						</tr>
-						<tr>
-							<th>
-								${message("shop.order.isDefault")}:
-							</th>
-							<td>
-								<input type="checkbox" name="isDefault" value="true" />
-								<input type="hidden" name="_isDefault" value="false" />
-							</td>
-						</tr>
-						<tr>
-							<th>&nbsp;
-								
-							</th>
-							<td>
-								<input type="submit" id="newReceiverSubmit" class="button" value="${message("shop.order.ok")}" />
-								<input type="button" id="newReceiverCancelButton" class="button" value="${message("shop.order.cancel")}" />
-							</td>
-						</tr>
-					</table>
-				</form>
 				<form id="orderForm" action="create.jhtml" method="post">
-					<input type="hidden" id="receiverId" name="receiverId"[#if defaultReceiver??] value="${defaultReceiver.id}"[/#if] />
 					<input type="hidden" name="cartToken" value="${cartToken}" />
 					<dl id="paymentMethod" class="select">
 						<dt>${message("shop.order.paymentMethod")}</dt>
@@ -422,23 +271,6 @@ $().ready(function() {
 										<strong>${paymentMethod.name}</strong>
 									</span>
 									<span>${abbreviate(paymentMethod.description, 80, "...")}</span>
-								</label>
-							</dd>
-						[/#list]
-					</dl>
-					<dl id="shippingMethod" class="select">
-						<dt>${message("shop.order.shippingMethod")}</dt>
-						[#list shippingMethods as shippingMethod]
-							<dd>
-								<label for="shippingMethod_${shippingMethod.id}">
-									<input type="radio" id="shippingMethod_${shippingMethod.id}" name="shippingMethodId" value="${shippingMethod.id}" />
-									<span>
-										[#if shippingMethod.icon??]
-											<em style="border-right: none; background: url(${shippingMethod.icon}) center no-repeat;">&nbsp;</em>
-										[/#if]
-										<strong>${shippingMethod.name}</strong>
-									</span>
-									<span>${abbreviate(shippingMethod.description, 80, "...")}</span>
 								</label>
 							</dd>
 						[/#list]

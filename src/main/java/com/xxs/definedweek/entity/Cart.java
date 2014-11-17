@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.math.BigDecimal;
@@ -33,9 +28,6 @@ import org.apache.commons.lang.time.DateUtils;
 
 /**
  * Entity - 购物车
- * 
-
-
  */
 @Entity
 @Table(name = "xx_cart")
@@ -123,24 +115,6 @@ public class Cart extends BaseEntity {
 	 */
 	public void setCartItems(Set<CartItem> cartItems) {
 		this.cartItems = cartItems;
-	}
-
-	/**
-	 * 获取商品重量
-	 * 
-	 * @return 商品重量
-	 */
-	@Transient
-	public int getWeight() {
-		int weight = 0;
-		if (getCartItems() != null) {
-			for (CartItem cartItem : getCartItems()) {
-				if (cartItem != null) {
-					weight += cartItem.getWeight();
-				}
-			}
-		}
-		return weight;
 	}
 
 	/**
@@ -563,23 +537,6 @@ public class Cart extends BaseEntity {
 			}
 		}
 		return DigestUtils.md5Hex(hashCodeBuilder.toString());
-	}
-
-	/**
-	 * 获取是否库存不足
-	 * 
-	 * @return 是否库存不足
-	 */
-	@Transient
-	public boolean getIsLowStock() {
-		if (getCartItems() != null) {
-			for (CartItem cartItem : getCartItems()) {
-				if (cartItem != null && cartItem.getIsLowStock()) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 
 	/**

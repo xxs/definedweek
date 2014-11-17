@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.io.FileOutputStream;
@@ -13,23 +8,6 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
-
-import com.xxs.definedweek.CommonAttributes;
-import com.xxs.definedweek.FileInfo.FileType;
-import com.xxs.definedweek.Message;
-import com.xxs.definedweek.Setting;
-import com.xxs.definedweek.Setting.AccountLockType;
-import com.xxs.definedweek.Setting.CaptchaType;
-import com.xxs.definedweek.Setting.ConsultationAuthority;
-import com.xxs.definedweek.Setting.ReviewAuthority;
-import com.xxs.definedweek.Setting.RoundType;
-import com.xxs.definedweek.Setting.StockAllocationTime;
-import com.xxs.definedweek.Setting.WatermarkPosition;
-import com.xxs.definedweek.service.CacheService;
-import com.xxs.definedweek.service.FileService;
-import com.xxs.definedweek.service.MailService;
-import com.xxs.definedweek.service.StaticService;
-import com.xxs.definedweek.util.SettingUtils;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -47,12 +25,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.mail.smtp.SMTPSendFailedException;
 import com.sun.mail.smtp.SMTPSenderFailedException;
+import com.xxs.definedweek.CommonAttributes;
+import com.xxs.definedweek.FileInfo.FileType;
+import com.xxs.definedweek.Message;
+import com.xxs.definedweek.Setting;
+import com.xxs.definedweek.Setting.AccountLockType;
+import com.xxs.definedweek.Setting.CaptchaType;
+import com.xxs.definedweek.Setting.ConsultationAuthority;
+import com.xxs.definedweek.Setting.ReviewAuthority;
+import com.xxs.definedweek.Setting.RoundType;
+import com.xxs.definedweek.Setting.WatermarkPosition;
+import com.xxs.definedweek.service.CacheService;
+import com.xxs.definedweek.service.FileService;
+import com.xxs.definedweek.service.MailService;
+import com.xxs.definedweek.service.StaticService;
+import com.xxs.definedweek.util.SettingUtils;
 
 /**
  * Controller - 系统设置
- * 
-
-
  */
 @Controller("adminstingController")
 @RequestMapping("/admin/setting")
@@ -124,7 +114,6 @@ public class SettingController extends BaseController {
 		model.addAttribute("roundTypes", RoundType.values());
 		model.addAttribute("captchaTypes", CaptchaType.values());
 		model.addAttribute("accountLockTypes", AccountLockType.values());
-		model.addAttribute("stockAllocationTimes", StockAllocationTime.values());
 		model.addAttribute("reviewAuthorities", ReviewAuthority.values());
 		model.addAttribute("consultationAuthorities", ConsultationAuthority.values());
 		return "/admin/setting/edit";

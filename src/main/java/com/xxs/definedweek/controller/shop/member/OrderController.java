@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.shop.member;
 
 import java.util.Date;
@@ -11,34 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-
-import com.xxs.definedweek.Message;
-import com.xxs.definedweek.Pageable;
-import com.xxs.definedweek.Setting;
-import com.xxs.definedweek.controller.shop.BaseController;
-import com.xxs.definedweek.entity.Cart;
-import com.xxs.definedweek.entity.Coupon;
-import com.xxs.definedweek.entity.CouponCode;
-import com.xxs.definedweek.entity.Member;
-import com.xxs.definedweek.entity.Order;
-import com.xxs.definedweek.entity.Order.OrderStatus;
-import com.xxs.definedweek.entity.Order.PaymentStatus;
-import com.xxs.definedweek.entity.PaymentMethod;
-import com.xxs.definedweek.entity.Receiver;
-import com.xxs.definedweek.entity.Shipping;
-import com.xxs.definedweek.entity.ShippingMethod;
-import com.xxs.definedweek.plugin.PaymentPlugin;
-import com.xxs.definedweek.service.AreaService;
-import com.xxs.definedweek.service.CartService;
-import com.xxs.definedweek.service.CouponCodeService;
-import com.xxs.definedweek.service.MemberService;
-import com.xxs.definedweek.service.OrderService;
-import com.xxs.definedweek.service.PaymentMethodService;
-import com.xxs.definedweek.service.PluginService;
-import com.xxs.definedweek.service.ReceiverService;
-import com.xxs.definedweek.service.ShippingMethodService;
-import com.xxs.definedweek.service.ShippingService;
-import com.xxs.definedweek.util.SettingUtils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
@@ -49,11 +16,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xxs.definedweek.Message;
+import com.xxs.definedweek.Pageable;
+import com.xxs.definedweek.controller.shop.BaseController;
+import com.xxs.definedweek.entity.Cart;
+import com.xxs.definedweek.entity.Coupon;
+import com.xxs.definedweek.entity.CouponCode;
+import com.xxs.definedweek.entity.Member;
+import com.xxs.definedweek.entity.Order;
+import com.xxs.definedweek.entity.Order.OrderStatus;
+import com.xxs.definedweek.entity.Order.PaymentStatus;
+import com.xxs.definedweek.entity.PaymentMethod;
+import com.xxs.definedweek.plugin.PaymentPlugin;
+import com.xxs.definedweek.service.AreaService;
+import com.xxs.definedweek.service.CartService;
+import com.xxs.definedweek.service.CouponCodeService;
+import com.xxs.definedweek.service.MemberService;
+import com.xxs.definedweek.service.OrderService;
+import com.xxs.definedweek.service.PaymentMethodService;
+import com.xxs.definedweek.service.PluginService;
+
 /**
  * Controller - 会员中心 - 订单
- * 
-
-
  */
 @Controller("shopMemberOrderController")
 @RequestMapping("/member/order")
@@ -66,46 +50,16 @@ public class OrderController extends BaseController {
 	private MemberService memberService;
 	@Resource(name = "areaServiceImpl")
 	private AreaService areaService;
-	@Resource(name = "receiverServiceImpl")
-	private ReceiverService receiverService;
 	@Resource(name = "cartServiceImpl")
 	private CartService cartService;
 	@Resource(name = "paymentMethodServiceImpl")
 	private PaymentMethodService paymentMethodService;
-	@Resource(name = "shippingMethodServiceImpl")
-	private ShippingMethodService shippingMethodService;
 	@Resource(name = "couponCodeServiceImpl")
 	private CouponCodeService couponCodeService;
 	@Resource(name = "orderServiceImpl")
 	private OrderService orderService;
-	@Resource(name = "shippingServiceImpl")
-	private ShippingService shippingService;
 	@Resource(name = "pluginServiceImpl")
 	private PluginService pluginService;
-
-	/**
-	 * 保存收货地址
-	 */
-	@RequestMapping(value = "/save_receiver", method = RequestMethod.POST)
-	public @ResponseBody
-	Map<String, Object> saveReceiver(Receiver receiver, Long areaId) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		receiver.setArea(areaService.find(areaId));
-		if (!isValid(receiver)) {
-			data.put("message", ERROR_MESSAGE);
-			return data;
-		}
-		Member member = memberService.getCurrent();
-		if (Receiver.MAX_RECEIVER_COUNT != null && member.getReceivers().size() >= Receiver.MAX_RECEIVER_COUNT) {
-			data.put("message", Message.error("shop.order.addReceiverCountNotAllowed", Receiver.MAX_RECEIVER_COUNT));
-			return data;
-		}
-		receiver.setMember(member);
-		receiverService.save(receiver);
-		data.put("message", SUCCESS_MESSAGE);
-		data.put("receiver", receiver);
-		return data;
-	}
 
 	/**
 	 * 订单锁定
@@ -196,11 +150,10 @@ public class OrderController extends BaseController {
 		if (!isValid(cart)) {
 			return ERROR_VIEW;
 		}
-		Order order = orderService.build(cart, null, null, null, null, false, null, false, null);
+		Order order = orderService.build(cart, null, null, false, null, false, null);
 		model.addAttribute("order", order);
 		model.addAttribute("cartToken", cart.getToken());
 		model.addAttribute("paymentMethods", paymentMethodService.findAll());
-		model.addAttribute("shippingMethods", shippingMethodService.findAll());
 		return "/shop/member/order/info";
 	}
 
@@ -217,14 +170,12 @@ public class OrderController extends BaseController {
 			return data;
 		}
 		PaymentMethod paymentMethod = paymentMethodService.find(paymentMethodId);
-		ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
 		CouponCode couponCode = couponCodeService.findByCode(code);
-		Order order = orderService.build(cart, null, paymentMethod, shippingMethod, couponCode, isInvoice, invoiceTitle, useBalance, memo);
+		Order order = orderService.build(cart, paymentMethod, couponCode, isInvoice, invoiceTitle, useBalance, memo);
 
 		data.put("message", SUCCESS_MESSAGE);
 		data.put("quantity", order.getQuantity());
 		data.put("price", order.getPrice());
-		data.put("freight", order.getFreight());
 		data.put("promotionDiscount", order.getPromotionDiscount());
 		data.put("couponDiscount", order.getCouponDiscount());
 		data.put("tax", order.getTax());
@@ -245,26 +196,12 @@ public class OrderController extends BaseController {
 		if (!StringUtils.equals(cart.getToken(), cartToken)) {
 			return Message.warn("shop.order.cartHasChanged");
 		}
-		if (cart.getIsLowStock()) {
-			return Message.warn("shop.order.cartLowStock");
-		}
-		Receiver receiver = receiverService.find(receiverId);
-		if (receiver == null) {
-			return Message.error("shop.order.receiverNotExsit");
-		}
 		PaymentMethod paymentMethod = paymentMethodService.find(paymentMethodId);
 		if (paymentMethod == null) {
 			return Message.error("shop.order.paymentMethodNotExsit");
 		}
-		ShippingMethod shippingMethod = shippingMethodService.find(shippingMethodId);
-		if (shippingMethod == null) {
-			return Message.error("shop.order.shippingMethodNotExsit");
-		}
-		if (!paymentMethod.getShippingMethods().contains(shippingMethod)) {
-			return Message.error("shop.order.deliveryUnsupported");
-		}
 		CouponCode couponCode = couponCodeService.findByCode(code);
-		Order order = orderService.create(cart, receiver, paymentMethod, shippingMethod, couponCode, isInvoice, invoiceTitle, useBalance, memo, null);
+		Order order = orderService.create(cart, paymentMethod, couponCode, isInvoice, invoiceTitle, useBalance, memo, null);
 		return Message.success(order.getSn());
 	}
 
@@ -356,20 +293,4 @@ public class OrderController extends BaseController {
 		}
 		return ERROR_MESSAGE;
 	}
-
-	/**
-	 * 物流动态
-	 */
-	@RequestMapping(value = "/delivery_query", method = RequestMethod.GET)
-	public @ResponseBody
-	Map<String, Object> deliveryQuery(String sn) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		Shipping shipping = shippingService.findBySn(sn);
-		Setting setting = SettingUtils.get();
-		if (shipping != null && shipping.getOrder() != null && memberService.getCurrent().equals(shipping.getOrder().getMember()) && StringUtils.isNotEmpty(setting.getKuaidi100Key()) && StringUtils.isNotEmpty(shipping.getDeliveryCorpCode()) && StringUtils.isNotEmpty(shipping.getTrackingNo())) {
-			data = shippingService.query(shipping);
-		}
-		return data;
-	}
-
 }

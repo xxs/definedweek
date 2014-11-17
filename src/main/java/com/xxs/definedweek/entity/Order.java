@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.math.BigDecimal;
@@ -34,24 +29,21 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import com.xxs.definedweek.Setting;
-import com.xxs.definedweek.util.SettingUtils;
-
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.xxs.definedweek.Setting;
+import com.xxs.definedweek.util.SettingUtils;
+
 /**
  * Entity - 订单
- * 
-
-
  */
 @Entity
 @Table(name = "xx_order")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "xx_order_sequence")
 public class Order extends BaseEntity {
 
-	private static final long serialVersionUID = 8370942500343156156L;
+	private static final long serialVersionUID = 1L;
 
 	/** 订单名称分隔符 */
 	private static final String NAME_SEPARATOR = " ";
@@ -86,34 +78,7 @@ public class Order extends BaseEntity {
 		partialPayment,
 
 		/** 已支付 */
-		paid,
-
-		/** 部分退款 */
-		partialRefunds,
-
-		/** 已退款 */
-		refunded
-	}
-
-	/**
-	 * 配送状态
-	 */
-	public enum ShippingStatus {
-
-		/** 未发货 */
-		unshipped,
-
-		/** 部分发货 */
-		partialShipment,
-
-		/** 已发货 */
-		shipped,
-
-		/** 部分退货 */
-		partialReturns,
-
-		/** 已退货 */
-		returned
+		paid
 	}
 
 	/** 订单编号 */
@@ -124,15 +89,6 @@ public class Order extends BaseEntity {
 
 	/** 支付状态 */
 	private PaymentStatus paymentStatus;
-
-	/** 配送状态 */
-	private ShippingStatus shippingStatus;
-
-	/** 支付手续费 */
-	private BigDecimal fee;
-
-	/** 运费 */
-	private BigDecimal freight;
 
 	/** 促销折扣 */
 	private BigDecimal promotionDiscount;
@@ -151,15 +107,6 @@ public class Order extends BaseEntity {
 
 	/** 收货人 */
 	private String consignee;
-
-	/** 地区名称 */
-	private String areaName;
-
-	/** 地址 */
-	private String address;
-
-	/** 邮编 */
-	private String zipCode;
 
 	/** 电话 */
 	private String phone;
@@ -185,23 +132,11 @@ public class Order extends BaseEntity {
 	/** 锁定到期时间 */
 	private Date lockExpire;
 
-	/** 是否已分配库存 */
-	private Boolean isAllocatedStock;
-
 	/** 支付方式名称 */
 	private String paymentMethodName;
 
-	/** 配送方式名称 */
-	private String shippingMethodName;
-
-	/** 地区 */
-	private Area area;
-
 	/** 支付方式 */
 	private PaymentMethod paymentMethod;
-
-	/** 配送方式 */
-	private ShippingMethod shippingMethod;
 
 	/** 操作员 */
 	private Admin operator;
@@ -226,15 +161,6 @@ public class Order extends BaseEntity {
 
 	/** 收款单 */
 	private Set<Payment> payments = new HashSet<Payment>();
-
-	/** 退款单 */
-	private Set<Refunds> refunds = new HashSet<Refunds>();
-
-	/** 发货单 */
-	private Set<Shipping> shippings = new HashSet<Shipping>();
-
-	/** 退货单 */
-	private Set<Returns> returns = new HashSet<Returns>();
 
 	/**
 	 * 获取订单编号
@@ -294,69 +220,6 @@ public class Order extends BaseEntity {
 	 */
 	public void setPaymentStatus(PaymentStatus paymentStatus) {
 		this.paymentStatus = paymentStatus;
-	}
-
-	/**
-	 * 获取配送状态
-	 * 
-	 * @return 配送状态
-	 */
-	@Column(nullable = false)
-	public ShippingStatus getShippingStatus() {
-		return shippingStatus;
-	}
-
-	/**
-	 * 设置配送状态
-	 * 
-	 * @param shippingStatus
-	 *            配送状态
-	 */
-	public void setShippingStatus(ShippingStatus shippingStatus) {
-		this.shippingStatus = shippingStatus;
-	}
-
-	/**
-	 * 获取支付手续费
-	 * 
-	 * @return 支付手续费
-	 */
-	@Column(nullable = false, precision = 21, scale = 6)
-	public BigDecimal getFee() {
-		return fee;
-	}
-
-	/**
-	 * 设置支付手续费
-	 * 
-	 * @param fee
-	 *            支付手续费
-	 */
-	public void setFee(BigDecimal fee) {
-		this.fee = fee;
-	}
-
-	/**
-	 * 获取运费
-	 * 
-	 * @return 运费
-	 */
-	@NotNull
-	@Min(0)
-	@Digits(integer = 12, fraction = 3)
-	@Column(nullable = false, precision = 21, scale = 6)
-	public BigDecimal getFreight() {
-		return freight;
-	}
-
-	/**
-	 * 设置运费
-	 * 
-	 * @param freight
-	 *            运费
-	 */
-	public void setFreight(BigDecimal freight) {
-		this.freight = freight;
 	}
 
 	/**
@@ -484,78 +347,13 @@ public class Order extends BaseEntity {
 	public void setConsignee(String consignee) {
 		this.consignee = consignee;
 	}
-
-	/**
-	 * 获取地区名称
-	 * 
-	 * @return 地区名称
-	 */
-	@Column(nullable = false)
-	public String getAreaName() {
-		return areaName;
-	}
-
-	/**
-	 * 设置地区名称
-	 * 
-	 * @param areaName
-	 *            地区名称
-	 */
-	public void setAreaName(String areaName) {
-		this.areaName = areaName;
-	}
-
-	/**
-	 * 获取地址
-	 * 
-	 * @return 地址
-	 */
-	@NotEmpty
-	@Length(max = 200)
-	@Column(nullable = false)
-	public String getAddress() {
-		return address;
-	}
-
-	/**
-	 * 设置地址
-	 * 
-	 * @param address
-	 *            地址
-	 */
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	/**
-	 * 获取邮编
-	 * 
-	 * @return 邮编
-	 */
-	@NotEmpty
-	@Length(max = 200)
-	@Column(nullable = false)
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	/**
-	 * 设置邮编
-	 * 
-	 * @param zipCode
-	 *            邮编
-	 */
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
+	
 	/**
 	 * 获取电话
 	 * 
 	 * @return 电话
 	 */
-	@NotEmpty
-	@Length(max = 200)
+	@NotNull
 	@Column(nullable = false)
 	public String getPhone() {
 		return phone;
@@ -713,26 +511,6 @@ public class Order extends BaseEntity {
 	}
 
 	/**
-	 * 获取是否已分配库存
-	 * 
-	 * @return 是否已分配库存
-	 */
-	@Column(nullable = false)
-	public Boolean getIsAllocatedStock() {
-		return isAllocatedStock;
-	}
-
-	/**
-	 * 设置是否已分配库存
-	 * 
-	 * @param isAllocatedStock
-	 *            是否已分配库存
-	 */
-	public void setIsAllocatedStock(Boolean isAllocatedStock) {
-		this.isAllocatedStock = isAllocatedStock;
-	}
-
-	/**
 	 * 获取支付方式名称
 	 * 
 	 * @return 支付方式名称
@@ -750,47 +528,6 @@ public class Order extends BaseEntity {
 	 */
 	public void setPaymentMethodName(String paymentMethodName) {
 		this.paymentMethodName = paymentMethodName;
-	}
-
-	/**
-	 * 获取配送方式名称
-	 * 
-	 * @return 配送方式名称
-	 */
-	@Column(nullable = false)
-	public String getShippingMethodName() {
-		return shippingMethodName;
-	}
-
-	/**
-	 * 设置配送方式名称
-	 * 
-	 * @param shippingMethodName
-	 *            配送方式名称
-	 */
-	public void setShippingMethodName(String shippingMethodName) {
-		this.shippingMethodName = shippingMethodName;
-	}
-
-	/**
-	 * 获取地区
-	 * 
-	 * @return 地区
-	 */
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	public Area getArea() {
-		return area;
-	}
-
-	/**
-	 * 设置地区
-	 * 
-	 * @param area
-	 *            地区
-	 */
-	public void setArea(Area area) {
-		this.area = area;
 	}
 
 	/**
@@ -812,27 +549,6 @@ public class Order extends BaseEntity {
 	 */
 	public void setPaymentMethod(PaymentMethod paymentMethod) {
 		this.paymentMethod = paymentMethod;
-	}
-
-	/**
-	 * 获取配送方式
-	 * 
-	 * @return 配送方式
-	 */
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	public ShippingMethod getShippingMethod() {
-		return shippingMethod;
-	}
-
-	/**
-	 * 设置配送方式
-	 * 
-	 * @param shippingMethod
-	 *            配送方式
-	 */
-	public void setShippingMethod(ShippingMethod shippingMethod) {
-		this.shippingMethod = shippingMethod;
 	}
 
 	/**
@@ -1003,69 +719,6 @@ public class Order extends BaseEntity {
 	}
 
 	/**
-	 * 获取退款单
-	 * 
-	 * @return 退款单
-	 */
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy("createDate asc")
-	public Set<Refunds> getRefunds() {
-		return refunds;
-	}
-
-	/**
-	 * 设置退款单
-	 * 
-	 * @param refunds
-	 *            退款单
-	 */
-	public void setRefunds(Set<Refunds> refunds) {
-		this.refunds = refunds;
-	}
-
-	/**
-	 * 获取发货单
-	 * 
-	 * @return 发货单
-	 */
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy("createDate asc")
-	public Set<Shipping> getShippings() {
-		return shippings;
-	}
-
-	/**
-	 * 设置发货单
-	 * 
-	 * @param shippings
-	 *            发货单
-	 */
-	public void setShippings(Set<Shipping> shippings) {
-		this.shippings = shippings;
-	}
-
-	/**
-	 * 获取退货单
-	 * 
-	 * @return 退货单
-	 */
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy("createDate asc")
-	public Set<Returns> getReturns() {
-		return returns;
-	}
-
-	/**
-	 * 设置退货单
-	 * 
-	 * @param returns
-	 *            退货单
-	 */
-	public void setReturns(Set<Returns> returns) {
-		this.returns = returns;
-	}
-
-	/**
 	 * 获取订单名称
 	 * 
 	 * @return 订单名称
@@ -1087,24 +740,6 @@ public class Order extends BaseEntity {
 	}
 
 	/**
-	 * 获取商品重量
-	 * 
-	 * @return 商品重量
-	 */
-	@Transient
-	public int getWeight() {
-		int weight = 0;
-		if (getOrderItems() != null) {
-			for (OrderItem orderItem : getOrderItems()) {
-				if (orderItem != null) {
-					weight += orderItem.getTotalWeight();
-				}
-			}
-		}
-		return weight;
-	}
-
-	/**
 	 * 获取商品数量
 	 * 
 	 * @return 商品数量
@@ -1120,42 +755,6 @@ public class Order extends BaseEntity {
 			}
 		}
 		return quantity;
-	}
-
-	/**
-	 * 获取已发货数量
-	 * 
-	 * @return 已发货数量
-	 */
-	@Transient
-	public int getShippedQuantity() {
-		int shippedQuantity = 0;
-		if (getOrderItems() != null) {
-			for (OrderItem orderItem : getOrderItems()) {
-				if (orderItem != null && orderItem.getShippedQuantity() != null) {
-					shippedQuantity += orderItem.getShippedQuantity();
-				}
-			}
-		}
-		return shippedQuantity;
-	}
-
-	/**
-	 * 获取已退货数量
-	 * 
-	 * @return 已退货数量
-	 */
-	@Transient
-	public int getReturnQuantity() {
-		int returnQuantity = 0;
-		if (getOrderItems() != null) {
-			for (OrderItem orderItem : getOrderItems()) {
-				if (orderItem != null && orderItem.getReturnQuantity() != null) {
-					returnQuantity += orderItem.getReturnQuantity();
-				}
-			}
-		}
-		return returnQuantity;
 	}
 
 	/**
@@ -1184,24 +783,6 @@ public class Order extends BaseEntity {
 	@Transient
 	public BigDecimal getAmount() {
 		BigDecimal amount = getPrice();
-		if (getFee() != null) {
-			amount = amount.add(getFee());
-		}
-		if (getFreight() != null) {
-			amount = amount.add(getFreight());
-		}
-		if (getPromotionDiscount() != null) {
-			amount = amount.subtract(getPromotionDiscount());
-		}
-		if (getCouponDiscount() != null) {
-			amount = amount.subtract(getCouponDiscount());
-		}
-		if (getOffsetAmount() != null) {
-			amount = amount.add(getOffsetAmount());
-		}
-		if (getTax() != null) {
-			amount = amount.add(getTax());
-		}
 		return amount.compareTo(new BigDecimal(0)) > 0 ? amount : new BigDecimal(0);
 	}
 
@@ -1287,14 +868,8 @@ public class Order extends BaseEntity {
 	 */
 	@PrePersist
 	public void prePersist() {
-		if (getArea() != null) {
-			setAreaName(getArea().getFullName());
-		}
 		if (getPaymentMethod() != null) {
 			setPaymentMethodName(getPaymentMethod().getName());
-		}
-		if (getShippingMethod() != null) {
-			setShippingMethodName(getShippingMethod().getName());
 		}
 	}
 
@@ -1303,14 +878,8 @@ public class Order extends BaseEntity {
 	 */
 	@PreUpdate
 	public void preUpdate() {
-		if (getArea() != null) {
-			setAreaName(getArea().getFullName());
-		}
 		if (getPaymentMethod() != null) {
 			setPaymentMethodName(getPaymentMethod().getName());
-		}
-		if (getShippingMethod() != null) {
-			setShippingMethodName(getShippingMethod().getName());
 		}
 	}
 

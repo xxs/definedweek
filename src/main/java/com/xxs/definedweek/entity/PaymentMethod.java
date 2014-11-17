@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.util.HashSet;
@@ -11,11 +6,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.PreRemove;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,9 +19,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity - 支付方式
- * 
-
-
  */
 @Entity
 @Table(name = "xx_payment_method")
@@ -67,9 +56,6 @@ public class PaymentMethod extends OrderEntity {
 
 	/** 内容 */
 	private String content;
-
-	/** 支持配送方式 */
-	private Set<ShippingMethod> shippingMethods = new HashSet<ShippingMethod>();
 
 	/** 订单 */
 	private Set<Order> orders = new HashSet<Order>();
@@ -195,28 +181,6 @@ public class PaymentMethod extends OrderEntity {
 	 */
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	/**
-	 * 获取支持配送方式
-	 * 
-	 * @return 支持配送方式
-	 */
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "xx_payment_shipping_method")
-	@OrderBy("order asc")
-	public Set<ShippingMethod> getShippingMethods() {
-		return shippingMethods;
-	}
-
-	/**
-	 * 设置支持配送方式
-	 * 
-	 * @param shippingMethods
-	 *            支持配送方式
-	 */
-	public void setShippingMethods(Set<ShippingMethod> shippingMethods) {
-		this.shippingMethods = shippingMethods;
 	}
 
 	/**

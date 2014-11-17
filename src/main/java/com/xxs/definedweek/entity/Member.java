@@ -196,9 +196,6 @@ public class Member extends BaseEntity {
 	/** 优惠码 */
 	private Set<CouponCode> couponCodes = new HashSet<CouponCode>();
 
-	/** 收货地址 */
-	private Set<Receiver> receivers = new HashSet<Receiver>();
-
 	/** 评论 */
 	private Set<Review> reviews = new HashSet<Review>();
 
@@ -207,9 +204,6 @@ public class Member extends BaseEntity {
 
 	/** 收藏商品 */
 	private Set<Product> favoriteProducts = new HashSet<Product>();
-
-	/** 到货通知 */
-	private Set<ProductNotify> productNotifies = new HashSet<ProductNotify>();
 
 	/** 接收的消息 */
 	private Set<Message> inMessages = new HashSet<Message>();
@@ -988,27 +982,6 @@ public class Member extends BaseEntity {
 	}
 
 	/**
-	 * 获取收货地址
-	 * 
-	 * @return 收货地址
-	 */
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy("isDefault desc, createDate desc")
-	public Set<Receiver> getReceivers() {
-		return receivers;
-	}
-
-	/**
-	 * 设置收货地址
-	 * 
-	 * @param receivers
-	 *            收货地址
-	 */
-	public void setReceivers(Set<Receiver> receivers) {
-		this.receivers = receivers;
-	}
-
-	/**
 	 * 获取评论
 	 * 
 	 * @return 评论
@@ -1070,26 +1043,6 @@ public class Member extends BaseEntity {
 	 */
 	public void setFavoriteProducts(Set<Product> favoriteProducts) {
 		this.favoriteProducts = favoriteProducts;
-	}
-
-	/**
-	 * 获取到货通知
-	 * 
-	 * @return 到货通知
-	 */
-	@OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	public Set<ProductNotify> getProductNotifies() {
-		return productNotifies;
-	}
-
-	/**
-	 * 设置到货通知
-	 * 
-	 * @param productNotifies
-	 *            到货通知
-	 */
-	public void setProductNotifies(Set<ProductNotify> productNotifies) {
-		this.productNotifies = productNotifies;
 	}
 
 	/**

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.math.BigDecimal;
@@ -22,9 +17,6 @@ import com.xxs.definedweek.util.SettingUtils;
 
 /**
  * Entity - 购物车项
- * 
-
-
  */
 @Entity
 @Table(name = "xx_cart_item")
@@ -176,20 +168,6 @@ public class CartItem extends BaseEntity {
 	}
 
 	/**
-	 * 获取商品重量
-	 * 
-	 * @return 商品重量
-	 */
-	@Transient
-	public int getWeight() {
-		if (getProduct() != null && getProduct().getWeight() != null && getQuantity() != null) {
-			return getProduct().getWeight() * getQuantity();
-		} else {
-			return 0;
-		}
-	}
-
-	/**
 	 * 获取价格
 	 * 
 	 * @return 价格
@@ -227,20 +205,6 @@ public class CartItem extends BaseEntity {
 			return getPrice().multiply(new BigDecimal(getQuantity()));
 		} else {
 			return new BigDecimal(0);
-		}
-	}
-
-	/**
-	 * 获取是否库存不足
-	 * 
-	 * @return 是否库存不足
-	 */
-	@Transient
-	public boolean getIsLowStock() {
-		if (getQuantity() != null && getProduct() != null && getProduct().getStock() != null && getQuantity() > getProduct().getAvailableStock()) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 

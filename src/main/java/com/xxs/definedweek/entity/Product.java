@@ -155,18 +155,6 @@ public class Product extends BaseEntity {
 	/** 单位 */
 	private String unit;
 
-	/** 重量 */
-	private Integer weight;
-
-	/** 库存 */
-	private Integer stock;
-
-	/** 已分配库存 */
-	private Integer allocatedStock;
-
-	/** 库存备注 */
-	private String stockMemo;
-
 	/** 赠送积分 */
 	private Long point;
 
@@ -340,9 +328,6 @@ public class Product extends BaseEntity {
 
 	/** 赠品项 */
 	private Set<GiftItem> giftItems = new HashSet<GiftItem>();
-
-	/** 到货通知 */
-	private Set<ProductNotify> productNotifies = new HashSet<ProductNotify>();
 
 	/** 会员价 */
 	private Map<MemberRank, BigDecimal> memberPrice = new HashMap<MemberRank, BigDecimal>();
@@ -548,89 +533,6 @@ public class Product extends BaseEntity {
 	 */
 	public void setUnit(String unit) {
 		this.unit = unit;
-	}
-
-	/**
-	 * 获取重量
-	 * 
-	 * @return 重量
-	 */
-	@Field(store = Store.YES, index = Index.NO)
-	@Min(0)
-	public Integer getWeight() {
-		return weight;
-	}
-
-	/**
-	 * 设置重量
-	 * 
-	 * @param weight
-	 *            重量
-	 */
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	/**
-	 * 获取库存
-	 * 
-	 * @return 库存
-	 */
-	@Field(store = Store.YES, index = Index.NO)
-	@Min(0)
-	public Integer getStock() {
-		return stock;
-	}
-
-	/**
-	 * 设置库存
-	 * 
-	 * @param stock
-	 *            库存
-	 */
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
-
-	/**
-	 * 获取已分配库存
-	 * 
-	 * @return 已分配库存
-	 */
-	@Field(store = Store.YES, index = Index.NO)
-	@Column(nullable = false)
-	public Integer getAllocatedStock() {
-		return allocatedStock;
-	}
-
-	/**
-	 * 设置已分配库存
-	 * 
-	 * @param allocatedStock
-	 *            已分配库存
-	 */
-	public void setAllocatedStock(Integer allocatedStock) {
-		this.allocatedStock = allocatedStock;
-	}
-
-	/**
-	 * 获取库存备注
-	 * 
-	 * @return 库存备注
-	 */
-	@Length(max = 200)
-	public String getStockMemo() {
-		return stockMemo;
-	}
-
-	/**
-	 * 设置库存备注
-	 * 
-	 * @param stockMemo
-	 *            库存备注
-	 */
-	public void setStockMemo(String stockMemo) {
-		this.stockMemo = stockMemo;
 	}
 
 	/**
@@ -1843,26 +1745,6 @@ public class Product extends BaseEntity {
 	}
 
 	/**
-	 * 获取到货通知
-	 * 
-	 * @return 到货通知
-	 */
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	public Set<ProductNotify> getProductNotifies() {
-		return productNotifies;
-	}
-
-	/**
-	 * 设置到货通知
-	 * 
-	 * @param productNotifies
-	 *            到货通知
-	 */
-	public void setProductNotifies(Set<ProductNotify> productNotifies) {
-		this.productNotifies = productNotifies;
-	}
-
-	/**
 	 * 获取会员价
 	 * 
 	 * @return 会员价
@@ -2045,33 +1927,6 @@ public class Product extends BaseEntity {
 	}
 
 	/**
-	 * 获取可用库存
-	 * 
-	 * @return 可用库存
-	 */
-	@Transient
-	public Integer getAvailableStock() {
-		Integer availableStock = null;
-		if (getStock() != null && getAllocatedStock() != null) {
-			availableStock = getStock() - getAllocatedStock();
-			if (availableStock < 0) {
-				availableStock = 0;
-			}
-		}
-		return availableStock;
-	}
-
-	/**
-	 * 获取是否缺货
-	 * 
-	 * @return 是否缺货
-	 */
-	@Transient
-	public Boolean getIsOutOfStock() {
-		return getStock() != null && getAllocatedStock() != null && getAllocatedStock() >= getStock();
-	}
-
-	/**
 	 * 判断促销是否有效
 	 * 
 	 * @param promotion
@@ -2119,9 +1974,6 @@ public class Product extends BaseEntity {
 	 */
 	@PrePersist
 	public void prePersist() {
-		if (getStock() == null) {
-			setAllocatedStock(0);
-		}
 		setScore(0F);
 	}
 
@@ -2130,9 +1982,6 @@ public class Product extends BaseEntity {
 	 */
 	@PreUpdate
 	public void preUpdate() {
-		if (getStock() == null) {
-			setAllocatedStock(0);
-		}
 		if (getTotalScore() != null && getScoreCount() != null && getScoreCount() != 0) {
 			setScore((float) getTotalScore() / getScoreCount());
 		} else {

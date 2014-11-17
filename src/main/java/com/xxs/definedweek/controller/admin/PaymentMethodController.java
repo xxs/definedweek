@@ -1,21 +1,6 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
-import java.util.HashSet;
-
 import javax.annotation.Resource;
-
-import com.xxs.definedweek.Message;
-import com.xxs.definedweek.Pageable;
-import com.xxs.definedweek.entity.PaymentMethod;
-import com.xxs.definedweek.entity.PaymentMethod.Method;
-import com.xxs.definedweek.entity.ShippingMethod;
-import com.xxs.definedweek.service.PaymentMethodService;
-import com.xxs.definedweek.service.ShippingMethodService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xxs.definedweek.Message;
+import com.xxs.definedweek.Pageable;
+import com.xxs.definedweek.entity.PaymentMethod;
+import com.xxs.definedweek.entity.PaymentMethod.Method;
+import com.xxs.definedweek.service.PaymentMethodService;
+
 /**
  * Controller - 支付方式
- * 
-
-
  */
 @Controller("adminPaymentMethodController")
 @RequestMapping("/admin/payment_method")
@@ -36,8 +24,6 @@ public class PaymentMethodController extends BaseController {
 
 	@Resource(name = "paymentMethodServiceImpl")
 	private PaymentMethodService paymentMethodService;
-	@Resource(name = "shippingMethodServiceImpl")
-	private ShippingMethodService shippingMethodService;
 
 	/**
 	 * 添加
@@ -45,7 +31,6 @@ public class PaymentMethodController extends BaseController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap model) {
 		model.addAttribute("methods", Method.values());
-		model.addAttribute("shippingMethods", shippingMethodService.findAll());
 		return "/admin/payment_method/add";
 	}
 
@@ -53,8 +38,7 @@ public class PaymentMethodController extends BaseController {
 	 * 保存
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(PaymentMethod paymentMethod, Long[] shippingMethodIds, RedirectAttributes redirectAttributes) {
-		paymentMethod.setShippingMethods(new HashSet<ShippingMethod>(shippingMethodService.findList(shippingMethodIds)));
+	public String save(PaymentMethod paymentMethod, RedirectAttributes redirectAttributes) {
 		if (!isValid(paymentMethod)) {
 			return ERROR_VIEW;
 		}
@@ -70,7 +54,6 @@ public class PaymentMethodController extends BaseController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Long id, ModelMap model) {
 		model.addAttribute("methods", Method.values());
-		model.addAttribute("shippingMethods", shippingMethodService.findAll());
 		model.addAttribute("paymentMethod", paymentMethodService.find(id));
 		return "/admin/payment_method/edit";
 	}
@@ -79,8 +62,7 @@ public class PaymentMethodController extends BaseController {
 	 * 更新
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(PaymentMethod paymentMethod, Long[] shippingMethodIds, RedirectAttributes redirectAttributes) {
-		paymentMethod.setShippingMethods(new HashSet<ShippingMethod>(shippingMethodService.findList(shippingMethodIds)));
+	public String update(PaymentMethod paymentMethod, RedirectAttributes redirectAttributes) {
 		if (!isValid(paymentMethod)) {
 			return ERROR_VIEW;
 		}

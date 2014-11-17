@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.dao;
 
 import java.math.BigDecimal;
@@ -16,13 +11,9 @@ import com.xxs.definedweek.entity.Member;
 import com.xxs.definedweek.entity.Order;
 import com.xxs.definedweek.entity.Order.OrderStatus;
 import com.xxs.definedweek.entity.Order.PaymentStatus;
-import com.xxs.definedweek.entity.Order.ShippingStatus;
 
 /**
  * Dao - 订单
- * 
-
-
  */
 public interface OrderDao extends BaseDao<Order, Long> {
 
@@ -76,7 +67,7 @@ public interface OrderDao extends BaseDao<Order, Long> {
 	 *            分页信息
 	 * @return 商品分页
 	 */
-	Page<Order> findPage(OrderStatus orderStatus, PaymentStatus paymentStatus, ShippingStatus shippingStatus, Boolean hasExpired, Pageable pageable);
+	Page<Order> findPage(OrderStatus orderStatus, PaymentStatus paymentStatus, Boolean hasExpired, Pageable pageable);
 
 	/**
 	 * 查询订单数量
@@ -85,13 +76,11 @@ public interface OrderDao extends BaseDao<Order, Long> {
 	 *            订单状态
 	 * @param paymentStatus
 	 *            支付状态
-	 * @param shippingStatus
-	 *            配送状态
 	 * @param hasExpired
 	 *            是否已过期
 	 * @return 订单数量
 	 */
-	Long count(OrderStatus orderStatus, PaymentStatus paymentStatus, ShippingStatus shippingStatus, Boolean hasExpired);
+	Long count(OrderStatus orderStatus, PaymentStatus paymentStatus, Boolean hasExpired);
 
 	/**
 	 * 查询等待支付订单数量
@@ -101,15 +90,6 @@ public interface OrderDao extends BaseDao<Order, Long> {
 	 * @return 等待支付订单数量
 	 */
 	Long waitingPaymentCount(Member member);
-
-	/**
-	 * 查询等待发货订单数量
-	 * 
-	 * @param member
-	 *            会员
-	 * @return 等待发货订单数量
-	 */
-	Long waitingShippingCount(Member member);
 
 	/**
 	 * 获取销售额
@@ -132,10 +112,5 @@ public interface OrderDao extends BaseDao<Order, Long> {
 	 * @return 销售量
 	 */
 	Integer getSalesVolume(Date beginDate, Date endDate);
-
-	/**
-	 * 释放过期订单库存
-	 */
-	void releaseStock();
 
 }

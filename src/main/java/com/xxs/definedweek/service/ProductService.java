@@ -98,10 +98,6 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            是否置顶
 	 * @param isGift
 	 *            是否为赠品
-	 * @param isOutOfStock
-	 *            是否缺货
-	 * @param isStockAlert
-	 *            是否库存警告
 	 * @param orderType
 	 *            排序类型
 	 * @param count
@@ -112,7 +108,7 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            排序
 	 * @return 商品
 	 */
-	List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, OrderType orderType, Integer count, List<Filter> filters, List<Order> orders);
+	List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, OrderType orderType, Integer count, List<Filter> filters, List<Order> orders);
 
 	/**
 	 * 查找商品(缓存)
@@ -139,10 +135,6 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            是否置顶
 	 * @param isGift
 	 *            是否为赠品
-	 * @param isOutOfStock
-	 *            是否缺货
-	 * @param isStockAlert
-	 *            是否库存警告
 	 * @param orderType
 	 *            排序类型
 	 * @param count
@@ -153,7 +145,7 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            排序
 	 * @return 商品(缓存)
 	 */
-	List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, OrderType orderType, Integer count, List<Filter> filters, List<Order> orders,
+	List<Product> findList(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, OrderType orderType, Integer count, List<Filter> filters, List<Order> orders,
 			String cacheRegion);
 
 	/**
@@ -211,17 +203,13 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            是否置顶
 	 * @param isGift
 	 *            是否为赠品
-	 * @param isOutOfStock
-	 *            是否缺货
-	 * @param isStockAlert
-	 *            是否库存警告
 	 * @param orderType
 	 *            排序类型
 	 * @param pageable
 	 *            分页信息
 	 * @return 商品分页
 	 */
-	Page<Product> findPage(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, OrderType orderType, Pageable pageable);
+	Page<Product> findPage(ProductCategory productCategory, Brand brand, Promotion promotion, List<Tag> tags, Map<Attribute, String> attributeValue, BigDecimal startPrice, BigDecimal endPrice, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, OrderType orderType, Pageable pageable);
 
 	/**
 	 * 查找收藏商品分页
@@ -247,13 +235,9 @@ public interface ProductService extends BaseService<Product, Long> {
 	 *            是否置顶
 	 * @param isGift
 	 *            是否为赠品
-	 * @param isOutOfStock
-	 *            是否缺货
-	 * @param isStockAlert
-	 *            是否库存警告
 	 * @return 商品数量
 	 */
-	Long count(Member favoriteMember, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert);
+	Long count(Member favoriteMember, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift);
 
 	/**
 	 * 判断会员是否已购买该商品

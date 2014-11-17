@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.math.BigDecimal;
@@ -60,9 +55,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 商品
- * 
-
-
  */
 @Controller("adminProductController")
 @RequestMapping("/admin/product")
@@ -176,7 +168,6 @@ public class ProductController extends BaseController {
 			product.setPoint(point);
 		}
 		product.setFullName(null);
-		product.setAllocatedStock(0);
 		product.setScore(0F);
 		product.setTotalScore(0L);
 		product.setScoreCount(0L);
@@ -197,7 +188,6 @@ public class ProductController extends BaseController {
 		product.setCartItems(null);
 		product.setOrderItems(null);
 		product.setGiftItems(null);
-		product.setProductNotifies(null);
 
 		for (MemberRank memberRank : memberRankService.findAll()) {
 			String price = request.getParameter("memberPrice_" + memberRank.getId());
@@ -258,7 +248,6 @@ public class ProductController extends BaseController {
 								specificationProduct.setModifyDate(null);
 								specificationProduct.setSn(null);
 								specificationProduct.setFullName(null);
-								specificationProduct.setAllocatedStock(0);
 								specificationProduct.setIsList(false);
 								specificationProduct.setScore(0F);
 								specificationProduct.setTotalScore(0L);
@@ -283,7 +272,6 @@ public class ProductController extends BaseController {
 								specificationProduct.setCartItems(null);
 								specificationProduct.setOrderItems(null);
 								specificationProduct.setGiftItems(null);
-								specificationProduct.setProductNotifies(null);
 								products.add(specificationProduct);
 							}
 						}
@@ -430,7 +418,6 @@ public class ProductController extends BaseController {
 									specificationProduct.setModifyDate(null);
 									specificationProduct.setSn(null);
 									specificationProduct.setFullName(null);
-									specificationProduct.setAllocatedStock(0);
 									specificationProduct.setIsList(false);
 									specificationProduct.setScore(0F);
 									specificationProduct.setTotalScore(0L);
@@ -455,7 +442,6 @@ public class ProductController extends BaseController {
 									specificationProduct.setCartItems(null);
 									specificationProduct.setOrderItems(null);
 									specificationProduct.setGiftItems(null);
-									specificationProduct.setProductNotifies(null);
 									products.add(specificationProduct);
 								}
 							}
@@ -485,7 +471,7 @@ public class ProductController extends BaseController {
 	 * 列表
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Long productCategoryId, Long brandId, Long promotionId, Long tagId, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Boolean isOutOfStock, Boolean isStockAlert, Pageable pageable, ModelMap model) {
+	public String list(Long productCategoryId, Long brandId, Long promotionId, Long tagId, Boolean isMarketable, Boolean isList, Boolean isTop, Boolean isGift, Pageable pageable, ModelMap model) {
 		ProductCategory productCategory = productCategoryService.find(productCategoryId);
 		Brand brand = brandService.find(brandId);
 		Promotion promotion = promotionService.find(promotionId);
@@ -502,9 +488,7 @@ public class ProductController extends BaseController {
 		model.addAttribute("isList", isList);
 		model.addAttribute("isTop", isTop);
 		model.addAttribute("isGift", isGift);
-		model.addAttribute("isOutOfStock", isOutOfStock);
-		model.addAttribute("isStockAlert", isStockAlert);
-		model.addAttribute("page", productService.findPage(productCategory, brand, promotion, tags, null, null, null, isMarketable, isList, isTop, isGift, isOutOfStock, isStockAlert, OrderType.dateDesc, pageable));
+		model.addAttribute("page", productService.findPage(productCategory, brand, promotion, tags, null, null, null, isMarketable, isList, isTop, isGift, OrderType.dateDesc, pageable));
 		return "/admin/product/list";
 	}
 

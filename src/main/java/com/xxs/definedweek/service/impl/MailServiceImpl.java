@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service.impl;
 
 import java.io.IOException;
@@ -14,14 +9,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
-import com.xxs.definedweek.Setting;
-import com.xxs.definedweek.entity.ProductNotify;
-import com.xxs.definedweek.entity.SafeKey;
-import com.xxs.definedweek.service.MailService;
-import com.xxs.definedweek.service.TemplateService;
-import com.xxs.definedweek.util.SettingUtils;
-import com.xxs.definedweek.util.SpringUtils;
-
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -30,15 +17,19 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+import com.xxs.definedweek.Setting;
+import com.xxs.definedweek.entity.SafeKey;
+import com.xxs.definedweek.service.MailService;
+import com.xxs.definedweek.service.TemplateService;
+import com.xxs.definedweek.util.SettingUtils;
+import com.xxs.definedweek.util.SpringUtils;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 /**
  * Service - 邮件
- * 
-
-
  */
 @Service("mailServiceImpl")
 public class MailServiceImpl implements MailService {
@@ -139,14 +130,4 @@ public class MailServiceImpl implements MailService {
 		com.xxs.definedweek.Template findPasswordMailTemplate = templateService.get("findPasswordMail");
 		send(toMail, subject, findPasswordMailTemplate.getTemplatePath(), model);
 	}
-
-	public void sendProductNotifyMail(ProductNotify productNotify) {
-		Setting setting = SettingUtils.get();
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("productNotify", productNotify);
-		String subject = SpringUtils.getMessage("admin.productNotify.mailSubject", setting.getSiteName());
-		com.xxs.definedweek.Template productNotifyMailTemplate = templateService.get("productNotifyMail");
-		send(productNotify.getEmail(), subject, productNotifyMailTemplate.getTemplatePath(), model);
-	}
-
 }

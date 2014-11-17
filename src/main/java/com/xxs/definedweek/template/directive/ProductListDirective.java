@@ -124,9 +124,9 @@ public class ProductListDirective extends BaseDirective {
 			List<Filter> filters = getFilters(params, Article.class);
 			List<Order> orders = getOrders(params);
 			if (useCache) {
-				products = productService.findList(productCategory, brand, promotion, tags, attributeValueMap, startPrice, endPrice, true, true, null, false, null, null, orderType, count, filters, orders, cacheRegion);
+				products = productService.findList(productCategory, brand, promotion, tags, attributeValueMap, startPrice, endPrice, true, true, null, false, orderType, count, filters, orders, cacheRegion);
 			} else {
-				products = productService.findList(productCategory, brand, promotion, tags, attributeValueMap, startPrice, endPrice, true, true, null, false, null, null, orderType, count, filters, orders);
+				products = productService.findList(productCategory, brand, promotion, tags, attributeValueMap, startPrice, endPrice, true, true, null, false, orderType, count, filters, orders);
 			}
 		}
 		setLocalVariable(VARIABLE_NAME, products, env, body);

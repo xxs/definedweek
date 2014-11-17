@@ -1,17 +1,8 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
-
-import com.xxs.definedweek.Message;
-import com.xxs.definedweek.entity.Area;
-import com.xxs.definedweek.service.AreaService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.xxs.definedweek.Message;
+import com.xxs.definedweek.entity.Area;
+import com.xxs.definedweek.service.AreaService;
+
 /**
  * Controller - 地区
- * 
-
-
  */
 @Controller("adminAreaController")
 @RequestMapping("/admin/area")
@@ -55,9 +47,6 @@ public class AreaController extends BaseController {
 		area.setTreePath(null);
 		area.setChildren(null);
 		area.setMembers(null);
-		area.setReceivers(null);
-		area.setOrders(null);
-		area.setDeliveryCenters(null);
 		areaService.save(area);
 		addFlashMessage(redirectAttributes, SUCCESS_MESSAGE);
 		return "redirect:list.jhtml";

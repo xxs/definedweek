@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : xxs
 Source Server Version : 50154
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : shopxx
 
 Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2014-11-15 16:42:39
+Date: 2014-11-17 23:19:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-11-15 16:16:26', '技术部', 'admin@shopxx.net', '', '\0', null, '2014-11-15 16:16:26', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-11-17 23:04:14', '技术部', 'admin@shopxx.net', '', '\0', null, '2014-11-17 23:04:14', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for xx_admin_role
@@ -3592,7 +3592,7 @@ CREATE TABLE `xx_attribute` (
   PRIMARY KEY (`id`),
   KEY `FKE81F41DD7629117` (`product_category`),
   CONSTRAINT `FKE81F41DD7629117` FOREIGN KEY (`product_category`) REFERENCES `xx_product_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_attribute
@@ -3650,12 +3650,12 @@ CREATE TABLE `xx_cart` (
   PRIMARY KEY (`id`),
   KEY `FK9E1A84FF7C62EDF8` (`member`),
   CONSTRAINT `FK9E1A84FF7C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_cart
 -- ----------------------------
-INSERT INTO `xx_cart` VALUES ('1', '2014-11-15 15:35:20', '2014-11-15 15:49:16', '8a59bfba-d7ae-4ad0-a0a7-bfb293838b437baebc1f387c8eb82b48105b81a4f98c', '2');
+INSERT INTO `xx_cart` VALUES ('4', '2014-11-17 23:10:19', '2014-11-17 23:10:19', 'ec47fb19-2521-4fbd-bf21-77089df79952238b6e95f807214fa17b1f562efbc9e9', '2');
 
 -- ----------------------------
 -- Table structure for xx_cart_item
@@ -3673,12 +3673,12 @@ CREATE TABLE `xx_cart_item` (
   KEY `FK1A67F65379F8D99A` (`product`),
   CONSTRAINT `FK1A67F65339A23004` FOREIGN KEY (`cart`) REFERENCES `xx_cart` (`id`),
   CONSTRAINT `FK1A67F65379F8D99A` FOREIGN KEY (`product`) REFERENCES `xx_product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_cart_item
 -- ----------------------------
-INSERT INTO `xx_cart_item` VALUES ('1', '2014-11-15 15:35:21', '2014-11-15 15:36:11', '2', '1', '304');
+INSERT INTO `xx_cart_item` VALUES ('4', '2014-11-17 23:10:19', '2014-11-17 23:10:19', '1', '4', '305');
 
 -- ----------------------------
 -- Table structure for xx_consultation
@@ -3701,11 +3701,15 @@ CREATE TABLE `xx_consultation` (
   CONSTRAINT `FK33228D68366B868C` FOREIGN KEY (`for_consultation`) REFERENCES `xx_consultation` (`id`),
   CONSTRAINT `FK33228D6879F8D99A` FOREIGN KEY (`product`) REFERENCES `xx_product` (`id`),
   CONSTRAINT `FK33228D687C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_consultation
 -- ----------------------------
+INSERT INTO `xx_consultation` VALUES ('12', '2014-11-15 20:03:23', '2014-11-15 20:03:39', 'wrtwrtwertwert', '127.0.0.1', '', null, '2', '301');
+INSERT INTO `xx_consultation` VALUES ('13', '2014-11-15 20:03:39', '2014-11-15 20:03:39', 'rertwertwert', '127.0.0.1', '', '12', null, '301');
+INSERT INTO `xx_consultation` VALUES ('14', '2014-11-15 20:03:42', '2014-11-15 20:03:42', 'erwtwretwert', '127.0.0.1', '', '12', null, '301');
+INSERT INTO `xx_consultation` VALUES ('15', '2014-11-15 20:03:45', '2014-11-15 20:03:45', 'weryrtyertytfd', '127.0.0.1', '', '12', null, '301');
 
 -- ----------------------------
 -- Table structure for xx_coupon
@@ -3860,11 +3864,13 @@ CREATE TABLE `xx_deposit` (
   CONSTRAINT `FKEBB7CC5F4115A3C8` FOREIGN KEY (`payment`) REFERENCES `xx_payment` (`id`),
   CONSTRAINT `FKEBB7CC5F7C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`),
   CONSTRAINT `FKEBB7CC5FB992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_deposit
 -- ----------------------------
+INSERT INTO `xx_deposit` VALUES ('1', '2014-11-17 21:23:33', '2014-11-17 21:23:33', '8000.000000', '8000.000000', '0.000000', null, 'admin', '2', '2', null, null);
+INSERT INTO `xx_deposit` VALUES ('2', '2014-11-17 21:39:15', '2014-11-17 21:39:15', '7970.000000', '0.000000', '30.000000', null, null, '1', '2', '3', null);
 
 -- ----------------------------
 -- Table structure for xx_friend_link
@@ -3927,12 +3933,13 @@ CREATE TABLE `xx_goods` (
   `create_date` datetime NOT NULL,
   `modify_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_goods
 -- ----------------------------
 INSERT INTO `xx_goods` VALUES ('63', '2014-11-15 14:08:39', '2014-11-15 14:08:39');
+INSERT INTO `xx_goods` VALUES ('65', '2014-11-17 23:08:31', '2014-11-17 23:08:31');
 
 -- ----------------------------
 -- Table structure for xx_log
@@ -4009,7 +4016,7 @@ CREATE TABLE `xx_member` (
 -- Records of xx_member
 -- ----------------------------
 INSERT INTO `xx_member` VALUES ('1', '2014-11-03 00:00:00', '2014-11-03 00:00:00', null, '0.000000000000', null, null, null, null, null, null, null, null, null, null, '0.000000000000', '2014-11-03 00:00:00', 'test@shopxx.net', '0', '', '\0', null, '2014-11-03 00:00:00', '0', '192.168.1.1', null, 'test', '098f6bcd4621d373cade4e832627b4f6', null, '0', '192.168.1.1', null, null, 'test', null, '13', '1');
-INSERT INTO `xx_member` VALUES ('2', '2014-11-15 15:49:16', '2014-11-15 16:18:16', '123123', '0.000000000000', null, null, null, null, null, null, null, null, null, null, '0.000000000000', '2014-11-15 00:00:00', '123123@qq.com', '0', '', '\0', null, '2014-11-15 16:18:16', '0', '127.0.0.1', null, '123123', '4297f44b13955235245b2497399d7a93', null, '0', '127.0.0.1', null, null, '123123', null, '162', '1');
+INSERT INTO `xx_member` VALUES ('2', '2014-11-15 15:49:16', '2014-11-17 23:10:14', '123123', '0.000000000000', null, null, null, null, null, null, null, null, null, null, '7970.000000000000', '2014-11-15 00:00:00', '123123@qq.com', '0', '', '\0', null, '2014-11-17 23:10:14', '0', '127.0.0.1', null, '123123', '4297f44b13955235245b2497399d7a93', null, '0', '127.0.0.1', null, null, '123123', null, '162', '1');
 
 -- ----------------------------
 -- Table structure for xx_member_attribute
@@ -4031,11 +4038,11 @@ CREATE TABLE `xx_member_attribute` (
 -- ----------------------------
 -- Records of xx_member_attribute
 -- ----------------------------
-INSERT INTO `xx_member_attribute` VALUES ('1', '2014-11-03 00:03:43', '2014-11-03 00:03:43', '1', '', '\0', '姓名', null, '0');
-INSERT INTO `xx_member_attribute` VALUES ('2', '2014-11-03 00:03:44', '2014-11-03 00:03:44', '2', '', '\0', '性别', null, '1');
-INSERT INTO `xx_member_attribute` VALUES ('3', '2014-11-03 00:03:45', '2014-11-03 00:03:45', '3', '', '\0', '出生日期', null, '2');
-INSERT INTO `xx_member_attribute` VALUES ('4', '2014-11-03 00:03:46', '2014-11-03 00:03:46', '4', '', '\0', '地区', null, '3');
-INSERT INTO `xx_member_attribute` VALUES ('5', '2014-11-03 00:03:47', '2014-11-03 00:03:47', '5', '', '\0', '地址', null, '4');
+INSERT INTO `xx_member_attribute` VALUES ('1', '2014-11-03 00:03:43', '2014-11-17 21:47:56', '1', '\0', '\0', '姓名', null, '0');
+INSERT INTO `xx_member_attribute` VALUES ('2', '2014-11-03 00:03:44', '2014-11-17 21:47:13', '2', '\0', '\0', '性别', null, '1');
+INSERT INTO `xx_member_attribute` VALUES ('3', '2014-11-03 00:03:45', '2014-11-17 21:47:08', '3', '\0', '\0', '出生日期', null, '2');
+INSERT INTO `xx_member_attribute` VALUES ('4', '2014-11-03 00:03:46', '2014-11-17 21:47:03', '4', '\0', '\0', '地区', null, '3');
+INSERT INTO `xx_member_attribute` VALUES ('5', '2014-11-03 00:03:47', '2014-11-17 21:46:53', '5', '\0', '\0', '地址', null, '4');
 INSERT INTO `xx_member_attribute` VALUES ('6', '2014-11-03 00:03:48', '2014-11-03 00:03:48', '6', '\0', '\0', '邮编', null, '5');
 INSERT INTO `xx_member_attribute` VALUES ('7', '2014-11-03 00:03:49', '2014-11-03 00:03:49', '7', '\0', '\0', '电话', null, '6');
 INSERT INTO `xx_member_attribute` VALUES ('8', '2014-11-03 00:03:50', '2014-11-03 00:03:50', '8', '\0', '\0', '手机', null, '7');
@@ -4126,11 +4133,12 @@ CREATE TABLE `xx_message` (
   CONSTRAINT `FKC7FBB5C886A07D93` FOREIGN KEY (`sender`) REFERENCES `xx_member` (`id`),
   CONSTRAINT `FKC7FBB5C88C6C4D4D` FOREIGN KEY (`receiver`) REFERENCES `xx_member` (`id`),
   CONSTRAINT `FKC7FBB5C8E2B39A54` FOREIGN KEY (`for_message`) REFERENCES `xx_message` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_message
 -- ----------------------------
+INSERT INTO `xx_message` VALUES ('1', '2014-11-15 20:02:33', '2014-11-15 20:02:33', '3rqwtwqerqwerqwer', '127.0.0.1', '\0', '\0', '\0', '\0', '', '问问题', null, null, '2');
 
 -- ----------------------------
 -- Table structure for xx_navigation
@@ -4223,11 +4231,14 @@ CREATE TABLE `xx_order` (
   CONSTRAINT `FK25E6B94FC050045D` FOREIGN KEY (`coupon_code`) REFERENCES `xx_coupon_code` (`id`),
   CONSTRAINT `FK25E6B94FD3A8BE7D` FOREIGN KEY (`payment_method`) REFERENCES `xx_payment_method` (`id`),
   CONSTRAINT `FK25E6B94FD7122AAF` FOREIGN KEY (`operator`) REFERENCES `xx_admin` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_order
 -- ----------------------------
+INSERT INTO `xx_order` VALUES ('1', '2014-11-17 21:24:34', '2014-11-17 21:26:04', '12341234', '0.000000', '河北省唐山市路北区', '123123', '0.000000', '2014-11-18 21:24:34', '0.000000', '0.000000', '123123', '', '', '2014-11-17 21:26:24', null, '0.000000', '0', '网上支付', '0', '1231u12435', '40', '限时抢购', '2.000000', '普通快递', '0', '201411101', '1.080000', '12341234', '62', null, '2', null, '1', '1');
+INSERT INTO `xx_order` VALUES ('2', '2014-11-17 21:26:57', '2014-11-17 21:37:29', '12341234', '0.000000', '河北省唐山市路北区', '123123', '0.000000', null, '0.000000', '0.000000', null, '', '\0', '2014-11-17 21:37:49', null, '0.000000', '0', '银行汇款', '0', '1231u12435', '20', null, '0.000000', '普通快递', '0', '201411102', '0.000000', '12341234', '62', null, '2', '1', '2', '1');
+INSERT INTO `xx_order` VALUES ('3', '2014-11-17 21:39:15', '2014-11-17 21:46:37', '12341234', '30.000000', '河北省唐山市路北区', '123123', '0.000000', null, '0.000000', '0.000000', null, '', '\0', '2014-11-17 21:46:57', null, '0.000000', '1', '网上支付', '2', '1231u12435', '20', null, '0.000000', '普通快递', '0', '201411103', '0.000000', '12341234', '62', null, '2', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for xx_order_coupon
@@ -4271,11 +4282,14 @@ CREATE TABLE `xx_order_item` (
   KEY `FKD69FF40379F8D99A` (`product`),
   CONSTRAINT `FKD69FF40379F8D99A` FOREIGN KEY (`product`) REFERENCES `xx_product` (`id`),
   CONSTRAINT `FKD69FF403B992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_order_item
 -- ----------------------------
+INSERT INTO `xx_order_item` VALUES ('1', '2014-11-17 21:24:34', '2014-11-17 21:24:34', 'xx商城[7.x]', '\0', 'xx商城', '10.000000', '2', '0', '0', '201411609', null, null, '1', '304');
+INSERT INTO `xx_order_item` VALUES ('2', '2014-11-17 21:26:57', '2014-11-17 21:26:57', 'xx商城[8.x]', '\0', 'xx商城', '40.000000', '1', '0', '0', '201411608', null, null, '2', '303');
+INSERT INTO `xx_order_item` VALUES ('3', '2014-11-17 21:39:15', '2014-11-17 21:39:15', 'xx商城[9.x]', '\0', 'xx商城', '30.000000', '1', '0', '0', '201411607', null, null, '3', '302');
 
 -- ----------------------------
 -- Table structure for xx_order_log
@@ -4292,11 +4306,14 @@ CREATE TABLE `xx_order_log` (
   PRIMARY KEY (`id`),
   KEY `FKF6684C54B992E8EF` (`orders`),
   CONSTRAINT `FKF6684C54B992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_order_log
 -- ----------------------------
+INSERT INTO `xx_order_log` VALUES ('1', '2014-11-17 21:24:34', '2014-11-17 21:24:34', null, null, '0', '1');
+INSERT INTO `xx_order_log` VALUES ('2', '2014-11-17 21:26:57', '2014-11-17 21:26:57', null, null, '0', '2');
+INSERT INTO `xx_order_log` VALUES ('3', '2014-11-17 21:39:15', '2014-11-17 21:39:15', null, null, '0', '3');
 
 -- ----------------------------
 -- Table structure for xx_parameter
@@ -4312,7 +4329,7 @@ CREATE TABLE `xx_parameter` (
   PRIMARY KEY (`id`),
   KEY `FK8238FD2A818BF383` (`parameter_group`),
   CONSTRAINT `FK8238FD2A818BF383` FOREIGN KEY (`parameter_group`) REFERENCES `xx_parameter_group` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_parameter
@@ -4347,7 +4364,7 @@ CREATE TABLE `xx_parameter_group` (
   PRIMARY KEY (`id`),
   KEY `FKD68A4F2AD7629117` (`product_category`),
   CONSTRAINT `FKD68A4F2AD7629117` FOREIGN KEY (`product_category`) REFERENCES `xx_product_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_parameter_group
@@ -4385,11 +4402,12 @@ CREATE TABLE `xx_payment` (
   KEY `FK602CE7C7B992E8EF` (`orders`),
   CONSTRAINT `FK602CE7C77C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`),
   CONSTRAINT `FK602CE7C7B992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_payment
 -- ----------------------------
+INSERT INTO `xx_payment` VALUES ('1', '2014-11-15 19:57:48', '2014-11-15 19:57:48', null, '54653456.000000', null, '2014-11-30 19:57:48', '0.000000', null, '0', null, null, null, '支付宝即时交易', 'alipayDirectPlugin', '201411101', '0', '1', '2', null);
 
 -- ----------------------------
 -- Table structure for xx_payment_method
@@ -4527,7 +4545,6 @@ CREATE TABLE `xx_product` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_date` datetime NOT NULL,
   `modify_date` datetime NOT NULL,
-  `allocated_stock` int(11) NOT NULL,
   `attribute_value0` varchar(255) DEFAULT NULL,
   `attribute_value1` varchar(255) DEFAULT NULL,
   `attribute_value10` varchar(255) DEFAULT NULL,
@@ -4594,15 +4611,16 @@ CREATE TABLE `xx_product` (
   CONSTRAINT `FK7C9E82B0D7629117` FOREIGN KEY (`product_category`) REFERENCES `xx_product_category` (`id`),
   CONSTRAINT `FK7C9E82B0FA9695CA` FOREIGN KEY (`brand`) REFERENCES `xx_brand` (`id`),
   CONSTRAINT `FK7C9E82B0FB212D68` FOREIGN KEY (`goods`) REFERENCES `xx_goods` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=305 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_product
 -- ----------------------------
-INSERT INTO `xx_product` VALUES ('301', '2014-11-15 14:08:39', '2014-11-15 15:35:48', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.5]', '0', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '0', '2014-11-15 14:08:38', '0', '2014-11-15 14:08:38', 'xx商城', '20', '20.000000', '0', '0', '0', null, null, null, '201411606', '0', null, '0', null, '0', '2014-11-15 14:08:38', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
-INSERT INTO `xx_product` VALUES ('302', '2014-11-15 14:08:39', '2014-11-15 14:12:26', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.x]', '0', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '0', '2014-11-15 14:08:38', '0', '2014-11-15 14:08:38', 'xx商城', '20', '30.000000', '0', '0', '0', null, null, null, '201411607', null, null, '0', null, '0', '2014-11-15 14:08:38', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
-INSERT INTO `xx_product` VALUES ('303', '2014-11-15 14:08:39', '2014-11-15 15:36:05', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[8.x]', '3', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '3', '2014-11-15 15:36:05', '0', '2014-11-15 14:08:38', 'xx商城', '20', '40.000000', '0', '0', '0', null, null, null, '201411608', null, null, '0', null, '3', '2014-11-15 15:36:05', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
-INSERT INTO `xx_product` VALUES ('304', '2014-11-15 14:08:39', '2014-11-15 15:36:05', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[7.x]', '2', null, '阿斯顿发送到发送到', '\0', '', '', '\0', null, '24.000000', null, '2', '2014-11-15 15:36:05', '0', '2014-11-15 14:08:38', 'xx商城', '20', '500.000000', '0', '0', '0', null, null, null, '201411609', null, null, '0', null, '2', '2014-11-15 15:36:05', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
+INSERT INTO `xx_product` VALUES ('301', '2014-11-15 14:08:39', '2014-11-17 21:23:01', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.5]', '12', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-thumbnail.jpg', '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '12', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', 'xx商城', '20', '20.000000', '0', '0', '0', null, null, null, '201411606', '0', null, '0', null, '4', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
+INSERT INTO `xx_product` VALUES ('302', '2014-11-15 14:08:39', '2014-11-17 21:23:01', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.x]', '10', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '10', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', 'xx商城', '20', '30.000000', '0', '0', '0', null, null, null, '201411607', null, null, '0', null, '4', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
+INSERT INTO `xx_product` VALUES ('303', '2014-11-15 14:08:39', '2014-11-17 21:38:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[8.x]', '15', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '15', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', 'xx商城', '20', '40.000000', '0', '0', '0', null, null, null, '201411608', null, null, '0', null, '5', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', null, '18', '63', '23');
+INSERT INTO `xx_product` VALUES ('304', '2014-11-15 14:08:39', '2014-11-17 21:38:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[7.x]', '17', 'http://127.0.0.1:8080/upload/image/201411/cc6cdf6a-ab0e-406e-9b59-15a0f063f9bf.gif', '阿斯顿发送到发送到', '\0', '', '', '\0', null, '24.000000', null, '17', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', 'xx商城', '20', '10.000000', '0', '0', '0', null, null, null, '201411609', null, null, '0', null, '7', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
+INSERT INTO `xx_product` VALUES ('305', '2014-11-17 23:08:31', '2014-11-17 23:08:31', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123123', '0', null, null, '\0', '', '', '\0', null, '147.600000', null, '0', '2014-11-17 23:08:31', '0', '2014-11-17 23:08:31', '123123', '123', '123.000000', '0', '0', '0', null, null, null, '201411708', null, null, '0', null, '0', '2014-11-17 23:08:31', '0', '2014-11-17 23:08:31', null, null, '65', '2');
 
 -- ----------------------------
 -- Table structure for xx_product_category
@@ -4652,7 +4670,6 @@ CREATE TABLE `xx_product_category_brand` (
 -- ----------------------------
 -- Records of xx_product_category_brand
 -- ----------------------------
-INSERT INTO `xx_product_category_brand` VALUES ('2', '18');
 INSERT INTO `xx_product_category_brand` VALUES ('21', '18');
 INSERT INTO `xx_product_category_brand` VALUES ('23', '18');
 INSERT INTO `xx_product_category_brand` VALUES ('25', '18');
@@ -4693,12 +4710,13 @@ CREATE TABLE `xx_product_notify` (
   KEY `FKDCB1ABB879F8D99A` (`product`),
   CONSTRAINT `FKDCB1ABB879F8D99A` FOREIGN KEY (`product`) REFERENCES `xx_product` (`id`),
   CONSTRAINT `FKDCB1ABB87C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_product_notify
 -- ----------------------------
 INSERT INTO `xx_product_notify` VALUES ('1', '2014-11-15 15:36:38', '2014-11-15 15:36:38', 'xiaoshi@qq.com', '\0', null, '301');
+INSERT INTO `xx_product_notify` VALUES ('2', '2014-11-15 19:58:41', '2014-11-15 19:59:41', '123123@qq.com', '', '2', '301');
 
 -- ----------------------------
 -- Table structure for xx_product_parameter_value
@@ -4738,6 +4756,10 @@ CREATE TABLE `xx_product_product_image` (
 -- ----------------------------
 -- Records of xx_product_product_image
 -- ----------------------------
+INSERT INTO `xx_product_product_image` VALUES ('301', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-large.jpg', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-medium.jpg', null, 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-source.jpg', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-thumbnail.jpg', null);
+INSERT INTO `xx_product_product_image` VALUES ('301', 'http://127.0.0.1:8080/upload/image/201411/8a3cf475-4dac-4b9a-8763-311c158acacc-large.jpg', 'http://127.0.0.1:8080/upload/image/201411/8a3cf475-4dac-4b9a-8763-311c158acacc-medium.jpg', null, 'http://127.0.0.1:8080/upload/image/201411/8a3cf475-4dac-4b9a-8763-311c158acacc-source.jpg', 'http://127.0.0.1:8080/upload/image/201411/8a3cf475-4dac-4b9a-8763-311c158acacc-thumbnail.jpg', null);
+INSERT INTO `xx_product_product_image` VALUES ('301', 'http://127.0.0.1:8080/upload/image/201411/89fe5289-9390-4607-ad63-61f85c99f7cf-large.jpg', 'http://127.0.0.1:8080/upload/image/201411/89fe5289-9390-4607-ad63-61f85c99f7cf-medium.jpg', null, 'http://127.0.0.1:8080/upload/image/201411/89fe5289-9390-4607-ad63-61f85c99f7cf-source.jpg', 'http://127.0.0.1:8080/upload/image/201411/89fe5289-9390-4607-ad63-61f85c99f7cf-thumbnail.jpg', null);
+INSERT INTO `xx_product_product_image` VALUES ('301', 'http://127.0.0.1:8080/upload/image/201411/ee18aad8-6224-4de5-8d3a-4c44bb2f76e5-large.jpg', 'http://127.0.0.1:8080/upload/image/201411/ee18aad8-6224-4de5-8d3a-4c44bb2f76e5-medium.jpg', null, 'http://127.0.0.1:8080/upload/image/201411/ee18aad8-6224-4de5-8d3a-4c44bb2f76e5-source.jpg', 'http://127.0.0.1:8080/upload/image/201411/ee18aad8-6224-4de5-8d3a-4c44bb2f76e5-thumbnail.jpg', null);
 
 -- ----------------------------
 -- Table structure for xx_product_specification
@@ -4800,6 +4822,10 @@ CREATE TABLE `xx_product_tag` (
 -- ----------------------------
 -- Records of xx_product_tag
 -- ----------------------------
+INSERT INTO `xx_product_tag` VALUES ('304', '1');
+INSERT INTO `xx_product_tag` VALUES ('304', '2');
+INSERT INTO `xx_product_tag` VALUES ('305', '1');
+INSERT INTO `xx_product_tag` VALUES ('305', '2');
 
 -- ----------------------------
 -- Table structure for xx_promotion
@@ -4952,11 +4978,12 @@ CREATE TABLE `xx_receiver` (
   KEY `FK22D1EC4E7C62EDF8` (`member`),
   CONSTRAINT `FK22D1EC4E39A0DADE` FOREIGN KEY (`area`) REFERENCES `xx_area` (`id`),
   CONSTRAINT `FK22D1EC4E7C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_receiver
 -- ----------------------------
+INSERT INTO `xx_receiver` VALUES ('1', '2014-11-17 21:24:08', '2014-11-17 21:24:08', '12341234', '河北省唐山市路北区', '123123', '', '1231u12435', '12341234', '62', '2');
 
 -- ----------------------------
 -- Table structure for xx_refunds
@@ -5057,7 +5084,7 @@ CREATE TABLE `xx_review` (
   KEY `FK9B60057779F8D99A` (`product`),
   CONSTRAINT `FK9B60057779F8D99A` FOREIGN KEY (`product`) REFERENCES `xx_product` (`id`),
   CONSTRAINT `FK9B6005777C62EDF8` FOREIGN KEY (`member`) REFERENCES `xx_member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_review
@@ -5277,8 +5304,8 @@ CREATE TABLE `xx_sn` (
 -- Records of xx_sn
 -- ----------------------------
 INSERT INTO `xx_sn` VALUES ('1', '2014-11-03 00:59:51', '2014-11-15 14:08:39', '7', '0');
-INSERT INTO `xx_sn` VALUES ('2', '2014-11-03 00:59:52', '2014-11-03 00:59:52', '1', '1');
-INSERT INTO `xx_sn` VALUES ('3', '2014-11-03 00:59:53', '2014-11-03 00:59:53', '1', '2');
+INSERT INTO `xx_sn` VALUES ('2', '2014-11-03 00:59:52', '2014-11-17 21:24:34', '2', '1');
+INSERT INTO `xx_sn` VALUES ('3', '2014-11-03 00:59:53', '2014-11-15 19:57:48', '2', '2');
 INSERT INTO `xx_sn` VALUES ('4', '2014-11-03 00:59:54', '2014-11-03 00:59:54', '1', '3');
 INSERT INTO `xx_sn` VALUES ('5', '2014-11-03 00:59:55', '2014-11-03 00:59:55', '1', '4');
 INSERT INTO `xx_sn` VALUES ('6', '2014-11-03 00:59:56', '2014-11-03 00:59:56', '1', '5');

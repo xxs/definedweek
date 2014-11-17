@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.awt.image.BufferedImage;
@@ -39,9 +34,6 @@ import org.springframework.web.context.ServletContextAware;
 
 /**
  * Controller - 共用
- * 
-
-
  */
 @Controller("adminCommonController")
 @RequestMapping("/admin/common")
@@ -99,11 +91,8 @@ public class CommonController implements ServletContextAware {
 		model.addAttribute("serverInfo", servletContext.getServerInfo());
 		model.addAttribute("servletVersion", servletContext.getMajorVersion() + "." + servletContext.getMinorVersion());
 		model.addAttribute("waitingPaymentOrderCount", orderService.waitingPaymentCount(null));
-		model.addAttribute("waitingShippingOrderCount", orderService.waitingShippingCount(null));
-		model.addAttribute("marketableProductCount", productService.count(null, true, null, null, false, null, null));
-		model.addAttribute("notMarketableProductCount", productService.count(null, false, null, null, false, null, null));
-		model.addAttribute("stockAlertProductCount", productService.count(null, null, null, null, false, null, true));
-		model.addAttribute("outOfStockProductCount", productService.count(null, null, null, null, false, true, null));
+		model.addAttribute("marketableProductCount", productService.count(null, true, null, null, false));
+		model.addAttribute("notMarketableProductCount", productService.count(null, false, null, null, false));
 		model.addAttribute("memberCount", memberService.count());
 		model.addAttribute("unreadMessageCount", messageService.count(null, false));
 		return "/admin/common/index";

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import javax.persistence.Column;
@@ -11,16 +6,12 @@ import javax.validation.constraints.Min;
 
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Store;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Entity - 排序基类
- * 
-
-
  */
 @MappedSuperclass
 public abstract class OrderEntity extends BaseEntity implements Comparable<OrderEntity> {

@@ -7,11 +7,11 @@ package com.xxs.definedweek.job;
 
 import javax.annotation.Resource;
 
-import com.xxs.definedweek.service.OrderService;
-
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.xxs.definedweek.service.OrderService;
 
 /**
  * Job - 订单
@@ -31,7 +31,7 @@ public class OrderJob {
 	 */
 	@Scheduled(cron = "${job.order_release_stock.cron}")
 	public void releaseStock() {
-		orderService.releaseStock();
+		//orderService.releaseStock();
 	}
 
 }

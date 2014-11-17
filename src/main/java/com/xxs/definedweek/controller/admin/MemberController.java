@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.math.BigDecimal;
@@ -44,9 +39,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 会员
- * 
-
-
  */
 @Controller("adminMemberController")
 @RequestMapping("/admin/member")
@@ -194,11 +186,9 @@ public class MemberController extends BaseController {
 		member.setDeposits(null);
 		member.setPayments(null);
 		member.setCouponCodes(null);
-		member.setReceivers(null);
 		member.setReviews(null);
 		member.setConsultations(null);
 		member.setFavoriteProducts(null);
-		member.setProductNotifies(null);
 		member.setInMessages(null);
 		member.setOutMessages(null);
 		memberService.save(member, adminService.getCurrent());

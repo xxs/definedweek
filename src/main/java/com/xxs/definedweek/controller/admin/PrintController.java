@@ -1,22 +1,14 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import javax.annotation.Resource;
-
-import com.xxs.definedweek.entity.DeliveryCenter;
-import com.xxs.definedweek.entity.DeliveryTemplate;
-import com.xxs.definedweek.service.DeliveryCenterService;
-import com.xxs.definedweek.service.DeliveryTemplateService;
-import com.xxs.definedweek.service.OrderService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.xxs.definedweek.service.DeliveryTemplateService;
+import com.xxs.definedweek.service.OrderService;
 
 /**
  * Controller - 打印
@@ -32,8 +24,6 @@ public class PrintController extends BaseController {
 	private OrderService orderService;
 	@Resource(name = "deliveryTemplateServiceImpl")
 	private DeliveryTemplateService deliveryTemplateService;
-	@Resource(name = "deliveryCenterServiceImpl")
-	private DeliveryCenterService deliveryCenterService;
 
 	/**
 	 * 订单打印
@@ -67,19 +57,8 @@ public class PrintController extends BaseController {
 	 */
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
 	public String delivery(Long orderId, Long deliveryTemplateId, Long deliveryCenterId, ModelMap model) {
-		DeliveryTemplate deliveryTemplate = deliveryTemplateService.find(deliveryTemplateId);
-		DeliveryCenter deliveryCenter = deliveryCenterService.find(deliveryCenterId);
-		if (deliveryTemplate == null) {
-			deliveryTemplate = deliveryTemplateService.findDefault();
-		}
-		if (deliveryCenter == null) {
-			deliveryCenter = deliveryCenterService.findDefault();
-		}
 		model.addAttribute("deliveryTemplates", deliveryTemplateService.findAll());
-		model.addAttribute("deliveryCenters", deliveryCenterService.findAll());
 		model.addAttribute("order", orderService.find(orderId));
-		model.addAttribute("deliveryTemplate", deliveryTemplate);
-		model.addAttribute("deliveryCenter", deliveryCenter);
 		return "/admin/print/delivery";
 	}
 

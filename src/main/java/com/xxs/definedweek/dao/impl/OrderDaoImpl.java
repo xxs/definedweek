@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.dao.impl;
 
 import java.math.BigDecimal;
@@ -11,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.FlushModeType;
-import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
+import org.springframework.stereotype.Repository;
 
 import com.xxs.definedweek.Filter;
 import com.xxs.definedweek.Page;
@@ -26,17 +22,9 @@ import com.xxs.definedweek.entity.Member;
 import com.xxs.definedweek.entity.Order;
 import com.xxs.definedweek.entity.Order.OrderStatus;
 import com.xxs.definedweek.entity.Order.PaymentStatus;
-import com.xxs.definedweek.entity.Order.ShippingStatus;
-import com.xxs.definedweek.entity.OrderItem;
-import com.xxs.definedweek.entity.Product;
-
-import org.springframework.stereotype.Repository;
 
 /**
  * Dao - 订单
- * 
-
-
  */
 @Repository("orderDaoImpl")
 public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
@@ -77,7 +65,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		return super.findPage(criteriaQuery, pageable);
 	}
 
-	public Page<Order> findPage(OrderStatus orderStatus, PaymentStatus paymentStatus, ShippingStatus shippingStatus, Boolean hasExpired, Pageable pageable) {
+	public Page<Order> findPage(OrderStatus orderStatus, PaymentStatus paymentStatus, Boolean hasExpired, Pageable pageable) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
 		Root<Order> root = criteriaQuery.from(Order.class);
@@ -88,9 +76,6 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		}
 		if (paymentStatus != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("paymentStatus"), paymentStatus));
-		}
-		if (shippingStatus != null) {
-			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("shippingStatus"), shippingStatus));
 		}
 		if (hasExpired != null) {
 			if (hasExpired) {
@@ -103,7 +88,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		return super.findPage(criteriaQuery, pageable);
 	}
 
-	public Long count(OrderStatus orderStatus, PaymentStatus paymentStatus, ShippingStatus shippingStatus, Boolean hasExpired) {
+	public Long count(OrderStatus orderStatus, PaymentStatus paymentStatus,Boolean hasExpired) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
 		Root<Order> root = criteriaQuery.from(Order.class);
@@ -114,9 +99,6 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		}
 		if (paymentStatus != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("paymentStatus"), paymentStatus));
-		}
-		if (shippingStatus != null) {
-			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("shippingStatus"), shippingStatus));
 		}
 		if (hasExpired != null) {
 			if (hasExpired) {
@@ -137,21 +119,6 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		Predicate restrictions = criteriaBuilder.conjunction();
 		restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.notEqual(root.get("orderStatus"), OrderStatus.completed), criteriaBuilder.notEqual(root.get("orderStatus"), OrderStatus.cancelled));
 		restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(criteriaBuilder.equal(root.get("paymentStatus"), PaymentStatus.unpaid), criteriaBuilder.equal(root.get("paymentStatus"), PaymentStatus.partialPayment)));
-		restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(root.get("expire").isNull(), criteriaBuilder.greaterThanOrEqualTo(root.<Date> get("expire"), new Date())));
-		if (member != null) {
-			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("member"), member));
-		}
-		criteriaQuery.where(restrictions);
-		return super.count(criteriaQuery, null);
-	}
-
-	public Long waitingShippingCount(Member member) {
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
-		Root<Order> root = criteriaQuery.from(Order.class);
-		criteriaQuery.select(root);
-		Predicate restrictions = criteriaBuilder.conjunction();
-		restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.notEqual(root.get("orderStatus"), OrderStatus.completed), criteriaBuilder.notEqual(root.get("orderStatus"), OrderStatus.cancelled), criteriaBuilder.equal(root.get("paymentStatus"), PaymentStatus.paid), criteriaBuilder.equal(root.get("shippingStatus"), ShippingStatus.unshipped));
 		restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.or(root.get("expire").isNull(), criteriaBuilder.greaterThanOrEqualTo(root.<Date> get("expire"), new Date())));
 		if (member != null) {
 			restrictions = criteriaBuilder.and(restrictions, criteriaBuilder.equal(root.get("member"), member));
@@ -193,26 +160,4 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 		criteriaQuery.where(restrictions);
 		return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getSingleResult();
 	}
-
-	public void releaseStock() {
-		String jpql = "select orders from Order orders where orders.isAllocatedStock = :isAllocatedStock and orders.expire is not null and orders.expire <= :now";
-		List<Order> orders = entityManager.createQuery(jpql, Order.class).setParameter("isAllocatedStock", true).setParameter("now", new Date()).getResultList();
-		if (orders != null) {
-			for (Order order : orders) {
-				if (order != null && order.getOrderItems() != null) {
-					for (OrderItem orderItem : order.getOrderItems()) {
-						if (orderItem != null) {
-							Product product = orderItem.getProduct();
-							if (product != null) {
-								entityManager.lock(product, LockModeType.PESSIMISTIC_WRITE);
-								product.setAllocatedStock(product.getAllocatedStock() - (orderItem.getQuantity() - orderItem.getShippedQuantity()));
-							}
-						}
-					}
-					order.setIsAllocatedStock(false);
-				}
-			}
-		}
-	}
-
 }
