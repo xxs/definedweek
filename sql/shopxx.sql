@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2014-11-17 23:19:49
+Date: 2014-11-18 13:24:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-11-17 23:04:14', '技术部', 'admin@shopxx.net', '', '\0', null, '2014-11-17 23:04:14', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-11-18 12:07:08', '技术部', 'admin@shopxx.net', '', '\0', null, '2014-11-18 12:07:08', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for xx_admin_role
@@ -3933,13 +3933,14 @@ CREATE TABLE `xx_goods` (
   `create_date` datetime NOT NULL,
   `modify_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_goods
 -- ----------------------------
 INSERT INTO `xx_goods` VALUES ('63', '2014-11-15 14:08:39', '2014-11-15 14:08:39');
 INSERT INTO `xx_goods` VALUES ('65', '2014-11-17 23:08:31', '2014-11-17 23:08:31');
+INSERT INTO `xx_goods` VALUES ('66', '2014-11-18 12:23:09', '2014-11-18 12:23:09');
 
 -- ----------------------------
 -- Table structure for xx_log
@@ -4611,16 +4612,19 @@ CREATE TABLE `xx_product` (
   CONSTRAINT `FK7C9E82B0D7629117` FOREIGN KEY (`product_category`) REFERENCES `xx_product_category` (`id`),
   CONSTRAINT `FK7C9E82B0FA9695CA` FOREIGN KEY (`brand`) REFERENCES `xx_brand` (`id`),
   CONSTRAINT `FK7C9E82B0FB212D68` FOREIGN KEY (`goods`) REFERENCES `xx_goods` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=309 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_product
 -- ----------------------------
-INSERT INTO `xx_product` VALUES ('301', '2014-11-15 14:08:39', '2014-11-17 21:23:01', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.5]', '12', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-thumbnail.jpg', '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '12', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', 'xx商城', '20', '20.000000', '0', '0', '0', null, null, null, '201411606', '0', null, '0', null, '4', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
-INSERT INTO `xx_product` VALUES ('302', '2014-11-15 14:08:39', '2014-11-17 21:23:01', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.x]', '10', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '10', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', 'xx商城', '20', '30.000000', '0', '0', '0', null, null, null, '201411607', null, null, '0', null, '4', '2014-11-17 21:23:01', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
-INSERT INTO `xx_product` VALUES ('303', '2014-11-15 14:08:39', '2014-11-17 21:38:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[8.x]', '15', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '15', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', 'xx商城', '20', '40.000000', '0', '0', '0', null, null, null, '201411608', null, null, '0', null, '5', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', null, '18', '63', '23');
-INSERT INTO `xx_product` VALUES ('304', '2014-11-15 14:08:39', '2014-11-17 21:38:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[7.x]', '17', 'http://127.0.0.1:8080/upload/image/201411/cc6cdf6a-ab0e-406e-9b59-15a0f063f9bf.gif', '阿斯顿发送到发送到', '\0', '', '', '\0', null, '24.000000', null, '17', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', 'xx商城', '20', '10.000000', '0', '0', '0', null, null, null, '201411609', null, null, '0', null, '7', '2014-11-17 21:38:40', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
+INSERT INTO `xx_product` VALUES ('301', '2014-11-15 14:08:39', '2014-11-18 12:56:58', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.5]', '15', 'http://127.0.0.1:8080/upload/image/201411/4c79b583-4781-4e0b-bf72-d5170ef3029a-thumbnail.jpg', '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '15', '2014-11-18 12:23:27', '0', '2014-11-15 14:08:38', 'xx商城', '20', '20.000000', '0', '0', '0', null, null, null, '201411606', '0', null, '0', null, '7', '2014-11-18 12:23:27', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
+INSERT INTO `xx_product` VALUES ('302', '2014-11-15 14:08:39', '2014-11-18 12:56:58', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[9.x]', '11', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '11', '2014-11-18 12:23:27', '0', '2014-11-15 14:08:38', 'xx商城', '20', '30.000000', '0', '0', '0', null, null, null, '201411607', null, null, '0', null, '5', '2014-11-18 12:23:27', '0', '2014-11-15 14:08:38', null, '18', '63', '25');
+INSERT INTO `xx_product` VALUES ('303', '2014-11-15 14:08:39', '2014-11-18 12:56:58', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[8.x]', '23', null, '阿斯顿发送到发送到', '\0', '\0', '', '\0', null, '24.000000', null, '23', '2014-11-18 12:44:46', '0', '2014-11-15 14:08:38', 'xx商城', '20', '40.000000', '0', '0', '0', null, null, null, '201411608', null, null, '0', null, '13', '2014-11-18 12:44:46', '0', '2014-11-15 14:08:38', null, '18', '63', '23');
+INSERT INTO `xx_product` VALUES ('304', '2014-11-15 14:08:39', '2014-11-18 12:56:58', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'xx商城[7.x]', '26', 'http://127.0.0.1:8080/upload/image/201411/cc6cdf6a-ab0e-406e-9b59-15a0f063f9bf.gif', '阿斯顿发送到发送到', '\0', '', '', '\0', null, '24.000000', null, '26', '2014-11-18 12:44:46', '0', '2014-11-15 14:08:38', 'xx商城', '20', '10.000000', '0', '0', '0', null, null, null, '201411609', null, null, '0', null, '16', '2014-11-18 12:44:46', '0', '2014-11-15 14:08:38', null, '18', '63', '21');
 INSERT INTO `xx_product` VALUES ('305', '2014-11-17 23:08:31', '2014-11-17 23:08:31', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '123123', '0', null, null, '\0', '', '', '\0', null, '147.600000', null, '0', '2014-11-17 23:08:31', '0', '2014-11-17 23:08:31', '123123', '123', '123.000000', '0', '0', '0', null, null, null, '201411708', null, null, '0', null, '0', '2014-11-17 23:08:31', '0', '2014-11-17 23:08:31', null, null, '65', '2');
+INSERT INTO `xx_product` VALUES ('306', '2014-11-18 12:23:09', '2014-11-18 12:55:13', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '小米商城[jspxcms 4.0.1]', '9', null, null, '\0', '\0', '', '', null, '18.000000', null, '9', '2014-11-18 12:55:13', '0', '2014-11-18 12:23:09', '小米商城', '15', '15.000000', '0', '0', '0', null, null, null, '201411707', null, null, '0', null, '9', '2014-11-18 12:55:13', '0', '2014-11-18 12:23:09', null, null, '66', '10');
+INSERT INTO `xx_product` VALUES ('307', '2014-11-18 12:23:09', '2014-11-18 12:44:46', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '小米商城[jspxcms 4.1]', '1', null, null, '\0', '\0', '', '', null, '18.000000', null, '1', '2014-11-18 12:44:46', '0', '2014-11-18 12:23:09', '小米商城', '15', '15.000000', '0', '0', '0', null, null, null, '201411709', null, null, '0', null, '1', '2014-11-18 12:44:46', '0', '2014-11-18 12:23:09', null, null, '66', '10');
+INSERT INTO `xx_product` VALUES ('308', '2014-11-18 12:23:09', '2014-11-18 12:44:46', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '小米商城[jspxcms 3.1]', '2', null, null, '\0', '', '', '', null, '18.000000', null, '2', '2014-11-18 12:44:46', '0', '2014-11-18 12:23:09', '小米商城', '15', '15.000000', '0', '0', '0', null, null, null, '201411710', null, null, '0', null, '2', '2014-11-18 12:44:46', '0', '2014-11-18 12:23:09', null, null, '66', '10');
 
 -- ----------------------------
 -- Table structure for xx_product_category
@@ -4782,6 +4786,12 @@ INSERT INTO `xx_product_specification` VALUES ('301', '3');
 INSERT INTO `xx_product_specification` VALUES ('302', '3');
 INSERT INTO `xx_product_specification` VALUES ('303', '3');
 INSERT INTO `xx_product_specification` VALUES ('304', '3');
+INSERT INTO `xx_product_specification` VALUES ('306', '4');
+INSERT INTO `xx_product_specification` VALUES ('306', '7');
+INSERT INTO `xx_product_specification` VALUES ('307', '4');
+INSERT INTO `xx_product_specification` VALUES ('307', '7');
+INSERT INTO `xx_product_specification` VALUES ('308', '4');
+INSERT INTO `xx_product_specification` VALUES ('308', '7');
 
 -- ----------------------------
 -- Table structure for xx_product_specification_value
@@ -4804,6 +4814,12 @@ INSERT INTO `xx_product_specification_value` VALUES ('301', '79');
 INSERT INTO `xx_product_specification_value` VALUES ('302', '78');
 INSERT INTO `xx_product_specification_value` VALUES ('303', '77');
 INSERT INTO `xx_product_specification_value` VALUES ('304', '49');
+INSERT INTO `xx_product_specification_value` VALUES ('306', '51');
+INSERT INTO `xx_product_specification_value` VALUES ('306', '84');
+INSERT INTO `xx_product_specification_value` VALUES ('307', '80');
+INSERT INTO `xx_product_specification_value` VALUES ('307', '84');
+INSERT INTO `xx_product_specification_value` VALUES ('308', '50');
+INSERT INTO `xx_product_specification_value` VALUES ('308', '84');
 
 -- ----------------------------
 -- Table structure for xx_product_tag
@@ -5303,7 +5319,7 @@ CREATE TABLE `xx_sn` (
 -- ----------------------------
 -- Records of xx_sn
 -- ----------------------------
-INSERT INTO `xx_sn` VALUES ('1', '2014-11-03 00:59:51', '2014-11-15 14:08:39', '7', '0');
+INSERT INTO `xx_sn` VALUES ('1', '2014-11-03 00:59:51', '2014-11-18 12:23:09', '8', '0');
 INSERT INTO `xx_sn` VALUES ('2', '2014-11-03 00:59:52', '2014-11-17 21:24:34', '2', '1');
 INSERT INTO `xx_sn` VALUES ('3', '2014-11-03 00:59:53', '2014-11-15 19:57:48', '2', '2');
 INSERT INTO `xx_sn` VALUES ('4', '2014-11-03 00:59:54', '2014-11-03 00:59:54', '1', '3');
@@ -5323,17 +5339,16 @@ CREATE TABLE `xx_specification` (
   `name` varchar(255) NOT NULL,
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_specification
 -- ----------------------------
-INSERT INTO `xx_specification` VALUES ('1', '2014-11-03 00:12:39', '2014-11-03 00:12:39', '1', '女装', '颜色', '1');
-INSERT INTO `xx_specification` VALUES ('2', '2014-11-03 00:12:40', '2014-11-03 00:12:40', '2', '男装', '颜色', '1');
-INSERT INTO `xx_specification` VALUES ('3', '2014-11-03 00:12:41', '2014-11-15 13:24:34', '3', 'opencms所有版本号', '版本', '0');
-INSERT INTO `xx_specification` VALUES ('4', '2014-11-03 00:12:42', '2014-11-15 13:25:44', '4', 'jspxcms所有版本', '版本', '0');
-INSERT INTO `xx_specification` VALUES ('5', '2014-11-03 00:12:43', '2014-11-15 13:27:39', '5', 'jeecms所有版本', '版本', '0');
-INSERT INTO `xx_specification` VALUES ('6', '2014-11-03 00:12:44', '2014-11-15 13:28:20', '6', 'es所有版本', '版本', '0');
+INSERT INTO `xx_specification` VALUES ('3', '2014-11-03 00:12:41', '2014-11-18 12:19:39', '3', 'opencms版本号', '版本', '0');
+INSERT INTO `xx_specification` VALUES ('4', '2014-11-03 00:12:42', '2014-11-18 12:19:49', '4', 'jspxcms版本号', '版本', '0');
+INSERT INTO `xx_specification` VALUES ('5', '2014-11-03 00:12:43', '2014-11-18 12:20:06', '5', 'jeecms版本号', '版本', '0');
+INSERT INTO `xx_specification` VALUES ('6', '2014-11-03 00:12:44', '2014-11-18 12:20:02', '6', 'es版本号', '版本', '0');
+INSERT INTO `xx_specification` VALUES ('7', '2014-11-18 12:17:05', '2014-11-18 12:18:52', '1', '支持的系统名称', '系统', '0');
 
 -- ----------------------------
 -- Table structure for xx_specification_value
@@ -5350,63 +5365,29 @@ CREATE TABLE `xx_specification_value` (
   PRIMARY KEY (`id`),
   KEY `FK5E624376629A04C2` (`specification`),
   CONSTRAINT `FK5E624376629A04C2` FOREIGN KEY (`specification`) REFERENCES `xx_specification` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xx_specification_value
 -- ----------------------------
-INSERT INTO `xx_specification_value` VALUES ('1', '2014-11-03 00:12:45', '2014-11-03 00:12:45', '1', 'http://storage.shopxx.net/demo-image/3.0/specification/1.gif', '无', '1');
-INSERT INTO `xx_specification_value` VALUES ('2', '2014-11-03 00:12:46', '2014-11-03 00:12:46', '2', 'http://storage.shopxx.net/demo-image/3.0/specification/2.gif', '黄色', '1');
-INSERT INTO `xx_specification_value` VALUES ('3', '2014-11-03 00:12:47', '2014-11-03 00:12:47', '3', 'http://storage.shopxx.net/demo-image/3.0/specification/3.gif', '酒红色', '1');
-INSERT INTO `xx_specification_value` VALUES ('4', '2014-11-03 00:12:48', '2014-11-03 00:12:48', '4', 'http://storage.shopxx.net/demo-image/3.0/specification/4.gif', '金色', '1');
-INSERT INTO `xx_specification_value` VALUES ('5', '2014-11-03 00:12:49', '2014-11-03 00:12:49', '5', 'http://storage.shopxx.net/demo-image/3.0/specification/5.gif', '橙色', '1');
-INSERT INTO `xx_specification_value` VALUES ('6', '2014-11-03 00:12:50', '2014-11-03 00:12:50', '6', 'http://storage.shopxx.net/demo-image/3.0/specification/6.gif', '灰色', '1');
-INSERT INTO `xx_specification_value` VALUES ('7', '2014-11-03 00:12:51', '2014-11-03 00:12:51', '7', 'http://storage.shopxx.net/demo-image/3.0/specification/7.gif', '蓝色', '1');
-INSERT INTO `xx_specification_value` VALUES ('8', '2014-11-03 00:12:52', '2014-11-03 00:12:52', '8', 'http://storage.shopxx.net/demo-image/3.0/specification/8.gif', '黑色', '1');
-INSERT INTO `xx_specification_value` VALUES ('9', '2014-11-03 00:12:53', '2014-11-03 00:12:53', '9', 'http://storage.shopxx.net/demo-image/3.0/specification/9.gif', '卡其色', '1');
-INSERT INTO `xx_specification_value` VALUES ('10', '2014-11-03 00:12:54', '2014-11-03 00:12:54', '10', 'http://storage.shopxx.net/demo-image/3.0/specification/10.gif', '混色', '1');
-INSERT INTO `xx_specification_value` VALUES ('11', '2014-11-03 00:12:55', '2014-11-03 00:12:55', '11', 'http://storage.shopxx.net/demo-image/3.0/specification/11.gif', '紫色', '1');
-INSERT INTO `xx_specification_value` VALUES ('12', '2014-11-03 00:12:56', '2014-11-03 00:12:56', '12', 'http://storage.shopxx.net/demo-image/3.0/specification/12.gif', '粉红色', '1');
-INSERT INTO `xx_specification_value` VALUES ('13', '2014-11-03 00:12:57', '2014-11-03 00:12:57', '13', 'http://storage.shopxx.net/demo-image/3.0/specification/13.gif', '银色', '1');
-INSERT INTO `xx_specification_value` VALUES ('14', '2014-11-03 00:12:58', '2014-11-03 00:12:58', '14', 'http://storage.shopxx.net/demo-image/3.0/specification/14.gif', '红色', '1');
-INSERT INTO `xx_specification_value` VALUES ('15', '2014-11-03 00:12:59', '2014-11-03 00:12:59', '15', 'http://storage.shopxx.net/demo-image/3.0/specification/15.gif', '白色', '1');
-INSERT INTO `xx_specification_value` VALUES ('16', '2014-11-03 00:13:00', '2014-11-03 00:13:00', '16', 'http://storage.shopxx.net/demo-image/3.0/specification/16.gif', '浅蓝色', '1');
-INSERT INTO `xx_specification_value` VALUES ('17', '2014-11-03 00:13:01', '2014-11-03 00:13:01', '17', 'http://storage.shopxx.net/demo-image/3.0/specification/17.gif', '深蓝色', '1');
-INSERT INTO `xx_specification_value` VALUES ('18', '2014-11-03 00:13:02', '2014-11-03 00:13:02', '18', 'http://storage.shopxx.net/demo-image/3.0/specification/18.gif', '绿色', '1');
-INSERT INTO `xx_specification_value` VALUES ('19', '2014-11-03 00:13:03', '2014-11-03 00:13:03', '19', 'http://storage.shopxx.net/demo-image/3.0/specification/19.gif', '米黄色', '1');
-INSERT INTO `xx_specification_value` VALUES ('20', '2014-11-03 00:13:04', '2014-11-03 00:13:04', '20', 'http://storage.shopxx.net/demo-image/3.0/specification/20.gif', '咖啡色', '1');
-INSERT INTO `xx_specification_value` VALUES ('21', '2014-11-03 00:13:05', '2014-11-03 00:13:05', '1', 'http://storage.shopxx.net/demo-image/3.0/specification/1.gif', '无', '2');
-INSERT INTO `xx_specification_value` VALUES ('22', '2014-11-03 00:13:06', '2014-11-03 00:13:06', '2', 'http://storage.shopxx.net/demo-image/3.0/specification/2.gif', '黄色', '2');
-INSERT INTO `xx_specification_value` VALUES ('23', '2014-11-03 00:13:07', '2014-11-03 00:13:07', '3', 'http://storage.shopxx.net/demo-image/3.0/specification/3.gif', '酒红色', '2');
-INSERT INTO `xx_specification_value` VALUES ('24', '2014-11-03 00:13:08', '2014-11-03 00:13:08', '4', 'http://storage.shopxx.net/demo-image/3.0/specification/4.gif', '金色', '2');
-INSERT INTO `xx_specification_value` VALUES ('25', '2014-11-03 00:13:09', '2014-11-03 00:13:09', '5', 'http://storage.shopxx.net/demo-image/3.0/specification/5.gif', '橙色', '2');
-INSERT INTO `xx_specification_value` VALUES ('26', '2014-11-03 00:13:10', '2014-11-03 00:13:10', '6', 'http://storage.shopxx.net/demo-image/3.0/specification/6.gif', '灰色', '2');
-INSERT INTO `xx_specification_value` VALUES ('27', '2014-11-03 00:13:11', '2014-11-03 00:13:11', '7', 'http://storage.shopxx.net/demo-image/3.0/specification/7.gif', '蓝色', '2');
-INSERT INTO `xx_specification_value` VALUES ('28', '2014-11-03 00:13:12', '2014-11-03 00:13:12', '8', 'http://storage.shopxx.net/demo-image/3.0/specification/8.gif', '黑色', '2');
-INSERT INTO `xx_specification_value` VALUES ('29', '2014-11-03 00:13:13', '2014-11-03 00:13:13', '9', 'http://storage.shopxx.net/demo-image/3.0/specification/9.gif', '卡其色', '2');
-INSERT INTO `xx_specification_value` VALUES ('30', '2014-11-03 00:13:14', '2014-11-03 00:13:14', '10', 'http://storage.shopxx.net/demo-image/3.0/specification/10.gif', '混色', '2');
-INSERT INTO `xx_specification_value` VALUES ('31', '2014-11-03 00:13:15', '2014-11-03 00:13:15', '11', 'http://storage.shopxx.net/demo-image/3.0/specification/11.gif', '紫色', '2');
-INSERT INTO `xx_specification_value` VALUES ('32', '2014-11-03 00:13:16', '2014-11-03 00:13:16', '12', 'http://storage.shopxx.net/demo-image/3.0/specification/12.gif', '粉红色', '2');
-INSERT INTO `xx_specification_value` VALUES ('33', '2014-11-03 00:13:17', '2014-11-03 00:13:17', '13', 'http://storage.shopxx.net/demo-image/3.0/specification/13.gif', '银色', '2');
-INSERT INTO `xx_specification_value` VALUES ('34', '2014-11-03 00:13:18', '2014-11-03 00:13:18', '14', 'http://storage.shopxx.net/demo-image/3.0/specification/14.gif', '红色', '2');
-INSERT INTO `xx_specification_value` VALUES ('35', '2014-11-03 00:13:19', '2014-11-03 00:13:19', '15', 'http://storage.shopxx.net/demo-image/3.0/specification/15.gif', '白色', '2');
-INSERT INTO `xx_specification_value` VALUES ('36', '2014-11-03 00:13:20', '2014-11-03 00:13:20', '16', 'http://storage.shopxx.net/demo-image/3.0/specification/16.gif', '浅蓝色', '2');
-INSERT INTO `xx_specification_value` VALUES ('37', '2014-11-03 00:13:21', '2014-11-03 00:13:21', '17', 'http://storage.shopxx.net/demo-image/3.0/specification/17.gif', '深蓝色', '2');
-INSERT INTO `xx_specification_value` VALUES ('38', '2014-11-03 00:13:22', '2014-11-03 00:13:22', '18', 'http://storage.shopxx.net/demo-image/3.0/specification/18.gif', '绿色', '2');
-INSERT INTO `xx_specification_value` VALUES ('39', '2014-11-03 00:13:23', '2014-11-03 00:13:23', '19', 'http://storage.shopxx.net/demo-image/3.0/specification/19.gif', '米黄色', '2');
-INSERT INTO `xx_specification_value` VALUES ('40', '2014-11-03 00:13:24', '2014-11-03 00:13:24', '20', 'http://storage.shopxx.net/demo-image/3.0/specification/20.gif', '咖啡色', '2');
-INSERT INTO `xx_specification_value` VALUES ('49', '2014-11-03 00:13:33', '2014-11-15 13:24:34', '1', null, '7.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('50', '2014-11-03 00:13:34', '2014-11-15 13:25:44', '1', null, '3.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('51', '2014-11-03 00:13:35', '2014-11-15 13:25:44', '2', null, '4.0.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('59', '2014-11-03 00:13:43', '2014-11-15 13:27:39', '1', null, '5.0', '5');
-INSERT INTO `xx_specification_value` VALUES ('60', '2014-11-03 00:13:44', '2014-11-15 13:27:39', '2', null, '6.0', '5');
-INSERT INTO `xx_specification_value` VALUES ('67', '2014-11-03 00:13:51', '2014-11-15 13:28:20', '1', null, '1.0', '6');
-INSERT INTO `xx_specification_value` VALUES ('68', '2014-11-03 00:13:52', '2014-11-15 13:28:20', '2', null, '2.0', '6');
-INSERT INTO `xx_specification_value` VALUES ('77', '2014-11-15 13:24:34', '2014-11-15 13:24:34', '2', null, '8.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('78', '2014-11-15 13:24:34', '2014-11-15 13:24:34', '3', null, '9.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('79', '2014-11-15 13:24:34', '2014-11-15 13:24:34', '4', null, '9.5', '3');
-INSERT INTO `xx_specification_value` VALUES ('80', '2014-11-15 13:25:44', '2014-11-15 13:25:44', '3', null, '4.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('81', '2014-11-15 13:25:44', '2014-11-15 13:25:44', '4', null, '5.0.1', '4');
+INSERT INTO `xx_specification_value` VALUES ('49', '2014-11-03 00:13:33', '2014-11-18 12:19:39', '1', null, '7.x', '3');
+INSERT INTO `xx_specification_value` VALUES ('50', '2014-11-03 00:13:34', '2014-11-18 12:19:49', '1', null, '3.1', '4');
+INSERT INTO `xx_specification_value` VALUES ('51', '2014-11-03 00:13:35', '2014-11-18 12:19:49', '2', null, '4.0.1', '4');
+INSERT INTO `xx_specification_value` VALUES ('59', '2014-11-03 00:13:43', '2014-11-18 12:20:06', '1', null, '5.0', '5');
+INSERT INTO `xx_specification_value` VALUES ('60', '2014-11-03 00:13:44', '2014-11-18 12:20:06', '2', null, '6.0', '5');
+INSERT INTO `xx_specification_value` VALUES ('67', '2014-11-03 00:13:51', '2014-11-18 12:20:02', '1', null, '1.0', '6');
+INSERT INTO `xx_specification_value` VALUES ('68', '2014-11-03 00:13:52', '2014-11-18 12:20:02', '2', null, '2.0', '6');
+INSERT INTO `xx_specification_value` VALUES ('77', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '2', null, '8.x', '3');
+INSERT INTO `xx_specification_value` VALUES ('78', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '3', null, '9.x', '3');
+INSERT INTO `xx_specification_value` VALUES ('79', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '4', null, '9.5', '3');
+INSERT INTO `xx_specification_value` VALUES ('80', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '3', null, '4.1', '4');
+INSERT INTO `xx_specification_value` VALUES ('81', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '4', null, '5.0.1', '4');
+INSERT INTO `xx_specification_value` VALUES ('82', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'opencms', '7');
+INSERT INTO `xx_specification_value` VALUES ('83', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'jeecms', '7');
+INSERT INTO `xx_specification_value` VALUES ('84', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'jspxcms', '7');
+INSERT INTO `xx_specification_value` VALUES ('85', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'javashop', '7');
+INSERT INTO `xx_specification_value` VALUES ('86', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'shopxx', '7');
+INSERT INTO `xx_specification_value` VALUES ('87', '2014-11-18 12:17:05', '2014-11-18 12:18:52', null, null, 'jeecms', '7');
 
 -- ----------------------------
 -- Table structure for xx_tag

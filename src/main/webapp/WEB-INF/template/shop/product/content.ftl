@@ -506,7 +506,8 @@ $().ready(function() {
 				</div>
 				<a href="javascript:;" class="next"></a>
 			</div>
-			<div class="name">${product.name}[#if product.isGift] [${message("shop.product.gifts")}][/#if]</div>
+			<div class="name">${product.name}
+			[#if product.isGift] [${message("shop.product.gifts")}][/#if]</div>
 			<div class="sn">
 				<div>${message("Product.sn")}: ${product.sn}</div>
 				[#if product.scoreCount > 0]
