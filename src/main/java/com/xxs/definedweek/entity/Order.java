@@ -740,24 +740,6 @@ public class Order extends BaseEntity {
 	}
 
 	/**
-	 * 获取商品数量
-	 * 
-	 * @return 商品数量
-	 */
-	@Transient
-	public int getQuantity() {
-		int quantity = 0;
-		if (getOrderItems() != null) {
-			for (OrderItem orderItem : getOrderItems()) {
-				if (orderItem != null && orderItem.getQuantity() != null) {
-					quantity += orderItem.getQuantity();
-				}
-			}
-		}
-		return quantity;
-	}
-
-	/**
 	 * 获取商品价格
 	 * 
 	 * @return 商品价格

@@ -35,10 +35,6 @@ $().ready(function() {
 	var $specification = $("#specification dl");
 	var $specificationTitle = $("#specification div");
 	var $specificationValue = $("#specification a");
-	var $productNotifyForm = $("#productNotifyForm");
-	var $productNotify = $("#productNotify");
-	var $productNotifyEmail = $("#productNotify input");
-	var $addProductNotify = $("#addProductNotify");
 	var $quantity = $("#quantity");
 	var $increase = $("#increase");
 	var $decrease = $("#decrease");
@@ -175,101 +171,6 @@ $().ready(function() {
 		}
 		return contains;
 	}
-	
-	// 到货通知
-	$addProductNotify.click(function() {
-		[#if product.specifications?has_content]
-			var specificationValueIds = new Array();
-			$specificationValue.filter(".selected").each(function(i) {
-				specificationValueIds[i] = $(this).attr("val");
-			});
-			if (specificationValueIds.length != ${product.specificationValues?size}) {
-				$specificationTitle.show();
-				return false;
-			}
-		[/#if]
-		if ($addProductNotify.val() == "${message("shop.product.addProductNotify")}") {
-			$addProductNotify.val("${message("shop.product.productNotifySubmit")}");
-			$productNotify.show();
-			$productNotifyEmail.focus();
-			if ($.trim($productNotifyEmail.val()) == "") {
-				$.ajax({
-					url: "${base}/product_notify/email.jhtml",
-					type: "GET",
-					dataType: "json",
-					cache: false,
-					success: function(data) {
-						$productNotifyEmail.val(data.email);
-					}
-				});
-			}
-		} else {
-			$productNotifyForm.submit();
-		}
-		return false;
-	});
-	
-	// 到货通知表单验证
-	$productNotifyForm.validate({
-		rules: {
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		submitHandler: function(form) {
-			$.ajax({
-				url: "${base}/product_notify/save.jhtml",
-				type: "POST",
-				data: {productId: ${product.id}, email: $productNotifyEmail.val()},
-				dataType: "json",
-				cache: false,
-				beforeSend: function() {
-					$addProductNotify.prop("disabled", true);
-				},
-				success: function(data) {
-					if (data.message.type == "success") {
-						$addProductNotify.val("${message("shop.product.addProductNotify")}");
-						$productNotify.hide();
-					}
-					$.message(data.message);
-				},
-				complete: function() {
-					$addProductNotify.prop("disabled", false);
-				}
-			});
-		}
-	});
-	
-	// 购买数量
-	$quantity.keypress(function(event) {
-		var key = event.keyCode ? event.keyCode : event.which;
-		if ((key >= 48 && key <= 57) || key==8) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-	
-	// 增加购买数量
-	$increase.click(function() {
-		var quantity = $quantity.val();
-		if (/^\d*[1-9]\d*$/.test(quantity)) {
-			$quantity.val(parseInt(quantity) + 1);
-		} else {
-			$quantity.val(1);
-		}
-	});
-	
-	// 减少购买数量
-	$decrease.click(function() {
-		var quantity = $quantity.val();
-		if (/^\d*[1-9]\d*$/.test(quantity) && parseInt(quantity) > 1) {
-			$quantity.val(parseInt(quantity) - 1);
-		} else {
-			$quantity.val(1);
-		}
-	});
 	
 	// 加入购物车
 	$addCart.click(function() {

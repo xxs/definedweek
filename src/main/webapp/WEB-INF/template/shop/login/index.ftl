@@ -7,6 +7,8 @@
 <meta name="copyright" content="SHOP++" />
 <link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/user.css" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.validate.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jsbn.js"></script>
@@ -107,7 +109,56 @@ $().ready(function() {
 </script>
 </head>
 <body>
-	[#include "/shop/include/header.ftl" /]
+	[#include "/shop/include/header_simple.ftl" /]
+	
+	<div class="block"> 
+   <div class="usBox clearfix"> 
+    <div class="login_form"> 
+     <div class="usBox_1 clearfix"> 
+      <h4>&nbsp;&nbsp;欢迎登录&nbsp;&nbsp;<span><a target="_blank" href="http://bbs.xiaolajiao.com/thread-13291-1-1.html">(账号不能登陆？请点击)</a></span></h4> 
+      <form name="formLogin" action="http://account.xiaolajiao.com/passport.php" method="post" id="formLogin"> 
+       <div class="login_tdon"> 
+        <input name="username" id="login_username" type="text" value="邮箱/手机号码/用户名" class="inputBg input_kuang4" /> 
+        <span class="error" id="login_usernameTip" style="display: none;"></span> 
+       </div> 
+       <div class="login_tdon" id="pw"> 
+        <input type="text" value="密码" id="spwd" class="inputBg input_kuang4 disText" maxlength="25" style="display: block;" /> 
+        <input name="password" type="password" value="" id="login_password" class="inputBg input_kuang4" maxlength="25" autocomplete="off" style="display: none;" /> 
+        <span id="login_passwordTip" style="display: none;"></span> 
+       </div> 
+       <div class="login_tdon2"> 
+        <div class="left"> 
+         <input name="remember" type="checkbox" id="remember" value="1" checked="checked" /> 
+         <label for="remember">保存登录信息</label> 
+        </div> 
+        <div class="right"> 
+         <a title="忘记密码?" href="http://account.xiaolajiao.com/passport.php?act=get_password">忘记密码?</a> 
+        </div> 
+       </div> 
+       <div class="login_tdon"> 
+        <input type="hidden" name="act" value="act_login" /> 
+        <input type="hidden" name="callback" value="http%3A%2F%2Fwww.xiaolajiao.com%2Fuser.php%3Fact%3Dorder_list" /> 
+        <input name="submit" id="submit1" type="submit" value="立即登录" class="btn btn-primary portalmargin_top " style="border:none; width:100%; margin-top:-18px;*margin-top:0;" /> 
+       </div> 
+       <div class="login_tdon3"> 
+        <div class="left"> 
+         <span>其它帐号登录：</span> 
+         <ul> 
+          <li><a class="qq" title="qq" target="_blank" href="http://account.xiaolajiao.com/passport.php?act=oath&amp;type=qq&amp;callback=http%3A%2F%2Fwww.xiaolajiao.com%2Fuser.php%3Fact%3Dorder_list">qq</a></li> 
+          <li><a class="weibo" title="微博" target="_blank" href="http://account.xiaolajiao.com/passport.php?act=oath&amp;type=weibo&amp;callback=http%3A%2F%2Fwww.xiaolajiao.com%2Fuser.php%3Fact%3Dorder_list">微博</a></li> 
+          <li><a class="zfb" title="支付宝" target="_blank" href="http://account.xiaolajiao.com/passport.php?act=oath&amp;type=alipay&amp;callback=http%3A%2F%2Fwww.xiaolajiao.com%2Fuser.php%3Fact%3Dorder_list">支付宝</a></li> 
+         </ul> 
+        </div> 
+        <div class="right"> 
+         <a title="免费注册" href="http://account.xiaolajiao.com/passport.php?act=register&amp;callback=http%3A%2F%2Fwww.xiaolajiao.com%2Fuser.php%3Fact%3Dorder_list">免费注册</a> 
+        </div> 
+       </div> 
+      </form> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+	
 	<div class="container login">
 		<div class="span12">
 			[@ad_position id = 9 /]

@@ -212,18 +212,6 @@ $().ready(function() {
 							<li>
 								<a href="javascript:;" name="isGift" val="false"[#if isGift?? && !isGift] class="checked"[/#if]>${message("admin.product.nonGift")}</a>
 							</li>
-							<li class="separator">
-								<a href="javascript:;" name="isOutOfStock" val="false"[#if isOutOfStock?? && !isOutOfStock] class="checked"[/#if]>${message("admin.product.isStack")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="isOutOfStock" val="true"[#if isOutOfStock?? && isOutOfStock] class="checked"[/#if]>${message("admin.product.isOutOfStack")}</a>
-							</li>
-							<li class="separator">
-								<a href="javascript:;" name="isStockAlert" val="false"[#if isStockAlert?? && !isStockAlert] class="checked"[/#if]>${message("admin.product.normalStore")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="isStockAlert" val="true"[#if isStockAlert?? && isStockAlert] class="checked"[/#if]>${message("admin.product.isStockAlert")}</a>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -286,12 +274,6 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="price">${message("Product.price")}</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="cost">${message("Product.cost")}</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="stock">${message("Product.stock")}</a>
-				</th>
-				<th>
 					<a href="javascript:;" class="sort" name="isMarketable">${message("Product.isMarketable")}</a>
 				</th>
 				<th>
@@ -325,18 +307,6 @@ $().ready(function() {
 					</td>
 					<td>
 						${currency(product.price)}
-					</td>
-					<td>
-						${currency(product.cost)}
-					</td>
-					<td>
-						[#if product.stock??]
-							[#if product.allocatedStock == 0]
-								<span[#if product.isOutOfStock] class="red"[/#if]>${product.stock}</span>
-							[#else]
-								<span[#if product.isOutOfStock] class="red"[/#if] title="${message("Product.allocatedStock")}: ${product.allocatedStock}">${product.stock}</span>
-							[/#if]
-						[/#if]
 					</td>
 					<td>
 						<span class="${product.isMarketable?string("true", "false")}Icon">&nbsp;</span>

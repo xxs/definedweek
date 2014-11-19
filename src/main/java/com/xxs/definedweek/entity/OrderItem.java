@@ -16,7 +16,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -54,9 +53,6 @@ public class OrderItem extends BaseEntity {
 
 	/** 是否为赠品 */
 	private Boolean isGift;
-
-	/** 数量 */
-	private Integer quantity;
 
 	/** 商品 */
 	private Product product;
@@ -195,30 +191,6 @@ public class OrderItem extends BaseEntity {
 	}
 
 	/**
-	 * 获取数量
-	 * 
-	 * @return 数量
-	 */
-	@JsonProperty
-	@NotNull
-	@Min(1)
-	@Max(10000)
-	@Column(nullable = false)
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	/**
-	 * 设置数量
-	 * 
-	 * @param quantity
-	 *            数量
-	 */
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	/**
 	 * 获取商品
 	 * 
 	 * @return 商品
@@ -267,8 +239,8 @@ public class OrderItem extends BaseEntity {
 	@JsonProperty
 	@Transient
 	public BigDecimal getSubtotal() {
-		if (getPrice() != null && getQuantity() != null) {
-			return getPrice().multiply(new BigDecimal(getQuantity()));
+		if (getPrice() != null) {
+			return getPrice();
 		} else {
 			return new BigDecimal(0);
 		}

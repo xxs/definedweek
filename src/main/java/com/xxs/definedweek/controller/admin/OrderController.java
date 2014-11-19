@@ -271,7 +271,6 @@ public class OrderController extends BaseController {
 		order.setCouponDiscount(pOrder.getCouponDiscount());
 		order.setAmountPaid(pOrder.getAmountPaid());
 		data.put("price", order.getPrice());
-		data.put("quantity", order.getQuantity());
 		data.put("amount", order.getAmount());
 		data.put("orderItems", orderItems);
 		data.put("message", SUCCESS_MESSAGE);

@@ -465,30 +465,6 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					${message("Product.weight")}:
-				</th>
-				<td>
-					<input type="text" name="weight" class="text" maxlength="9" title="${message("admin.product.weightTitle")}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Product.stock")}:
-				</th>
-				<td>
-					<input type="text" name="stock" class="text" maxlength="9" title="${message("admin.product.stockTitle")}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Product.stockMemo")}:
-				</th>
-				<td>
-					<input type="text" name="stockMemo" class="text" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
 					${message("Product.point")}:
 				</th>
 				<td>

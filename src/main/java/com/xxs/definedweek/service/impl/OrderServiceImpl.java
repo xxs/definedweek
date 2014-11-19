@@ -189,7 +189,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements
 				orderItem.setPrice(cartItem.getPrice());
 				orderItem.setThumbnail(product.getThumbnail());
 				orderItem.setIsGift(false);
-				orderItem.setQuantity(cartItem.getQuantity());
 				orderItem.setProduct(product);
 				orderItem.setOrder(order);
 				orderItems.add(orderItem);
@@ -206,7 +205,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements
 				orderItem.setPrice(new BigDecimal(0));
 				orderItem.setThumbnail(gift.getThumbnail());
 				orderItem.setIsGift(true);
-				orderItem.setQuantity(giftItem.getQuantity());
 				orderItem.setProduct(gift);
 				orderItem.setOrder(order);
 				orderItems.add(orderItem);
@@ -428,7 +426,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements
 				Product product = orderItem.getProduct();
 				productDao.lock(product, LockModeType.PESSIMISTIC_WRITE);
 				if (product != null) {
-					Integer quantity = orderItem.getQuantity();
 					Calendar nowCalendar = Calendar.getInstance();
 					Calendar weekSalesCalendar = DateUtils.toCalendar(product
 							.getWeekSalesDate());
@@ -438,20 +435,20 @@ public class OrderServiceImpl extends BaseServiceImpl<Order, Long> implements
 							.get(Calendar.YEAR)
 							|| nowCalendar.get(Calendar.WEEK_OF_YEAR) > weekSalesCalendar
 									.get(Calendar.WEEK_OF_YEAR)) {
-						product.setWeekSales((long) quantity);
+						product.setWeekSales((long) 1);
 					} else {
-						product.setWeekSales(product.getWeekSales() + quantity);
+						product.setWeekSales(product.getWeekSales());
 					}
 					if (nowCalendar.get(Calendar.YEAR) != monthSalesCalendar
 							.get(Calendar.YEAR)
 							|| nowCalendar.get(Calendar.MONTH) > monthSalesCalendar
 									.get(Calendar.MONTH)) {
-						product.setMonthSales((long) quantity);
+						product.setMonthSales((long) 1);
 					} else {
 						product.setMonthSales(product.getMonthSales()
-								+ quantity);
+								+ 1);
 					}
-					product.setSales(product.getSales() + quantity);
+					product.setSales(product.getSales() + 1);
 					product.setWeekSalesDate(new Date());
 					product.setMonthSalesDate(new Date());
 					productDao.merge(product);

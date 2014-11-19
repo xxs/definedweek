@@ -174,7 +174,6 @@ public class OrderController extends BaseController {
 		Order order = orderService.build(cart, paymentMethod, couponCode, isInvoice, invoiceTitle, useBalance, memo);
 
 		data.put("message", SUCCESS_MESSAGE);
-		data.put("quantity", order.getQuantity());
 		data.put("price", order.getPrice());
 		data.put("promotionDiscount", order.getPromotionDiscount());
 		data.put("couponDiscount", order.getCouponDiscount());
