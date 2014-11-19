@@ -1,4 +1,4 @@
-# robots.txt for SHOP++
+# robots.txt for DEDWEEK
 
 User-agent: *
 Sitemap: /sitemap/index.xml

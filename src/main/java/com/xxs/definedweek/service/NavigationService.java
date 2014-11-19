@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.List;
@@ -14,9 +9,6 @@ import com.xxs.definedweek.entity.Navigation.Position;
 
 /**
  * Service - 导航
- * 
-
-
  */
 public interface NavigationService extends BaseService<Navigation, Long> {
 

@@ -54,7 +54,7 @@ public class InitListener implements ServletContextAware, ApplicationListener<Co
 
 	public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 		if (servletContext != null && contextRefreshedEvent.getApplicationContext().getParent() == null) {
-			String info = "I|n|i|t|i|a|l|i|z|i|n|g| |S|H|O|P|+|+| |" + systemVersion;
+			String info = "dedweek" + systemVersion;
 			logger.info(info.replace("|", ""));
 			File installInitConfigFile = new File(servletContext.getRealPath(INSTALL_INIT_CONFIG_FILE_PATH));
 			if (installInitConfigFile.exists()) {

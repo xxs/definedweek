@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.List;
@@ -14,9 +9,6 @@ import com.xxs.definedweek.entity.FriendLink.Type;
 
 /**
  * Service - 友情链接
- * 
-
-
  */
 public interface FriendLinkService extends BaseService<FriendLink, Long> {
 

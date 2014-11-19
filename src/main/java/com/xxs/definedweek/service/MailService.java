@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.Map;
@@ -11,9 +6,6 @@ import com.xxs.definedweek.entity.SafeKey;
 
 /**
  * Service - 邮件
- * 
-
-
  */
 public interface MailService {
 

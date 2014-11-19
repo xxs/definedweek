@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.math.BigDecimal;
@@ -14,9 +9,6 @@ import com.xxs.definedweek.entity.Member;
 
 /**
  * Service - 会员
- * 
-
-
  */
 public interface MemberService extends BaseService<Member, Long> {
 

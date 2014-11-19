@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import com.xxs.definedweek.Page;
@@ -12,9 +7,6 @@ import com.xxs.definedweek.entity.Member;
 
 /**
  * Service - 预存款
- * 
-
-
  */
 public interface DepositService extends BaseService<Deposit, Long> {
 

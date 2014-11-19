@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import com.xxs.definedweek.Page;
@@ -12,9 +7,6 @@ import com.xxs.definedweek.entity.Message;
 
 /**
  * Service - 消息
- * 
-
-
  */
 public interface MessageService extends BaseService<Message, Long> {
 

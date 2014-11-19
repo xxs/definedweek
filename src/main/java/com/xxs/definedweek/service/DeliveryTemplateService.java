@@ -1,17 +1,9 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import com.xxs.definedweek.entity.DeliveryTemplate;
 
 /**
  * Service - 快递单模板
- * 
-
-
  */
 public interface DeliveryTemplateService extends BaseService<DeliveryTemplate, Long> {
 

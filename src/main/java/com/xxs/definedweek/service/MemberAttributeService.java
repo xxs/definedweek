@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.List;
@@ -11,9 +6,6 @@ import com.xxs.definedweek.entity.MemberAttribute;
 
 /**
  * Service - 会员注册项
- * 
-
-
  */
 public interface MemberAttributeService extends BaseService<MemberAttribute, Long> {
 

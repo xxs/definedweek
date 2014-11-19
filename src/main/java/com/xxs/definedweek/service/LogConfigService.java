@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.List;
@@ -11,9 +6,6 @@ import com.xxs.definedweek.LogConfig;
 
 /**
  * Service - 日志配置
- * 
-
-
  */
 public interface LogConfigService {
 

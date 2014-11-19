@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.util.List;
@@ -15,9 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Service - 文件
- * 
-
-
  */
 public interface FileService {
 

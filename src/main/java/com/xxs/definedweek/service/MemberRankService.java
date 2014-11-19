@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service;
 
 import java.math.BigDecimal;
@@ -11,9 +6,6 @@ import com.xxs.definedweek.entity.MemberRank;
 
 /**
  * Service - 会员等级
- * 
-
-
  */
 public interface MemberRankService extends BaseService<MemberRank, Long> {
 

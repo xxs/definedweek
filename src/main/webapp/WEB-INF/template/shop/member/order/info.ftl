@@ -258,8 +258,17 @@ $().ready(function() {
 			<div class="info">
 				<form id="orderForm" action="create.jhtml" method="post">
 					<input type="hidden" name="cartToken" value="${cartToken}" />
+					[#if member.balance > 0]
+								<li>
+									<input type="checkbox" id="useBalance" name="useBalance" value="true" />
+									<label for="useBalance">
+										${message("shop.order.useBalance")} (${message("shop.order.balance")}: <em>${currency(member.balance, true)}</em>)
+									</label>
+								</li>
+							[/#if]
 					<dl id="paymentMethod" class="select">
 						<dt>${message("shop.order.paymentMethod")}</dt>
+						
 						[#list paymentMethods as paymentMethod]
 							<dd>
 								<label for="paymentMethod_${paymentMethod.id}">
@@ -274,6 +283,10 @@ $().ready(function() {
 								</label>
 							</dd>
 						[/#list]
+						
+						
+						
+						
 					</dl>
 					[#if setting.isInvoiceEnabled]
 						<table>
@@ -306,7 +319,6 @@ $().ready(function() {
 							<th width="60">${message("shop.order.image")}</th>
 							<th>${message("shop.order.product")}</th>
 							<th>${message("shop.order.price")}</th>
-							<th>${message("shop.order.quantity")}</th>
 							<th>${message("shop.order.subTotal")}</th>
 						</tr>
 						[#list order.orderItems as orderItem]
@@ -326,9 +338,6 @@ $().ready(function() {
 									[#else]
 										-
 									[/#if]
-								</td>
-								<td>
-									${orderItem.quantity}
 								</td>
 								<td>
 									[#if !orderItem.isGift]
