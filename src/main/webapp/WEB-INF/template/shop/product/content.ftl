@@ -509,6 +509,7 @@ $().ready(function() {
 						[#else]
 							<input type="button" id="addCart" class="addCart" value="${message("shop.product.addCart")}" />
 						[/#if]
+						<a href="/" id="demoLink" class="addCart">演示地址</a>
 						<a href="javascript:;" id="addFavorite">${message("shop.product.addFavorite")}</a>
 					</div>
 				</div>

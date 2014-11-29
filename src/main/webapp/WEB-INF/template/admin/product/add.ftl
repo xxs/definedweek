@@ -457,10 +457,10 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					${message("Product.unit")}:
+					演示地址:
 				</th>
 				<td>
-					<input type="text" name="unit" class="text" maxlength="200" />
+					<input type="text" name="demoLink" class="text" maxlength="200" />
 				</td>
 			</tr>
 			<tr>

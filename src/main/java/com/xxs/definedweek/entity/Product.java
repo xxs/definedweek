@@ -43,10 +43,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.xxs.definedweek.BigDecimalNumericFieldBridge;
-import com.xxs.definedweek.CommonAttributes;
-import com.xxs.definedweek.util.FreemarkerUtils;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.io.SAXReader;
@@ -65,6 +61,9 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import org.wltea.analyzer.lucene.IKSimilarity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.xxs.definedweek.BigDecimalNumericFieldBridge;
+import com.xxs.definedweek.CommonAttributes;
+import com.xxs.definedweek.util.FreemarkerUtils;
 
 import freemarker.template.TemplateException;
 
@@ -152,9 +151,9 @@ public class Product extends BaseEntity {
 	/** 展示图片 */
 	private String image;
 
-	/** 单位 */
-	private String unit;
-
+	/** 演示地址 */
+	private String demoLink;
+	
 	/** 赠送积分 */
 	private Long point;
 
@@ -514,28 +513,6 @@ public class Product extends BaseEntity {
 	}
 
 	/**
-	 * 获取单位
-	 * 
-	 * @return 单位
-	 */
-	@JsonProperty
-	@Field(store = Store.YES, index = Index.NO)
-	@Length(max = 200)
-	public String getUnit() {
-		return unit;
-	}
-
-	/**
-	 * 设置单位
-	 * 
-	 * @param unit
-	 *            单位
-	 */
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-
-	/**
 	 * 获取赠送积分
 	 * 
 	 * @return 赠送积分
@@ -672,6 +649,26 @@ public class Product extends BaseEntity {
 		this.introduction = introduction;
 	}
 
+	/**
+	 * 获取演示地址
+	 * 
+	 * @return 演示地址
+	 */
+	@Length(max = 200)
+	public String getDemoLink() {
+		return demoLink;
+	}
+
+	/**
+	 * 设置演示地址
+	 * 
+	 * @param demoLink
+	 *            演示地址
+	 */
+	public void setDemoLink(String demoLink) {
+		this.demoLink = demoLink;
+	}
+	
 	/**
 	 * 获取备注
 	 * 

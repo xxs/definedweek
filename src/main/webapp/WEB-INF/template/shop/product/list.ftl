@@ -56,6 +56,7 @@ $().ready(function() {
 	var $endPrice = $("#endPrice");
 	var $result = $("#result");
 	var $productImage = $("#result img");
+	var $addFavorite = $(".addFavorite");
 	
 	[#if productCategory??]
 		$filter.each(function() {
@@ -140,6 +141,25 @@ $().ready(function() {
 			$result.removeClass("list").addClass("table");
 			addCookie("layoutType", "tableType", {path: "${base}/"});
 		}
+	});
+	
+	// 添加商品收藏
+	$addFavorite.click(function() {
+		var $this = $(this);
+		if (""!=$this.attr('productId')) {
+			$.ajax({
+			url: "${base}/member/favorite/add.jhtml?id="+$this.attr("productId"),
+			type: "POST",
+			dataType: "json",
+			cache: false,
+			success: function(message) {
+				$.message(message);
+			}
+		});
+		} else {
+			alert("未获取到相关商品，请联系管理员");
+		}
+		return false;
 	});
 	
 	$listType.click(function() {
@@ -479,9 +499,10 @@ $().ready(function() {
 													<del>${currency(product.marketPrice, true)}</del>
 												[/#if]
 											</span>
-											<span title="${product.name}">${abbreviate(product.name, 60)}</span>
+											<span title="${product.name}">${abbreviate(product.name, 60)} </span>
 										</a>
 									</li>
+									<a href="javascript:;" class="addFavorite" productId="${product.id}">${message("shop.product.addFavorite")}关注</a>
 								[/#list]
 							[/#list]
 						</ul>

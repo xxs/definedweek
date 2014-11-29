@@ -473,34 +473,10 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					${message("Product.unit")}:
+					演示地址:
 				</th>
 				<td>
-					<input type="text" name="unit" class="text" maxlength="200" value="${product.unit}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Product.weight")}:
-				</th>
-				<td>
-					<input type="text" name="weight" class="text" value="${product.weight}" maxlength="9" title="${message("admin.product.weightTitle")}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Product.stock")}:
-				</th>
-				<td>
-					<input type="text" name="stock" class="text" value="${product.stock}" maxlength="9" title="${message("admin.product.stockTitle")}" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Product.stockMemo")}:
-				</th>
-				<td>
-					<input type="text" name="stockMemo" class="text" value="${product.stockMemo}" maxlength="200" />
+					<input type="text" name="demoLink" class="text" maxlength="200" value="${product.demoLink}" />
 				</td>
 			</tr>
 			<tr>
