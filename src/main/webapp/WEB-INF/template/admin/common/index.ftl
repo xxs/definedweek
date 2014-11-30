@@ -38,7 +38,7 @@
 				${message("admin.index.official")}:
 			</th>
 			<td>
-				<a href="http://www.shopxx.net" target="_blank">http://www.shopxx.net</a>
+				<a href="http://www.dedweek.com" target="_blank">http://www.dedweek.com</a>
 			</td>
 			<th>
 				${message("admin.index.bbs")}:

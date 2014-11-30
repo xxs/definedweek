@@ -47,6 +47,9 @@ public class Navigation extends OrderEntity {
 
 	/** 位置 */
 	private Position position;
+	
+	/** 标签 icon */
+	private String icon;
 
 	/** 链接地址 */
 	private String url;
@@ -97,6 +100,28 @@ public class Navigation extends OrderEntity {
 		this.position = position;
 	}
 
+	/**
+	 * 获取icon
+	 * 
+	 * @return 链接地址
+	 */
+	@NotEmpty
+	@Length(max = 200)
+	@Column(nullable = false)
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * 设置icon
+	 * 
+	 * @param url
+	 *            icon
+	 */
+	public void setIcon(String icon) {
+		this.url = icon;
+	}
+	
 	/**
 	 * 获取链接地址
 	 * 
