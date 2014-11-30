@@ -765,26 +765,6 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					<span class="requiredField">*</span>${message("Setting.stockAlertCount")}: 
-				</th>
-				<td>
-					<input type="text" name="stockAlertCount" class="text" value="${setting.stockAlertCount}" maxlength="9" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Setting.stockAllocationTime")}: 
-				</th>
-				<td>
-					<select name="stockAllocationTime">
-						[#list stockAllocationTimes as stockAllocationTime]
-							<option value="${stockAllocationTime}"[#if stockAllocationTime == setting.stockAllocationTime] selected="selected"[/#if]>${message("Setting.StockAllocationTime." + stockAllocationTime)}</option>
-						[/#list]
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>
 					<span class="requiredField">*</span>${message("Setting.defaultPointScale")}: 
 				</th>
 				<td>
@@ -902,14 +882,6 @@ $().ready(function() {
 				</th>
 				<td>
 					<input type="text" name="cookieDomain" class="text" value="${setting.cookieDomain}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					${message("Setting.kuaidi100Key")}: 
-				</th>
-				<td>
-					<input type="text" name="kuaidi100Key" class="text" value="${setting.kuaidi100Key}" maxlength="200" />
 				</td>
 			</tr>
 		</table>

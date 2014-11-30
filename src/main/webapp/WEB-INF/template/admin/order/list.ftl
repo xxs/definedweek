@@ -100,27 +100,6 @@ $().ready(function() {
 							<li>
 								<a href="javascript:;" name="paymentStatus" val="paid"[#if paymentStatus == "paid"] class="checked"[/#if]>${message("Order.PaymentStatus.paid")}</a>
 							</li>
-							<li>
-								<a href="javascript:;" name="paymentStatus" val="partialRefunds"[#if paymentStatus == "partialRefunds"] class="checked"[/#if]>${message("Order.PaymentStatus.partialRefunds")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="paymentStatus" val="refunded"[#if paymentStatus == "refunded"] class="checked"[/#if]>${message("Order.PaymentStatus.refunded")}</a>
-							</li>
-							<li class="separator">
-								<a href="javascript:;" name="shippingStatus" val="unshipped"[#if shippingStatus == "unshipped"] class="checked"[/#if]>${message("Order.ShippingStatus.unshipped")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="shippingStatus" val="partialShipment"[#if shippingStatus == "partialShipment"] class="checked"[/#if]>${message("Order.ShippingStatus.partialShipment")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="shippingStatus" val="shipped"[#if shippingStatus == "shipped"] class="checked"[/#if]>${message("Order.ShippingStatus.shipped")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="shippingStatus" val="partialReturns"[#if shippingStatus == "partialReturns"] class="checked"[/#if]>${message("Order.ShippingStatus.partialReturns")}</a>
-							</li>
-							<li>
-								<a href="javascript:;" name="shippingStatus" val="returned"[#if shippingStatus == "returned"] class="checked"[/#if]>${message("Order.ShippingStatus.returned")}</a>
-							</li>
 							<li class="separator">
 								<a href="javascript:;" name="hasExpired" val="true"[#if hasExpired?? && hasExpired] class="checked"[/#if]>${message("admin.order.hasExpired")}</a>
 							</li>
@@ -182,22 +161,13 @@ $().ready(function() {
 					<a href="javascript:;" class="sort" name="member">${message("Order.member")}</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="consignee">${message("Order.consignee")}</a>
-				</th>
-				<th>
 					<a href="javascript:;" class="sort" name="paymentMethodName">${message("Order.paymentMethodName")}</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="shippingMethodName">${message("Order.shippingMethodName")}</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="orderStatus">${message("Order.orderStatus")}</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="paymentStatus">${message("Order.paymentStatus")}</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="shippingStatus">${message("Order.shippingStatus")}</a>
 				</th>
 				<th>
 					<a href="javascript:;" class="sort" name="createDate">${message("admin.common.createDate")}</a>
@@ -226,13 +196,7 @@ $().ready(function() {
 						${order.member.username}
 					</td>
 					<td>
-						${order.consignee}
-					</td>
-					<td>
 						${order.paymentMethodName}
-					</td>
-					<td>
-						${order.shippingMethodName}
 					</td>
 					<td>
 						${message("Order.OrderStatus." + order.orderStatus)}
@@ -240,9 +204,6 @@ $().ready(function() {
 					</td>
 					<td>
 						${message("Order.PaymentStatus." + order.paymentStatus)}
-					</td>
-					<td>
-						${message("Order.ShippingStatus." + order.shippingStatus)}
 					</td>
 					<td>
 						<span title="${order.createDate?string("yyyy-MM-dd HH:mm:ss")}">${order.createDate}</span>
@@ -253,7 +214,6 @@ $().ready(function() {
 								<option value="">${message("admin.common.choose")}</option>
 								<option value="../print/order.jhtml?id=${order.id}">${message("admin.order.orderPrint")}</option>
 								<option value="../print/product.jhtml?id=${order.id}">${message("admin.order.productPrint")}</option>
-								<option value="../print/shipping.jhtml?id=${order.id}">${message("admin.order.shippingPrint")}</option>
 								<option value="../print/delivery.jhtml?orderId=${order.id}">${message("admin.order.deliveryPrint")}</option>
 							</select>
 						</td>

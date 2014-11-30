@@ -102,9 +102,6 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="authorities" value="admin:brand"[#if role.authorities?seq_contains("admin:brand")] checked="checked"[/#if] />${message("admin.role.brand")}
 						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:productNotify"[#if role.authorities?seq_contains("admin:productNotify")] checked="checked"[/#if] />${message("admin.role.productNotify")}
-						</label>
 					</span>
 				</td>
 			</tr>
@@ -122,18 +119,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:payment"[#if role.authorities?seq_contains("admin:payment")] checked="checked"[/#if] />${message("admin.role.payment")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:refunds"[#if role.authorities?seq_contains("admin:refunds")] checked="checked"[/#if] />${message("admin.role.refunds")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:shipping"[#if role.authorities?seq_contains("admin:shipping")] checked="checked"[/#if] />${message("admin.role.shipping")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:returns"[#if role.authorities?seq_contains("admin:returns")] checked="checked"[/#if] />${message("admin.role.returns")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:deliveryCenter"[#if role.authorities?seq_contains("admin:deliveryCenter")] checked="checked"[/#if] />${message("admin.role.deliveryCenter")}
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:deliveryTemplate"[#if role.authorities?seq_contains("admin:deliveryTemplate")] checked="checked"[/#if] />${message("admin.role.deliveryTemplate")}
@@ -266,12 +251,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:paymentMethod"[#if role.authorities?seq_contains("admin:paymentMethod")] checked="checked"[/#if] />${message("admin.role.paymentMethod")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:shippingMethod"[#if role.authorities?seq_contains("admin:shippingMethod")] checked="checked"[/#if] />${message("admin.role.shippingMethod")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:deliveryCorp"[#if role.authorities?seq_contains("admin:deliveryCorp")] checked="checked"[/#if] />${message("admin.role.deliveryCorp")}
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:paymentPlugin"[#if role.authorities?seq_contains("admin:paymentPlugin")] checked="checked"[/#if] />${message("admin.role.paymentPlugin")}

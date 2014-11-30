@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <definedweek> 
-	<setting name="siteName" value="SHOP++商城"/>  
+	<setting name="siteName" value="最专业的模板销售网站"/>  
 	<setting name="siteUrl" value="http://127.0.0.1:8080"/>  
 	<setting name="logo" value="/upload/image/logo.gif"/>  
 	<setting name="hotSearch" value="opencms,jeecms,jspxcms,"/>  
-	<setting name="address" value="湖南长沙经济技术开发区"/>  
-	<setting name="phone" value="400-8888888"/>  
-	<setting name="zipCode" value="400000"/>  
+	<setting name="address" value="河南郑州财富广场"/>  
+	<setting name="phone" value=""/>  
+	<setting name="zipCode" value="450000"/>  
 	<setting name="email" value="service@definedweek.net"/>  
-	<setting name="certtext" value="湘ICP备10000000号"/>  
+	<setting name="certtext" value=""/>  
 	<setting name="isSiteEnabled" value="true"/>  
 	<setting name="siteCloseMessage" value="&lt;dl&gt;&lt;dt&gt;网站维护中，暂时无法访问！&lt;/dt&gt;&lt;dd&gt;本网站正在进行系统维护和技术升级，网站暂时无法访问，敬请谅解！&lt;/dd&gt;&lt;/dl&gt;"/>  
 	<setting name="largeProductImageWidth" value="800"/>  
@@ -62,7 +62,7 @@
 	<setting name="stockAlertCount" value="5"/>  
 	<setting name="stockAllocationTime" value="order"/>  
 	<setting name="defaultPointScale" value="1.0"/>  
-	<setting name="isDevelopmentEnabled" value="false"/>  
+	<setting name="isDevelopmentEnabled" value="true"/>  
 	<setting name="isReviewEnabled" value="true"/>  
 	<setting name="isReviewCheck" value="true"/>  
 	<setting name="reviewAuthority" value="purchased"/>  

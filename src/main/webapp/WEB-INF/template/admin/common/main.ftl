@@ -168,11 +168,6 @@ $().ready(function() {
 							<a href="../brand/list.jhtml" target="iframe">${message("admin.main.brand")}</a>
 						</dd>
 					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:productNotify"]
-						<dd>
-							<a href="../product_notify/list.jhtml" target="iframe">${message("admin.main.productNotify")}</a>
-						</dd>
-					[/@shiro.hasPermission]
 				</dl>
 				<dl id="order">
 					<dt>${message("admin.main.orderGroup")}</dt>
@@ -184,26 +179,6 @@ $().ready(function() {
 					[@shiro.hasPermission name="admin:payment"]
 						<dd>
 							<a href="../payment/list.jhtml" target="iframe">${message("admin.main.payment")}</a>
-						</dd>
-					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:refunds"]
-						<dd>
-							<a href="../refunds/list.jhtml" target="iframe">${message("admin.main.refunds")}</a>
-						</dd>
-					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:shipping"]
-						<dd>
-							<a href="../shipping/list.jhtml" target="iframe">${message("admin.main.shipping")}</a>
-						</dd>
-					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:returns"]
-						<dd>
-							<a href="../returns/list.jhtml" target="iframe">${message("admin.main.returns")}</a>
-						</dd>
-					[/@shiro.hasPermission]
-					[@shiro.hasPermission name="admin:deliveryCenter"]
-						<dd>
-							<a href="../delivery_center/list.jhtml" target="iframe">${message("admin.main.deliveryCenter")}</a>
 						</dd>
 					[/@shiro.hasPermission]
 					[@shiro.hasPermission name="admin:deliveryTemplate"]

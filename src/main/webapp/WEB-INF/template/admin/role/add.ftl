@@ -101,9 +101,6 @@ $().ready(function() {
 						<label>
 							<input type="checkbox" name="authorities" value="admin:brand" />${message("admin.role.brand")}
 						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:productNotify" />${message("admin.role.productNotify")}
-						</label>
 					</span>
 				</td>
 			</tr>
@@ -121,18 +118,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:payment" />${message("admin.role.payment")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:refunds" />${message("admin.role.refunds")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:shipping" />${message("admin.role.shipping")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:returns" />${message("admin.role.returns")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:deliveryCenter" />${message("admin.role.deliveryCenter")}
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:deliveryTemplate" />${message("admin.role.deliveryTemplate")}
@@ -265,12 +250,6 @@ $().ready(function() {
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:paymentMethod" />${message("admin.role.paymentMethod")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:shippingMethod" />${message("admin.role.shippingMethod")}
-						</label>
-						<label>
-							<input type="checkbox" name="authorities" value="admin:deliveryCorp" />${message("admin.role.deliveryCorp")}
 						</label>
 						<label>
 							<input type="checkbox" name="authorities" value="admin:paymentPlugin" />${message("admin.role.paymentPlugin")}
