@@ -115,13 +115,11 @@
 		</tr>
 		<tr>
 			<th>
-				${message("admin.index.stockAlertProductCount")}:
 			</th>
 			<td>
 				${stockAlertProductCount}
 			</td>
 			<th>
-				${message("admin.index.outOfStockProductCount")}:
 			</th>
 			<td>
 				${outOfStockProductCount}
@@ -135,10 +133,8 @@
 				${waitingPaymentOrderCount}
 			</td>
 			<th>
-				${message("admin.index.waitingShippingOrderCount")}:
 			</th>
 			<td>
-				${waitingShippingOrderCount}
 			</td>
 		</tr>
 		<tr>
@@ -153,6 +149,28 @@
 			</th>
 			<td>
 				${unreadMessageCount}
+			</td>
+		</tr>
+		<tr>
+			<th>
+				initMemory:
+			</th>
+			<td>
+				${initMemory}
+			</td>
+			<th>
+				maxMemory:
+			</th>
+			<td>
+				${maxMemory}
+			</td>
+		</tr>
+		<tr>	
+			<th>
+				usedMemory:
+			</th>
+			<td>
+				${usedMemory}
 			</td>
 		</tr>
 		<tr>

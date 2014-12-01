@@ -2,6 +2,7 @@ package com.xxs.definedweek.controller.admin;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,6 +81,12 @@ public class CommonController implements ServletContextAware {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(ModelMap model) {
+		//系统资源使用情况
+		ManagementFactory.getMemoryMXBean().gc();
+		model.addAttribute("initMemory", ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getInit()/1000000);
+		model.addAttribute("maxMemory", ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getMax()/1000000);
+		model.addAttribute("usedMemory", ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed()/1000000);
+		
 		model.addAttribute("systemName", systemName);
 		model.addAttribute("systemVersion", systemVersion);
 		model.addAttribute("systemDescription", systemDescription);

@@ -1,7 +1,7 @@
 /*
- * Copyright 2005-2013 shopxx.net. All rights reserved.
- * Support: http://www.shopxx.net
- * License: http://www.shopxx.net/license
+ * Copyright 2005-2013 dw.net. All rights reserved.
+ * Support: http://www.dw.net
+ * License: http://www.dw.net/license
  * 
  * JavaScript - lSelect
  * Version: 3.0
