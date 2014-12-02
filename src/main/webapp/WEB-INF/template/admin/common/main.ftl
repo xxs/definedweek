@@ -117,14 +117,15 @@ $().ready(function() {
 								[#break /]
 							[/@shiro.hasPermission]
 						[/#list]
-						<li>
-							<a href="${base}/" target="_blank">${message("admin.main.home")}</a>
-						</li>
+								<li>
+									<a href="#monitor">${message("admin.main.monitorNav")}</a>
+								</li>
 					</ul>
 				</div>
 				<div class="link">
 					<a href="../cache/clear.jhtml" target="_blank">${message("admin.main.cache")}</a>|
 					<a href="../static/build.jhtml" target="_blank">${message("admin.main.static")}</a>
+					<a href="${base}/" target="_blank">${message("admin.main.home")}</a>
 				</div>
 				<div class="link">
 					<strong>[@shiro.principal /]</strong>
@@ -396,6 +397,12 @@ $().ready(function() {
 							<a href="../log/list.jhtml" target="iframe">${message("admin.main.log")}</a>
 						</dd>
 					[/@shiro.hasPermission]
+				</dl>
+				<dl id="monitor">
+					<dt>${message("admin.main.monitorNav")}</dt>
+					<dd>
+						<a href="../jvm/jvm.jhtml" target="iframe">${message("admin.main.jvm")}</a>
+					</dd>
 				</dl>
 			</td>
 			<td>
