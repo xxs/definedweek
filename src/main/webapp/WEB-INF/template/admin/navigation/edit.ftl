@@ -58,6 +58,29 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
+					导航层级:
+				</th>
+				<td>
+					<select name="parentId">
+						<option value="">${message("admin.productCategory.root")}</option>
+						[#list navigationTree as category]
+							[#if navigation != category ]
+								<option value="${category.id}"[#if category == navigation.parent] selected="selected"[/#if]>
+									${message("Navigation.Position." + navigation.position)}&nbsp;&nbsp;&nbsp;&nbsp;
+									[#if category.grade != 0]
+										[#list 1..category.grade as i]
+											&nbsp;&nbsp;
+										[/#list]
+									[/#if]
+									${category.name}
+								</option>
+							[/#if]
+						[/#list]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
 					${message("admin.navigation.systemUrl")}:
 				</th>
 				<td>
@@ -118,6 +141,17 @@ $().ready(function() {
 					<label>
 						<input type="checkbox" name="isBlankTarget" value="true"[#if navigation.isBlankTarget] checked="checked"[/#if] />${message("Navigation.isBlankTarget")}
 						<input type="hidden" name="_isBlankTarget" value="false" />
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					${message("admin.common.setting")}:
+				</th>
+				<td>
+					<label>
+						<input type="checkbox" name="isShow" value="true"[#if navigation.isShow] checked="checked"[/#if] />是否显示
+						<input type="hidden" name="_isShow" value="false" />
 					</label>
 				</td>
 			</tr>

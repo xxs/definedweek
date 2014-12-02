@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.template.directive;
 
 import java.beans.PropertyDescriptor;
@@ -30,9 +25,6 @@ import freemarker.template.TemplateModelException;
 
 /**
  * 模板指令 - 基类
- * 
-
-
  */
 public abstract class BaseDirective implements TemplateDirectiveModel {
 

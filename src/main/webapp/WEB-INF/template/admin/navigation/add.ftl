@@ -57,6 +57,35 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
+					<span class="requiredField">*</span>icon:
+				</th>
+				<td>
+					<input type="text" id="icon" name="icon" class="text" maxlength="200" />	 
+				</td>
+			</tr>
+			<tr>
+				<th>
+					上级分类:
+				</th>
+				<td>
+					<select name="parentId">
+						<option value="">${message("admin.productCategory.root")}</option>
+						[#list navigationTree as navigation]
+							<option value="${navigation.id}">
+								${message("Navigation.Position." + navigation.position)}&nbsp;&nbsp;&nbsp;&nbsp;
+								[#if navigation.grade != 0]
+									[#list 1..navigation.grade as i]
+										&nbsp;&nbsp;
+									[/#list]
+								[/#if]
+								${navigation.name} 
+							</option>
+						[/#list]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
 					${message("admin.navigation.systemUrl")}:
 				</th>
 				<td>
@@ -117,6 +146,17 @@ $().ready(function() {
 					<label>
 						<input type="checkbox" name="isBlankTarget" value="true" />${message("Navigation.isBlankTarget")}
 						<input type="hidden" name="_isBlankTarget" value="false" />
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					显示:
+				</th>
+				<td>
+					<label>
+						<input type="checkbox" name="_isShow" value="true" />是否显示
+						<input type="hidden" name="_isShow" value="false" />
 					</label>
 				</td>
 			</tr>

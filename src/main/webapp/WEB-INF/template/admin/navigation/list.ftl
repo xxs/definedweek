@@ -50,6 +50,9 @@ $().ready(function() {
 					<span>${message("Navigation.isBlankTarget")}</span>
 				</th>
 				<th>
+					<span>是否显示</span>
+				</th>
+				<th>
 					<span>${message("admin.common.order")}</span>
 				</th>
 				<th>
@@ -62,13 +65,18 @@ $().ready(function() {
 						<input type="checkbox" name="ids" value="${navigation.id}" />
 					</td>
 					<td>
-						${navigation.name}
+						<span style="margin-left: ${navigation.grade * 20}px;[#if navigation.grade == 0] color: #000000;[/#if]">
+							${navigation.name}
+						</span>					
 					</td>
 					<td>
 						${message("Navigation.Position." + navigation.position)}
 					</td>
 					<td>
-						${message(navigation.isBlankTarget?string('admin.common.true', 'admin.common.false'))}
+						<span class="${navigation.isBlankTarget?string("true", "false")}Icon">&nbsp;</span>
+					</td>
+					<td>
+						<span class="${navigation.isShow?string("true", "false")}Icon">&nbsp;</span>
 					</td>
 					<td>
 						${navigation.order}
@@ -89,13 +97,18 @@ $().ready(function() {
 						<input type="checkbox" name="ids" value="${navigation.id}" />
 					</td>
 					<td>
-						${navigation.name}
+						<span style="margin-left: ${navigation.grade * 20}px;[#if navigation.grade == 0] color: #000000;[/#if]">
+							${navigation.name}
+						</span>
 					</td>
 					<td>
 						${message("Navigation.Position." + navigation.position)}
 					</td>
 					<td>
-						${message(navigation.isBlankTarget?string('admin.common.true', 'admin.common.false'))}
+						<span class="${navigation.isBlankTarget?string("true", "false")}Icon">&nbsp;</span>
+					</td>
+					<td>
+						<span class="${navigation.isShow?string("true", "false")}Icon">&nbsp;</span>
 					</td>
 					<td>
 						${navigation.order}
@@ -116,13 +129,18 @@ $().ready(function() {
 						<input type="checkbox" name="ids" value="${navigation.id}" />
 					</td>
 					<td>
-						${navigation.name}
+						<span style="margin-left: ${navigation.grade * 20}px;[#if navigation.grade == 0] color: #000000;[/#if]">
+							${navigation.name}
+						</span>
 					</td>
 					<td>
 						${message("Navigation.Position." + navigation.position)}
 					</td>
 					<td>
-						${message(navigation.isBlankTarget?string('admin.common.true', 'admin.common.false'))}
+						<span class="${navigation.isBlankTarget?string("true", "false")}Icon">&nbsp;</span>
+					</td>
+					<td>
+						<span class="${navigation.isShow?string("true", "false")}Icon">&nbsp;</span>
 					</td>
 					<td>
 						${navigation.order}

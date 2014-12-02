@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.dao.impl;
 
 import java.util.ArrayList;
@@ -21,9 +16,6 @@ import org.springframework.util.Assert;
 
 /**
  * Dao - 商品分类
- * 
-
-
  */
 @Repository("productCategoryDaoImpl")
 public class ProductCategoryDaoImpl extends BaseDaoImpl<ProductCategory, Long> implements ProductCategoryDao {

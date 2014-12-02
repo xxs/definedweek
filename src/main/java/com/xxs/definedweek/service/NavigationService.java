@@ -2,8 +2,6 @@ package com.xxs.definedweek.service;
 
 import java.util.List;
 
-import com.xxs.definedweek.Filter;
-import com.xxs.definedweek.Order;
 import com.xxs.definedweek.entity.Navigation;
 import com.xxs.definedweek.entity.Navigation.Position;
 
@@ -22,18 +20,104 @@ public interface NavigationService extends BaseService<Navigation, Long> {
 	List<Navigation> findList(Position position);
 
 	/**
-	 * 查找导航(缓存)
+	 * 查找顶级导航分类
+	 * 
+	 * @return 顶级导航分类
+	 */
+	List<Navigation> findRoots();
+
+	/**
+	 * 查找顶级导航分类
 	 * 
 	 * @param count
 	 *            数量
-	 * @param filters
-	 *            筛选
-	 * @param orders
-	 *            排序
+	 * @return 顶级导航分类
+	 */
+	List<Navigation> findRoots(Integer count);
+
+	/**
+	 * 查找顶级导航分类(缓存)
+	 * 
+	 * @param count
+	 *            数量
 	 * @param cacheRegion
 	 *            缓存区域
-	 * @return 导航(缓存)
+	 * @return 顶级导航分类(缓存)
 	 */
-	List<Navigation> findList(Integer count, List<Filter> filters, List<Order> orders, String cacheRegion);
+	List<Navigation> findRoots(Integer count, String cacheRegion);
+
+	/**
+	 * 查找上级导航分类
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @return 上级导航分类
+	 */
+	List<Navigation> findParents(Navigation navigation);
+
+	/**
+	 * 查找上级导航分类
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @param count
+	 *            数量
+	 * @return 上级导航分类
+	 */
+	List<Navigation> findParents(Navigation navigation, Integer count);
+
+	/**
+	 * 查找上级导航分类(缓存)
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @param count
+	 *            数量
+	 * @param cacheRegion
+	 *            缓存区域
+	 * @return 上级导航分类(缓存)
+	 */
+	List<Navigation> findParents(Navigation navigation, Integer count, String cacheRegion);
+
+	/**
+	 * 查找导航分类树
+	 * 
+	 * @return 导航分类树
+	 */
+	List<Navigation> findTree();
+
+	/**
+	 * 查找下级导航分类
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @return 下级导航分类
+	 */
+	List<Navigation> findChildren(Navigation navigation);
+
+	/**
+	 * 查找下级导航分类
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @param count
+	 *            数量
+	 * @return 下级导航分类
+	 */
+	List<Navigation> findChildren(Navigation navigation, Integer count);
+
+	/**
+	 * 查找下级导航分类(缓存)
+	 * 
+	 * @param navigation
+	 *            导航分类
+	 * @param count
+	 *            数量
+	 * @param cacheRegion
+	 *            缓存区域
+	 * @return 下级导航分类(缓存)
+	 */
+	List<Navigation> findChildren(Navigation navigation, Integer count, String cacheRegion);
+
 
 }

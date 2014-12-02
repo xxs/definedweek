@@ -17,8 +17,7 @@
 		<meta name="description" content="[@seo.description?interpret /]" />
 	[/#if]
 [/@seo]
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/shop/css/article.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${base}/resources/shop/css/index.css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/common.js"></script>
 <script type="text/javascript">
@@ -41,73 +40,47 @@ $().ready(function() {
 <body>
 	[#assign articleCategory = article.articleCategory /]
 	[#include "/shop/include/header.ftl" /]
-	<div class="container articleContent">
-		<div class="span6">
-			<div class="hotArticleCategory">
-				<div class="title">${message("shop.article.articleCategory")}</div>
+	<div class="container">
+     	<div id="ur_here">
+     		<a href="${base}/">${message("shop.path.home")}</a>
+				[@article_category_parent_list articleCategoryId = articleCategory.id]
+					[#list articleCategories as articleCategory]
+						<code>&gt;</code><a href="${base}${articleCategory.path}">${articleCategory.name}</a>
+					[/#list]
+				[/@article_category_parent_list]
+			<code>&gt;</code><a href="${base}${articleCategory.path}">${articleCategory.name}</a>
+		</div>
+    	<div class="article clearfix">
+    	<div class="article-left">
+			<dl>
+				<dt>
+					<a href="#">${message("shop.article.articleCategory")}</a>
+				</dt>
 				[@article_category_root_list count = 10]
 					[#list articleCategories as category]
-						<dl[#if !category_has_next] class="last"[/#if]>
-							<dt>
-								<a href="${base}${category.path}">${category.name}</a>
-							</dt>
-							[#list category.children as articleCategory]
-								[#if articleCategory_index == 6]
-									[#break /]
-								[/#if]
-								<dd>
-									<a href="${base}${articleCategory.path}">${articleCategory.name}</a>
-								</dd>
-							[/#list]
-						</dl>
+						<dd>
+							<a href="${base}${category.path}">${category.name}</a>
+						</dd>
 					[/#list]
 				[/@article_category_root_list]
-			</div>
-			<div class="hotArticle">
-				<div class="title">${message("shop.article.hotArticle")}</div>
-				<ul>
-					[@article_list articleCategoryId = articleCategory.id count = 10 orderBy="hits desc"]
-						[#list articles as article]
-							<li>
-								<a href="${base}${article.path}" title="${article.title}">${abbreviate(article.title, 30)}</a>
-							</li>
-						[/#list]
-					[/@article_list]
-				</ul>
-			</div>
+			</dl>
 		</div>
-		<div class="span18 last">
-			<div class="path">
-				<ul>
-					<li>
-						<a href="${base}/">${message("shop.path.home")}</a>
-					</li>
-					[@article_category_parent_list articleCategoryId = articleCategory.id]
-						[#list articleCategories as articleCategory]
-							<li>
-								<a href="${base}${articleCategory.path}">${articleCategory.name}</a>
-							</li>
-						[/#list]
-					[/@article_category_parent_list]
-					<li>
-						<a href="${base}${articleCategory.path}">${articleCategory.name}</a>
-					</li>
-				</ul>
-			</div>
-			<div class="main">
-				<h1 class="title">${article.title}[#if article.pageNumber > 1] (${article.pageNumber})[/#if]</h1>
-				<div class="info">
+         <div class="article-right">
+              <div class="article-content">
+                  <h2 align="center">${article.title}[#if article.pageNumber > 1] (${article.pageNumber})[/#if]</h2>
+                  <div class="info">
 					${message("shop.article.createDate")}: ${article.createDate?string("yyyy-MM-dd HH:mm:ss")}
 					${message("shop.article.author")}: ${article.author}
 					${message("shop.article.hits")}: <span id="hits">&nbsp;</span>
 				</div>
-				<div class="content">${article.content}</div>
-			</div>
-			[@pagination pageNumber = article.pageNumber totalPages = article.totalPages pattern = "{pageNumber}.html"]
-				[#include "/shop/include/pagination.ftl"]
-			[/@pagination]
-		</div>
-	</div>
+				${article.content}
+					[@pagination pageNumber = article.pageNumber totalPages = article.totalPages pattern = "{pageNumber}.html"]
+					[#include "/shop/include/pagination.ftl"]
+				[/@pagination]
+           </div>
+         </div>
+     </div>
+ </div>
 	[#include "/shop/include/footer.ftl" /]
 </body>
 </html>

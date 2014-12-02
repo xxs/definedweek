@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.util.List;
@@ -24,14 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 文章分类
- * 
-
-
  */
 @Controller("adminArticleCategoryController")
 @RequestMapping("/admin/article_category")
 public class ArticleCategoryController extends BaseController {
-
+	
 	@Resource(name = "articleCategoryServiceImpl")
 	private ArticleCategoryService articleCategoryService;
 

@@ -9,17 +9,17 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xxs.definedweek.Filter;
 import com.xxs.definedweek.Order;
 import com.xxs.definedweek.dao.NavigationDao;
 import com.xxs.definedweek.entity.Navigation;
 import com.xxs.definedweek.entity.Navigation.Position;
 import com.xxs.definedweek.service.NavigationService;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service - 导航
@@ -89,6 +89,59 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 	@CacheEvict(value = "navigation", allEntries = true)
 	public void delete(Navigation navigation) {
 		super.delete(navigation);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findRoots() {
+		return navigationDao.findRoots(null);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findRoots(Integer count) {
+		return navigationDao.findRoots(count);
+	}
+
+	@Transactional(readOnly = true)
+	@Cacheable("navigation")
+	public List<Navigation> findRoots(Integer count, String cacheRegion) {
+		return navigationDao.findRoots(count);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findParents(Navigation navigation) {
+		return navigationDao.findParents(navigation, null);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findParents(Navigation navigation, Integer count) {
+		return navigationDao.findParents(navigation, count);
+	}
+
+	@Transactional(readOnly = true)
+	@Cacheable("navigation")
+	public List<Navigation> findParents(Navigation navigation, Integer count, String cacheRegion) {
+		return navigationDao.findParents(navigation, count);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findTree() {
+		return navigationDao.findChildren(null, null);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findChildren(Navigation navigation) {
+		return navigationDao.findChildren(navigation, null);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Navigation> findChildren(Navigation navigation, Integer count) {
+		return navigationDao.findChildren(navigation, count);
+	}
+
+	@Transactional(readOnly = true)
+	@Cacheable("navigation")
+	public List<Navigation> findChildren(Navigation navigation, Integer count, String cacheRegion) {
+		return navigationDao.findChildren(navigation, count);
 	}
 
 }

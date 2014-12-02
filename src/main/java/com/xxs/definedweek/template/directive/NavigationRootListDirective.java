@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import com.xxs.definedweek.Filter;
-import com.xxs.definedweek.Order;
 import com.xxs.definedweek.entity.Navigation;
 import com.xxs.definedweek.service.NavigationService;
 
@@ -19,34 +17,29 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
 /**
- * 模板指令 - 导航列表
+ * 模板指令 - 顶级导航分类列表
  */
-@Component("navigationListDirective")
-public class NavigationListDirective extends BaseDirective {
+@Component("navigationRootListDirective")
+public class NavigationRootListDirective extends BaseDirective {
 
 	/** 变量名称 */
-	private static final String VARIABLE_NAME = "navigations";
+	private static final String VARIABLE_NAME = "productCategories";
 
 	@Resource(name = "navigationServiceImpl")
 	private NavigationService navigationService;
 
-	//此处等待修改
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
-		List<Navigation> navigations;
+		List<Navigation> productCategories;
 		boolean useCache = useCache(env, params);
 		String cacheRegion = getCacheRegion(env, params);
 		Integer count = getCount(params);
-		List<Filter> filters = getFilters(params, Navigation.class);
-		List<Order> orders = getOrders(params);
 		if (useCache) {
-			//不清楚缓存为什么不能用了
-			//navigations = navigationService.findList(count, filters, orders, cacheRegion);
-			navigations = navigationService.findList(count, filters, orders);
+			productCategories = navigationService.findRoots(count, cacheRegion);
 		} else {
-			navigations = navigationService.findList(count, filters, orders);
+			productCategories = navigationService.findRoots(count);
 		}
-		setLocalVariable(VARIABLE_NAME, navigations, env, body);
+		setLocalVariable(VARIABLE_NAME, productCategories, env, body);
 	}
 
 }

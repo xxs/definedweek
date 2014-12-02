@@ -121,6 +121,9 @@
 				<entry key="ad_position" value-ref="adPositionDirective" />
 				<entry key="member_attribute_list" value-ref="memberAttributeListDirective" />
 				<entry key="navigation_list" value-ref="navigationListDirective" />
+				<entry key="navigation_root_list" value-ref="navigationRootListDirective" />
+				<entry key="navigation_parent_list" value-ref="navigationParentListDirective" />
+				<entry key="navigation_children_list" value-ref="navigationChildrenListDirective" />
 				<entry key="tag_list" value-ref="tagListDirective" />
 				<entry key="friend_link_list" value-ref="friendLinkListDirective" />
 				<entry key="brand_list" value-ref="brandListDirective" />

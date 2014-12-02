@@ -27,9 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 文章
- * 
-
-
  */
 @Controller("adminArticleController")
 @RequestMapping("/admin/article")

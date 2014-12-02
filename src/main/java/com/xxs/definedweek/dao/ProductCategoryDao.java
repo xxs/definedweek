@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.dao;
 
 import java.util.List;
@@ -11,9 +6,6 @@ import com.xxs.definedweek.entity.ProductCategory;
 
 /**
  * Dao - 商品分类
- * 
-
-
  */
 public interface ProductCategoryDao extends BaseDao<ProductCategory, Long> {
 
