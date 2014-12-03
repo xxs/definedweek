@@ -34,6 +34,15 @@ public interface NavigationService extends BaseService<Navigation, Long> {
 	 * @return 顶级导航分类
 	 */
 	List<Navigation> findRoots(Integer count);
+	
+	/**
+	 * 查找顶级导航分类
+	 * 
+	 * @param count
+	 *            数量
+	 * @return 顶级导航分类
+	 */
+	List<Navigation> findRoots(Integer count,Position position);
 
 	/**
 	 * 查找顶级导航分类(缓存)
@@ -45,6 +54,16 @@ public interface NavigationService extends BaseService<Navigation, Long> {
 	 * @return 顶级导航分类(缓存)
 	 */
 	List<Navigation> findRoots(Integer count, String cacheRegion);
+	/**
+	 * 查找顶级导航分类(缓存)
+	 * 
+	 * @param count
+	 *            数量
+	 * @param cacheRegion
+	 *            缓存区域
+	 * @return 顶级导航分类(缓存)
+	 */
+	List<Navigation> findRoots(Integer count,Position position, String cacheRegion);
 
 	/**
 	 * 查找上级导航分类

@@ -28,7 +28,7 @@ public class NavigationParentListDirective extends BaseDirective {
 	private static final String NAVIGATION_ID_PARAMETER_NAME = "navigationId";
 
 	/** 变量名称 */
-	private static final String VARIABLE_NAME = "productCategories";
+	private static final String VARIABLE_NAME = "navigations";
 
 	@Resource(name = "navigationServiceImpl")
 	private NavigationService navigationService;

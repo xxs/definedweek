@@ -5,7 +5,7 @@
 <title>${message("shop.login.title")}[#if systemShowPowered] - Powered By SHOP++[/#if]</title>
 <meta name="author" content="SHOP++ Team" />
 <meta name="copyright" content="SHOP++" />
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/login.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/user.css" rel="stylesheet" type="text/css" />
 

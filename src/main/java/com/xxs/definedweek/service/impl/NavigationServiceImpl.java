@@ -97,6 +97,11 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 	}
 
 	@Transactional(readOnly = true)
+	public List<Navigation> findRoots(Integer count,Position position) {
+		return navigationDao.findRoots(count,position);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Navigation> findRoots(Integer count) {
 		return navigationDao.findRoots(count);
 	}
@@ -105,6 +110,11 @@ public class NavigationServiceImpl extends BaseServiceImpl<Navigation, Long> imp
 	@Cacheable("navigation")
 	public List<Navigation> findRoots(Integer count, String cacheRegion) {
 		return navigationDao.findRoots(count);
+	}
+	@Transactional(readOnly = true)
+	@Cacheable("navigation")
+	public List<Navigation> findRoots(Integer count,Position position, String cacheRegion) {
+		return navigationDao.findRoots(count,position);
 	}
 
 	@Transactional(readOnly = true)

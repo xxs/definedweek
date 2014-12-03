@@ -44,6 +44,15 @@ public class NavigationDaoImpl extends BaseDaoImpl<Navigation, Long> implements 
 		}
 		return query.getResultList();
 	}
+	
+	public List<Navigation> findRoots(Integer count,Position position) {
+		String jpql = "select navigation from Navigation navigation where navigation.parent is null and navigation.position = "+ position.ordinal() +" order by navigation.order asc";
+		TypedQuery<Navigation> query = entityManager.createQuery(jpql, Navigation.class).setFlushMode(FlushModeType.COMMIT);
+		if (count != null) {
+			query.setMaxResults(count);
+		}
+		return query.getResultList();
+	}
 
 	public List<Navigation> findParents(Navigation navigation, Integer count) {
 		if (navigation == null || navigation.getParent() == null) {

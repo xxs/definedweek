@@ -26,6 +26,16 @@ public interface NavigationDao extends BaseDao<Navigation, Long> {
 	 * @return 顶级导航分类
 	 */
 	List<Navigation> findRoots(Integer count);
+	/**
+	 * 查找顶级导航分类
+	 * 
+	 * @param count
+	 *            数量
+	 * @param position
+	 *           位置
+	 * @return 顶级导航分类
+	 */
+	List<Navigation> findRoots(Integer count,Position position);
 
 	/**
 	 * 查找上级导航分类
