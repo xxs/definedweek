@@ -138,6 +138,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.jhtml">${message("admin.path.index")}</a> &raquo; ${message("admin.static.build")}
 	</div>
+	
 	<form id="inputForm" action="build.jhtml" method="post">
 		<table class="input">
 			<tr>
@@ -232,6 +233,14 @@ $().ready(function() {
 				<td>
 					<input type="submit" class="button" value="${message("admin.common.submit")}" />
 					<input type="button" class="button" value="${message("admin.common.back")}" onclick="location.href='../common/index.jhtml'" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					&nbsp;
+				</th>
+				<td>
+					<a href="../static/quickbuild.jhtml" class="button">一键生成xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</a>
 				</td>
 			</tr>
 		</table>

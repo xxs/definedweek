@@ -108,7 +108,7 @@ $().ready(function() {
 				[#list navigations as navigation]
 					<li[#if navigation.url = url] class="current"[/#if]>
 						<a href="${navigation.url}"[#if navigation.isBlankTarget] target="_blank"[/#if]>${navigation.name}</a>
-						[#if !navigation_has_next]<span class="hot-logo">hot !</span>[/#if]
+						[#if navigation_index=2]<span class="hot-logo">hot !</span>[/#if]
 					</li>
 				[/#list]
 			[/@navigation_list]

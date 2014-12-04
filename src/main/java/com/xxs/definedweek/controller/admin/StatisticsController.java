@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.io.BufferedReader;
@@ -27,9 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 统计
- * 
-
-
  */
 @Controller("statisticsController")
 @RequestMapping("/admin/statistics")

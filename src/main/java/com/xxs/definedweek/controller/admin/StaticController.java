@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import java.util.Calendar;
@@ -19,6 +14,7 @@ import com.xxs.definedweek.entity.Product;
 import com.xxs.definedweek.entity.ProductCategory;
 import com.xxs.definedweek.service.ArticleCategoryService;
 import com.xxs.definedweek.service.ArticleService;
+import com.xxs.definedweek.service.CacheService;
 import com.xxs.definedweek.service.ProductCategoryService;
 import com.xxs.definedweek.service.ProductService;
 import com.xxs.definedweek.service.StaticService;
@@ -32,14 +28,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller - 静态化
- * 
-
-
  */
 @Controller("adminStaticController")
 @RequestMapping("/admin/static")
 public class StaticController extends BaseController {
 
+	@Resource(name = "cacheServiceImpl")
+	private CacheService cacheService;
+	
 	/**
 	 * 生成类型
 	 */
@@ -79,10 +75,13 @@ public class StaticController extends BaseController {
 	@RequestMapping(value = "/build", method = RequestMethod.GET)
 	public String build(ModelMap model) {
 		model.addAttribute("buildTypes", BuildType.values());
-		model.addAttribute("defaultBeginDate", DateUtils.addDays(new Date(), -7));
+		model.addAttribute("defaultBeginDate",
+				DateUtils.addDays(new Date(), -107));
 		model.addAttribute("defaultEndDate", new Date());
-		model.addAttribute("articleCategoryTree", articleCategoryService.findChildren(null, null));
-		model.addAttribute("productCategoryTree", productCategoryService.findChildren(null, null));
+		model.addAttribute("articleCategoryTree",
+				articleCategoryService.findChildren(null, null));
+		model.addAttribute("productCategoryTree",
+				productCategoryService.findChildren(null, null));
 		return "/admin/static/build";
 	}
 
@@ -91,20 +90,28 @@ public class StaticController extends BaseController {
 	 */
 	@RequestMapping(value = "/build", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> build(BuildType buildType, Long articleCategoryId, Long productCategoryId, Date beginDate, Date endDate, Integer first, Integer count) {
+	Map<String, Object> build(BuildType buildType, Long articleCategoryId,
+			Long productCategoryId, Date beginDate, Date endDate,
+			Integer first, Integer count) {
 		long startTime = System.currentTimeMillis();
 		if (beginDate != null) {
 			Calendar calendar = DateUtils.toCalendar(beginDate);
-			calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMinimum(Calendar.HOUR_OF_DAY));
-			calendar.set(Calendar.MINUTE, calendar.getActualMinimum(Calendar.MINUTE));
-			calendar.set(Calendar.SECOND, calendar.getActualMinimum(Calendar.SECOND));
+			calendar.set(Calendar.HOUR_OF_DAY,
+					calendar.getActualMinimum(Calendar.HOUR_OF_DAY));
+			calendar.set(Calendar.MINUTE,
+					calendar.getActualMinimum(Calendar.MINUTE));
+			calendar.set(Calendar.SECOND,
+					calendar.getActualMinimum(Calendar.SECOND));
 			beginDate = calendar.getTime();
 		}
 		if (endDate != null) {
 			Calendar calendar = DateUtils.toCalendar(endDate);
-			calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
-			calendar.set(Calendar.MINUTE, calendar.getActualMaximum(Calendar.MINUTE));
-			calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
+			calendar.set(Calendar.HOUR_OF_DAY,
+					calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
+			calendar.set(Calendar.MINUTE,
+					calendar.getActualMaximum(Calendar.MINUTE));
+			calendar.set(Calendar.SECOND,
+					calendar.getActualMaximum(Calendar.SECOND));
 			endDate = calendar.getTime();
 		}
 		if (first == null || first < 0) {
@@ -118,8 +125,10 @@ public class StaticController extends BaseController {
 		if (buildType == BuildType.index) {
 			buildCount = staticService.buildIndex();
 		} else if (buildType == BuildType.article) {
-			ArticleCategory articleCategory = articleCategoryService.find(articleCategoryId);
-			List<Article> articles = articleService.findList(articleCategory, beginDate, endDate, first, count);
+			ArticleCategory articleCategory = articleCategoryService
+					.find(articleCategoryId);
+			List<Article> articles = articleService.findList(articleCategory,
+					beginDate, endDate, first, count);
 			for (Article article : articles) {
 				buildCount += staticService.build(article);
 			}
@@ -128,8 +137,10 @@ public class StaticController extends BaseController {
 				isCompleted = false;
 			}
 		} else if (buildType == BuildType.product) {
-			ProductCategory productCategory = productCategoryService.find(productCategoryId);
-			List<Product> products = productService.findList(productCategory, beginDate, endDate, first, count);
+			ProductCategory productCategory = productCategoryService
+					.find(productCategoryId);
+			List<Product> products = productService.findList(productCategory,
+					beginDate, endDate, first, count);
 			for (Product product : products) {
 				buildCount += staticService.build(product);
 			}
@@ -147,6 +158,29 @@ public class StaticController extends BaseController {
 		map.put("buildTime", endTime - startTime);
 		map.put("isCompleted", isCompleted);
 		return map;
+	}
+
+	/**
+	 * 快捷生成静态
+	 */
+	@RequestMapping(value = "/quickbuild", method = RequestMethod.GET)
+	public String quickbuild() {
+		//System.out.println("一键生成----开始");
+		//先清除缓存
+		cacheService.clear();
+		
+		staticService.buildIndex();
+		List<Article> articles = articleService.findAll();
+		for (Article article : articles) {
+			staticService.build(article);
+		}
+		List<Product> products = productService.findAll();
+		for (Product product : products) {
+			staticService.build(product);
+		}
+		staticService.buildOther();
+		//System.out.println("一键生成-----成功");
+		return "redirect:build.jhtml";
 	}
 
 }

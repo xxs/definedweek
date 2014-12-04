@@ -17,13 +17,16 @@
 		<meta name="description" content="[@seo.description?interpret /]" />
 	[/#if]
 [/@seo]
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/product.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.tools.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.jqzoom.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.validate.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/common.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="${base}/resources/shop/js/product.js"></script>
 <script type="text/javascript">
 $().ready(function() {
 
@@ -318,6 +321,351 @@ $().ready(function() {
 <body>
 	[#include "/shop/include/header.ftl" /]
 	[#assign productCategory = product.productCategory /]
+	
+	<div class="container clearfix" id="loadinfos">
+ <div id="ur_here">
+	<a href="${base}/">${message("shop.path.home")}</a>
+		[@product_category_parent_list productCategoryId = productCategory.id]
+			[#list productCategories as productCategory]
+					<code>&gt;</code><a href="${base}${productCategory.path}">${productCategory.name}</a>
+			[/#list]
+		[/@product_category_parent_list]
+			<code>&gt;</code><a href="${base}${productCategory.path}">${productCategory.name}</a>
+		<code>&gt;</code><a href="#">${product.name}</a>
+ </div>
+<div id="goodsInfo" class="clearfix">
+<div class="imgInfo">
+<div class="imgInfo_img">
+    <ul>
+    	[#if product.productImages?has_content]
+							[#list product.productImages as productImage]
+								<li><a[#if productImage_index == 0] class="current"[/#if] href="javascript:;"><img src="${productImage.thumbnail}" title="${productImage.title}" /></a></li>
+							[/#list]
+						[#else]
+							<li><a class="current" href="javascript:;"><img src="${setting.defaultThumbnailProductImage}" /></a></li>
+						[/#if]
+              </ul>
+   </div>
+    <span id="goodsPicPrev" title="上一张" class="icon-slides icon-slides-prev" style="height: 460px;">上一张</span> <span id="goodsPicNext" title="下一张" class="icon-slides icon-slides-next" style="height: 460px;">下一张</span> </div>
+         <div class="textInfo">
+    <div class="clearfix">
+    <div class="text">
+     <div class="text_l" style=""><h1>${product.name}[#if product.isGift] [${message("shop.product.gifts")}][/#if]</h1></div>
+     
+      </div>
+      <p class="goods-info-phone" ><font color="red">
+      
+      		[#if product.validPromotions?has_content]
+					[#list product.validPromotions as promotion]
+							${promotion.name} [#if promotion.beginDate?? || promotion.endDate??] 活动时间：${promotion.beginDate} ~ ${promotion.endDate} [/#if]
+					[/#list]
+			[/#if]
+      </font></p> 
+      <div class="dd">
+      <p> 价<span style="margin-left:27px;"></span>格：<b class="price-num" >￥698.50元</b></p>
+            <p>商品评价：
+            	<span style="text-decoration:none; padding-left:8px;margin-top:-5px" class="goodsToComment icon-star icon-star-${(product.score * 2)?string("0")}"> </span>
+            	<span style="cursor:pointer;" id="view_comment_count">(共${product.scoreCount}人评价)</span>
+       </p>
+          <p>服<span style="margin-left:27px;"></span>务：此模板售出后15天为服务期，提供即时咨询服务</p>
+      </div> 
+     </div>
+      <div style=" clear:both"></div>
+      
+      [#if product.specifications?has_content]
+						<div id="specification" class="specification clearfix">
+							<div class="title">${message("shop.product.specificationTitle")}</div>
+							[#assign specificationValues = product.goods.specificationValues /]
+							[#list product.specifications as specification]
+								<dl>
+									<dt>
+										<span title="${specification.name}">${abbreviate(specification.name, 8)}:</span>
+									</dt>
+									[#list specification.specificationValues as specificationValue]
+										[#if specificationValues?seq_contains(specificationValue)]
+											<dd>
+												<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
+											</dd>
+										[/#if]
+									[/#list]
+								</dl>
+							[/#list]
+						</div>
+					[/#if]
+      
+      
+                <div style="clear:both"></div>
+       <ul class="dd  clearfix">  
+      <li>
+                              <a class="btn btn-primary btn_fp" id="addCart" href="javascript:void(0);" data-gid="118" data-cid="38" data-thumb="http://image.xiaolajiao.com/images/201404/thumb_img/118_thumb_G_1396421240282.jpg?v=20141202">
+                    立即购买
+          </a>
+                              <a class="goods-collect-btn1" id="Favorites" data-gid="118" href="javascript:void(0)"><span></span> </a>
+      </li>
+      </ul>
+     </div>
+   </div>
+   <div class="blank"></div>
+  <div class="xlj-prodesc">
+        <div class="goods-desc-menu">
+             <ul class="hd clearfix">
+                 <li class="first"><a href="#productDetail">产品详情</a> </li>
+                 <li><a href="#specifications">规格参数</a></li>
+                 <li><a href="#userRating">用户评价<span>(${product.scoreCount})</span></a> </li>
+                 <li><a href="#Service">售后服务</a></li>
+                                  <li><a href="#FAQs">常见问题</a></li>
+                            </ul>
+        </div>
+      <div class="xlj-desc-box">
+        
+      <div class="xlj-box" >
+          <div class="xlj-good-desc">
+               ${product.introduction}
+          </div>
+      </div>
+        <div class="xlj-box">
+                <div class="bd">
+                   [#if product.parameterValue?has_content]
+                    <div style="padding-top: 20px;">声明：使用此模板如有商业用途，请先到各大系统提供商资讯商业授权事宜，许可后方可使用</div>
+                    <div class="godds-desc-par">
+                                
+                                            
+                      <table border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd" class="sp_talbe">
+                      [#list productCategory.parameterGroups as parameterGroups]
+                        <tr>
+                          <th colspan="2" bgcolor="#FF00FF">${parameterGroups.name}</th>
+                       	[#list parameterGroups.parameters as parameter]
+								[#if product.parameterValue.get(parameter)??]
+									<tr>
+										<td bgcolor="#FFFFFF" align="right" width="20%" class="f1">${parameter.name}</td>
+										<td bgcolor="#FFFFFF" align="left" width="80%">${product.parameterValue.get(parameter)}</td>
+									</tr>
+								[/#if]
+							[/#list]
+							[/#list]
+                        </table>
+                          
+                    </div>
+                </div>
+        </div>
+			[/#if]        
+        
+         
+        <div class="xlj-box" id="UserEvaluation">
+            <div class="hd evaluation">
+                    <div class="mc">
+                         <div id="i-comment">   
+                             <div class="rate">
+                                <strong>${product.score?string("0.0")}</strong> <br> 
+                                <span>好评度</span>  
+                             </div>
+                             <div class="percent">
+                                <dl>
+                                    <dt>好评<span>(93%)</span></dt>
+                                    <dd> <div style="width: 93%;"></div></dd>
+                                </dl>
+                                <dl>
+                                    <dt>中评<span>(2%)</span></dt>
+                                    <dd class="d1"><div style="width: 2%;"> </div></dd> 
+                               </dl>
+                               <dl>
+                                    <dt>差评<span>(5%)</span></dt>
+                                    <dd class="d1"><div style="width: 5%;"> </div></dd>
+                               </dl>
+                            </div>   
+                             <div class="actor-new">  
+                                                                <dl>            
+                                    <dt>买家印象：</dt>            
+                                    <dd class="p-bfc">
+                                                                             <span class="comm-tags">外观漂亮</span>
+                                                                             <span class="comm-tags">性价比高</span>
+                                                                             <span class="comm-tags">功能齐全</span>
+                                                                             <span class="comm-tags">系统流畅</span>
+                                                                             <span class="comm-tags">支持国产机</span>
+                                                                             <span class="comm-tags">信号稳定</span>
+                                                                             <span class="comm-tags">反应快</span>
+                                                                             <span class="comm-tags">通话质量好</span>
+                                                                        </dd>       
+                                </dl>
+                              
+                            <div class="clr"></div> <b></b>    </div>   
+                             <div class="btns">
+                             <a href="#consultForm"> <i></i>发表评价</a>
+                             <span class="hl_red">只有购买成功的用户才能评价</span>
+                              </div>
+                              </div>                   
+                        </div>
+                        <ul class="all-percent" id="percentComment">
+                                <li class="on" data-code="AllPercent" data-num="88">全部评价（88）</li>
+                                <li data-code="GoodPercent" data-num="82">好评（82）</li>
+                                <li data-code="GeneralPercent" data-num="2">中评（2）</li>
+                                <li data-code="BadPercent" class="last" data-num="4">差评（4）</li>
+                        </ul>
+                </div>
+                
+                <div class="bd">
+                     <div class="goods-percent-list">
+                        <div class="goods-percent">
+                            <ul id="AllPercent" class="clearfix ">
+                                                        <li><div class="user-precent-left">
+                <img class="np-avatar" src="http://account.xiaolajiao.com/uc_server/avatar.php?uid=139211&size=big" alt="头像">
+                <span>faye99129</span></div>
+                <div class="user-precent-right"><div class="user-precent-header">
+                <span class="icon-star icon-star-5 left"></span><span class="user-date right">2014-11-13 20:10:00</span></div>
+                  <div class="user-precent-content"><p>帮别人买的，全贴合屏幕效果很好，挺流畅的</p></div></div></li><li><div class="user-precent-left">
+                <img class="np-avatar" src="http://account.xiaolajiao.com/uc_server/avatar.php?uid=849788&size=big" alt="头像">
+                <span>飞翔喜神</span></div>
+                <div class="user-precent-right"><div class="user-precent-header">
+                <span class="icon-star icon-star-5 left"></span><span class="user-date right">2014-11-13 18:10:00</span></div>
+                  <div class="user-precent-content"><p>终于买到了，真的不错！上网快屏幕够大！</p></div></div></li><li><div class="user-precent-left">
+                <img class="np-avatar" src="http://account.xiaolajiao.com/uc_server/avatar.php?uid=437110&size=big" alt="头像">
+                <span>bzlichuang</span></div>
+                <div class="user-precent-right"><div class="user-precent-header">
+                <span class="icon-star icon-star-5 left"></span><span class="comm-tags-on">系统流畅</span><span class="comm-tags-on">外观漂亮</span><span class="comm-tags-on">功能齐全</span><span class="user-date right">2014-11-10 14:50:00</span></div>
+                  <div class="user-precent-content"><p>这个价位物有所值，很满意。给个赞！</p></div></div></li><li><div class="user-precent-left">
+                <img class="np-avatar" src="http://account.xiaolajiao.com/uc_server/avatar.php?uid=722870&size=big" alt="头像">
+                <span>需要温暖</span></div>
+                <div class="user-precent-right"><div class="user-precent-header">
+                <span class="icon-star icon-star-5 left"></span><span class="user-date right">2014-11-09 21:42:00</span></div>
+                  <div class="user-precent-content"><p>支持国产、用着还行、很轻、很方便</p></div></div></li><li><div class="user-precent-left">
+                <img class="np-avatar" src="http://account.xiaolajiao.com/uc_server/avatar.php?uid=910989&size=big" alt="头像">
+                <span>LINMINGL</span></div>
+                <div class="user-precent-right"><div class="user-precent-header">
+                <span class="icon-star icon-star-5 left"></span><span class="user-date right">2014-11-09 16:11:00</span></div>
+                  <div class="user-precent-content"><p>很轻薄，屏幕大，分辨率又高，照相清晰，运行的快</p></div></div></li>                                                        </ul>
+                        </div>
+                                                <div class="more">查看更多评论&gt;&gt;</div>
+                        <input name="more_num" type="hidden" id="more_num" value="5" />
+                        <input name="comment_type" type="hidden" id="comment_type" value="0" />
+                                                <div class="consulting">
+                         <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="consultForm" id="consultForm">
+                                <table>
+                                    <tr>
+                                        <td  class="table-left">评分：</td>
+                                        <td>
+                                            <input name="comment_rank" type="radio" value="5" id="comment_rank5" checked="checked" > <label for="comment_rank5"><span class=" icon-star icon-star-5"></span></label>
+                                            <input name="comment_rank" type="radio" value="4" id="comment_rank4"> <label for="comment_rank4"><span class=" icon-star icon-star-4"></span></label>
+                                            <input name="comment_rank" type="radio" value="3" id="comment_rank3"> <label for="comment_rank3"><span class=" icon-star icon-star-3"></span></label>
+                                            <input name="comment_rank" type="radio" value="2" id="comment_rank2"> <label for="comment_rank2"><span class=" icon-star icon-star-2"></span></label>
+                                            <input name="comment_rank" type="radio" value="1" id="comment_rank1"> <label for="comment_rank1"><span class=" icon-star icon-star-1"></span></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-left">标签：</td>
+                                        <td>
+                                            <ul class="user-label">
+                                                                                                                                        <li><input id="userLabel0" type="checkbox" name="items" value="72" /><label for="userLabel0">系统流畅</label></li>
+                                                                                            <li><input id="userLabel1" type="checkbox" name="items" value="73" /><label for="userLabel1">外观漂亮</label></li>
+                                                                                            <li><input id="userLabel2" type="checkbox" name="items" value="74" /><label for="userLabel2">功能齐全</label></li>
+                                                                                            <li><input id="userLabel3" type="checkbox" name="items" value="75" /><label for="userLabel3">性价比高</label></li>
+                                                                                            <li><input id="userLabel4" type="checkbox" name="items" value="76" /><label for="userLabel4">信号稳定</label></li>
+                                                                                            <li><input id="userLabel5" type="checkbox" name="items" value="77" /><label for="userLabel5">电池耐用</label></li>
+                                                                                            <li><input id="userLabel6" type="checkbox" name="items" value="78" /><label for="userLabel6">反应快</label></li>
+                                                                                            <li><input id="userLabel7" type="checkbox" name="items" value="79" /><label for="userLabel7">支持国产机</label></li>
+                                                                                            <li><input id="userLabel8" type="checkbox" name="items" value="80" /><label for="userLabel8">通话质量好</label></li>
+                                                                                                                                        <li id="CustomLabel"><i></i>自定义</li>
+                                                <li id="CustomSubmit">提交</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-left">心得：</td>
+                                        <td><textarea name="content" id="ConsultContent" maxlength="300" ></textarea></td>
+                                        
+                                    </tr>
+                                     <tr>
+                                        <td></td>
+                                        <td><input class="submit" type="submit" name="submit" id="ContentSub" value="提交评论" data-val="0" /></td>
+                                    </tr>
+                                </table>
+                          </form>
+                      </div>
+                     </div>
+                </div>
+            </div>
+        
+         
+        <div class="xlj-box" id="GoodsService">
+        <div class="hd goods-service">
+	<h2>
+		小辣椒承诺
+	</h2>
+	<p class="img">
+		<img alt="" src="http://image.xiaolajiao.com/images/upload/image/20140823/20140823153406_33447.jpg" /> 
+	</p>
+</div>
+<div class="hd goods-service">
+	<h2>
+		关于物流
+	</h2>
+	<p class="img">
+		<img alt="" src="http://image.xiaolajiao.com/images/upload/image/20140823/20140823153351_15134.jpg" /> 
+	</p>
+</div>
+<div class="hd goods-service">
+	<h2>
+		关于发票
+	</h2>
+	<p class="img">
+		<img alt="" src="http://image.xiaolajiao.com/images/upload/image/20140823/20140823153240_30608.jpg" /> 
+	</p>
+</div>
+<div class="hd goods-service">
+	<h2>
+		关于小辣椒
+	</h2>
+	<p>
+		小辣椒成立于2012年2月，小辣椒智能手机是深圳语信时代通信设备有限公司旗下的互联网手机品牌。小辣椒为每一款手机配置全球一流的移动技术与品牌元器件，用互联网销售方式，打造最具性价比和国际品质的智能手机。小辣椒以独有的"挑战"精神，专为渴望不平凡、不甘心平淡、充满激情、坚持梦想、积极乐观、敢于挑战的群体而生，助力他们挑战梦想、绽放青春、创造非凡！
+	</p>
+	<p class="img">
+		<img alt="" src="http://image.xiaolajiao.com/images/upload/image/20140823/20140823153219_40226.jpg" /> 
+	</p>
+</div> 
+        </div>
+        
+        
+                <div class="xlj-box" id="Faqs">
+         
+        </div>
+                
+      </div>
+  </div>
+<div class="blank"></div>
+<div id="goodsSubBar" class="goods-sub-bar " style=" display:none">
+    <div class="block">
+        <div class="row">
+            <div class="span3">
+                <dl class="goods-sub-bar-info clearfix">
+                    <dt><img src="${product.image}"></dt>
+                    <dd>
+                        <strong>${product.name}</strong>
+                        <p>
+                            <em>￥${product.price}</em>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="span12">
+                <div class="fr">
+                    <a class="btn btn-primary btn_fp" id="addCart2" href="javascript:void(0);" data-gid="118" data-cid="38" data-thumb="http://image.xiaolajiao.com/images/201404/thumb_img/118_thumb_G_1396421240282.jpg?v=20141202">
+                                    立即购买
+                  </a>
+          </div>
+                <div id="goodsSubMenu" class="godds-desc-menu">
+                    <ul class="clearfix">
+                        <li class="first"><a href="#productDetail">产品详情</a> </li>
+                        <li><a href="#specifications">规格参数</a></li>
+                        <li><a href="#userRating">用户评价<span>(${product.scoreCount})</span></a> </li>
+                        <li><a href="#Service">售后服务</a></li>
+                        <li><a href="#FAQs">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
+	
 	<div class="container productContent">
 		<div class="span6">
 			<div class="hotProductCategory">
@@ -514,30 +862,6 @@ $().ready(function() {
 					</div>
 				</div>
 			[/#if]
-			<div id="bar" class="bar">
-				<ul>
-					[#if product.introduction?has_content]
-						<li id="introductionTab">
-							<a href="#introduction">${message("shop.product.introduction")}</a>
-						</li>
-					[/#if]
-					[#if product.parameterValue?has_content]
-						<li id="parameterTab">
-							<a href="#parameter">${message("shop.product.parameter")}</a>
-						</li>
-					[/#if]
-					[#if setting.isReviewEnabled]
-						<li id="reviewTab">
-							<a href="#review">${message("shop.product.review")}</a>
-						</li>
-					[/#if]
-					[#if setting.isConsultationEnabled]
-						<li id="consultationTab">
-							<a href="#consultation">${message("shop.product.consultation")}</a>
-						</li>
-					[/#if]
-				</ul>
-			</div>
 			[#if (product.parameterValue.size() >= 3)]
 				<table class="brief">
 					[#list product.parameterValue.keySet() as parameter]

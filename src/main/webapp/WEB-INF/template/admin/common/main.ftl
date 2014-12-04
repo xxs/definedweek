@@ -41,7 +41,6 @@ $().ready(function() {
 		$menuItem.removeClass("current");
 		$this.addClass("current");
 	});
-
 });
 </script>
 </head>
@@ -123,9 +122,13 @@ $().ready(function() {
 					</ul>
 				</div>
 				<div class="link">
+					<a href="../static/quickbuild.jhtml">一键生成</a>|
 					<a href="../cache/clear.jhtml" target="_blank">${message("admin.main.cache")}</a>|
 					<a href="../static/build.jhtml" target="_blank">${message("admin.main.static")}</a>
 					<a href="${base}/" target="_blank">${message("admin.main.home")}</a>
+					<form id="inputForm" action="quickbuild.jhtml" method="post">
+						<input type="submit" class="button" value="一键生成" />
+					</form>
 				</div>
 				<div class="link">
 					<strong>[@shiro.principal /]</strong>

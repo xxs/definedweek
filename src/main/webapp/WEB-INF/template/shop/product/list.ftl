@@ -23,7 +23,7 @@
 	<meta name="author" content="SHOP++ Team" />
 	<meta name="copyright" content="SHOP++" />
 [/#if]
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/product.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.lazyload.js"></script>
@@ -143,7 +143,7 @@ $().ready(function() {
 		}
 	});
 	
-	// 添加商品收藏
+	// 添加模板收藏
 	$addFavorite.click(function() {
 		var $this = $(this);
 		if (""!=$this.attr('productId')) {
@@ -157,7 +157,7 @@ $().ready(function() {
 			}
 		});
 		} else {
-			alert("未获取到相关商品，请联系管理员");
+			alert("未获取到相关模板，请联系管理员");
 		}
 		return false;
 	});
@@ -274,67 +274,224 @@ $().ready(function() {
 </head>
 <body>
 	[#include "/shop/include/header.ftl" /]
+	
+	<div class="container">
+	[#if productCategory?? && (productCategory.children?has_content || productCategory.brands?has_content || productCategory.attributes?has_content)]
+		<h3 class="pro-title">${message("shop.product.filter")}</h3>
+		<div class="filter-lists">
+							[#if productCategory.children?has_content]
+            		 		<dl class="xlj-filter-list xlj-filter-list-first category-filter-list clearfix">
+									<dt>${message("shop.product.productCategory")}:</dt>
+										<dd>
+											<ul class="clearfix">
+												<li class="first current"><a href="category-42-b0.html">全部</a></li>
+									[#list productCategory.children as category]
+									
+											<li><a href="${base}${category.path}">${category.name}</a></li>
+									[/#list]
+									</ul>
+										</dd>
+									<dd class="moreOption" title="${message("shop.product.moreOption")}">&nbsp;</dd>
+								</dl>
+							[/#if]
+							[#if productCategory.brands?has_content]
+								<dl class="xlj-filter-list xlj-filter-list-first category-filter-list clearfix">
+									<dt>${message("shop.product.brand")}:</dt>
+										<dd>
+										<ul class="clearfix">
+												<li class="first current"><a href="category-42-b0.html">全部</a></li>
+									[#list productCategory.brands as b]
+											<li><a href="javascript:;"[#if b == brand] class="brand current" title="${message("shop.product.cancel")}"[#else] class="brand"[/#if] brandId="${b.id}">${b.name}</a></li>	
+									[/#list]
+									</ul>
+										</dd>
+									<dd class="moreOption" title="${message("shop.product.moreOption")}">&nbsp;</dd>
+								</dl>
+							[/#if]
+							[#list productCategory.attributes as attribute]
+								<dl class="xlj-filter-list xlj-filter-list-first category-filter-list clearfix">
+									<dt>
+										<input type="hidden" name="attribute_${attribute.id}"[#if attributeValue?keys?seq_contains(attribute)] value="${attributeValue.get(attribute)}"[#else] disabled="disabled"[/#if] />
+										<span title="${attribute.name}">${abbreviate(attribute.name, 12)}:</span>
+									</dt>
+										<dd>
+										<ul class="clearfix">
+												<li class="first current"><a href="category-42-b0.html">全部</a></li>
+									[#list attribute.options as option]
+											<li><a href="javascript:;"[#if attributeValue.get(attribute) == option] class="attribute current" title="${message("shop.product.cancel")}"[#else] class="attribute"[/#if]>${option}</a></li>
+									[/#list]
+									</ul>
+										</dd>
+									<dd class="moreOption" title="${message("shop.product.moreOption")}">&nbsp;</dd>
+								</dl>
+							[/#list]
+							
+							
+                 
+                  <dl class="xlj-filter-list  category-filter-list clearfix">
+                    <dt>适配机型：</dt>
+                    <dd>
+                        <ul  class="clearfix">
+                              <li class="first current"><a href="category-42-b0.html">全部</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr7801.html">LA-I手机</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr7716.html">M3手机</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr3918.html">小辣椒3/3S</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr650.html">小辣椒M1/M2</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr652.html">小辣椒Q1</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr10690.html">红辣椒4G电信版</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr4451.html">红辣椒手机</a></li>
+                                                        <li class=" "><a href="category-42-b0-min0-max0-attr10909.html">红辣椒手机4G电信版</a></li>
+                         </ul>
+                    </dd>
+                </dl>
+   </div>
+   [/#if]
+          <div class="xlj-fitting">
+                <span>排序方式：</span>
+                <ul>
+                    <li class="first"><a href="category.php?category=42&display=grid&brand=0&promote=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=goods_name&order=ASC"><i>
+                                        </i>按模板名称</a></li>
+                    <li ><a href="category.php?category=42&display=grid&brand=0&promote=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=shop_price&order=ASC"><i>
+                                        </i>按价格高低</a></li>
+                    <li class="current"><a href="javascript:void(0);"><i>
+                    </i>按上架时间</a></li>
+                </ul>
+                <div class="more">
+                <div class="filter-stock">
+                <input name="text" type="hidden" id="fittShow" value="category.php?category=42&display=grid&brand=0&promote=1&price_min=0&price_max=0&filter_attr=0&page=1&sort=goods_id&order=DESC" />
+                <input name="text" type="hidden" id="fittHidn" value="category.php?category=42&display=grid&brand=0&promote=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=goods_id&order=DESC" />
+                <input name="text" type="hidden" id="fittId" value="0" />
+                <input name="checkbox" type="checkbox" id="FilterPro"  /><label for="FilterPro">显示特惠模板</label>
+                                    
+                </div>
+            </div>
+          </div>
+        <div class="fitting-list-box clearfix">
+        	<div class="fitting-box">
+        		<ul>
+                                                                	<li class="tehui">
+                    	<div class="item-content" id="list_200">
+       						<a class="fitting-img" href="goods-200.html" title="红辣椒4G电信版原装专用电池"><img id="cart_200" src="http://image.xiaolajiao.com/images/201411/thumb_img/200_thumb_G_1415180847644.jpg?v=20141202" alt="红辣椒4G电信版原装专用电池"></a>
+                            <span class="item-title">红辣椒4G电信版原装专用电池</span>
+                            <span class="item-price">￥39.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="200" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">新品</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_199">
+       						<a class="fitting-img" href="goods-199.html" title="红辣椒4G电信版原装皮套（白色）"><img id="cart_199" src="http://image.xiaolajiao.com/images/201410/thumb_img/199_thumb_G_1414638841146.jpg?v=20141202" alt="红辣椒4G电信版原装皮套（白色）"></a>
+                            <span class="item-title">红辣椒4G电信版原装皮套（白色）</span>
+                            <span class="item-price">￥29.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="199" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">新品</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_198">
+       						<a class="fitting-img" href="goods-198.html" title="红辣椒4G电信版原装皮套（黑色）"><img id="cart_198" src="http://image.xiaolajiao.com/images/201410/thumb_img/198_thumb_G_1414637123968.jpg?v=20141202" alt="红辣椒4G电信版原装皮套（黑色）"></a>
+                            <span class="item-title">红辣椒4G电信版原装皮套（黑色）</span>
+                            <span class="item-price">￥29.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="198" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">新品</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_163">
+       						<a class="fitting-img" href="goods-163.html" title="红辣椒手机移动4G版透明保护壳"><img id="cart_163" src="http://image.xiaolajiao.com/images/201405/thumb_img/163_thumb_G_1399984443554.jpg?v=20141202" alt="红辣椒手机移动4G版透明保护壳"></a>
+                            <span class="item-title">红辣椒手机移动4G版透明保护壳</span>
+                            <span class="item-price">￥19.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="163" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">精品</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_162">
+       						<a class="fitting-img" href="goods-162.html" title="红辣椒手机移动4G版原装贴膜"><img id="cart_162" src="http://image.xiaolajiao.com/images/201405/thumb_img/162_thumb_G_1399980325020.jpg?v=20141202" alt="红辣椒手机移动4G版原装贴膜"></a>
+                            <span class="item-title">红辣椒手机移动4G版原装贴膜</span>
+                            <span class="item-price">￥9.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="162" ><i>+</i>加入购物车</a>
+                                                                                        					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_155">
+       						<a class="fitting-img" href="goods-155.html" title="M3后盖(绿色)"><img id="cart_155" src="http://image.xiaolajiao.com/images/201404/thumb_img/155_thumb_G_1397647860649.jpg?v=20141202" alt="M3后盖(绿色)"></a>
+                            <span class="item-title">M3后盖(绿色)</span>
+                            <span class="item-price">￥29.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="155" ><i>+</i>加入购物车</a>
+                                                                                        					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_154">
+       						<a class="fitting-img" href="goods-154.html" title="M3后盖(红色)"><img id="cart_154" src="http://image.xiaolajiao.com/images/201404/thumb_img/154_thumb_G_1397576119387.jpg?v=20141202" alt="M3后盖(红色)"></a>
+                            <span class="item-title">M3后盖(红色)</span>
+                            <span class="item-price">￥29.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="154" ><i>+</i>加入购物车</a>
+                                                                                        					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_153">
+       						<a class="fitting-img" href="goods-153.html" title="M3后盖(橙色)"><img id="cart_153" src="http://image.xiaolajiao.com/images/201404/thumb_img/153_thumb_G_1397647850952.jpg?v=20141202" alt="M3后盖(橙色)"></a>
+                            <span class="item-title">M3后盖(橙色)</span>
+                            <span class="item-price">￥29.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="153" ><i>+</i>加入购物车</a>
+                                                                                        					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_152">
+       						<a class="fitting-img" href="goods-152.html" title="LA-I后盖(红色)"><img id="cart_152" src="http://image.xiaolajiao.com/images/201404/thumb_img/152_thumb_G_1397574794145.jpg?v=20141202" alt="LA-I后盖(红色)"></a>
+                            <span class="item-title">LA-I后盖(红色)</span>
+                            <span class="item-price">￥19.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="152" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">特价</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_151">
+       						<a class="fitting-img" href="goods-151.html" title="LA-I后盖(黄色)"><img id="cart_151" src="http://image.xiaolajiao.com/images/201404/thumb_img/151_thumb_G_1397574679833.jpg?v=20141202" alt="LA-I后盖(黄色)"></a>
+                            <span class="item-title">LA-I后盖(黄色)</span>
+                            <span class="item-price">￥19.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="151" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">特价</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_150">
+       						<a class="fitting-img" href="goods-150.html" title="LA-I后盖(橙色)"><img id="cart_150" src="http://image.xiaolajiao.com/images/201404/thumb_img/150_thumb_G_1397574168795.jpg?v=20141202" alt="LA-I后盖(橙色)"></a>
+                            <span class="item-title">LA-I后盖(橙色)</span>
+                            <span class="item-price">￥19.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="150" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">特价</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_149">
+       						<a class="fitting-img" href="goods-149.html" title="LA-I 普通高透贴膜"><img id="cart_149" src="http://image.xiaolajiao.com/images/201404/thumb_img/149_thumb_G_1397618776665.jpg?v=20141202" alt="LA-I 普通高透贴膜"></a>
+                            <span class="item-title">LA-I 普通高透贴膜</span>
+                            <span class="item-price">￥9.00 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="149" ><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">特价</span>
+                                					</div>
+                    </li>
+                                                                      </ul>
+           </div>
+        </div>
+ 
+ 
+ <div  id="pager" class="pagebar">
+     
+   <a class="no">&lt;</a>  
+                     <span class="page_now">1</span>
+                      <a href="category-42-b0-p0-min0-max0-attr0-2-goods_id-DESC.html">2</a>
+                      <a href="category-42-b0-p0-min0-max0-attr0-3-goods_id-DESC.html">3</a>
+                  <a class="no" href="category-42-b0-p0-min0-max0-attr0-2-goods_id-DESC.html">&gt;</a>
+   </div>
+  
+
+	
+	
+	
 	<div class="container productList">
-		<div class="span6">
-			<div class="hotProductCategory">
-				[@product_category_root_list]
-					[#list productCategories as category]
-						<dl[#if !category_has_next] class="last"[/#if]>
-							<dt>
-								<a href="${base}${category.path}">${category.name}</a>
-							</dt>
-							[@product_category_children_list productCategoryId = category.id count = 4]
-								[#list productCategories as productCategory]
-									<dd>
-										<a href="${base}${productCategory.path}">${productCategory.name}</a>
-									</dd>
-								[/#list]
-							[/@product_category_children_list]
-						</dl>
-					[/#list]
-				[/@product_category_root_list]
-			</div>
-			<div class="hotProduct">
-				<div class="title">${message("shop.product.hotProduct")}</div>
-				<ul>
-					[#if productCategory??]
-						[@product_list productCategoryId = productCategory.id count = 10 orderBy="monthSales desc"]
-							[#list products as product]
-								<li[#if !product_has_next] class="last"[/#if]>
-									<a href="${base}${product.path}" title="${product.name}">${abbreviate(product.name, 30)}</a>
-									[#if product.scoreCount > 0]
-										<div>
-											<div>${message("Product.score")}: </div>
-											<div class="score${(product.score * 2)?string("0")}"></div>
-											<div>${product.score?string("0.0")}</div>
-										</div>
-									[/#if]
-									<div>${message("Product.price")}: <strong>${currency(product.price, true, true)}</strong></div>
-									<div>${message("Product.monthSales")}: <em>${product.monthSales}</em></div>
-								</li>
-							[/#list]
-						[/@product_list]
-					[#else]
-						[@product_list count = 10 orderBy="monthSales desc"]
-							[#list products as product]
-								<li[#if !product_has_next] class="last"[/#if]>
-									<a href="${base}${product.path}" title="${product.name}">${abbreviate(product.name, 30)}</a>
-									[#if product.scoreCount > 0]
-										<div>
-											<div>${message("Product.score")}: </div>
-											<div class="score${(product.score * 2)?string("0")}"></div>
-											<div>${product.score?string("0.0")}</div>
-										</div>
-									[/#if]
-									<div>${message("Product.price")}: <strong>${currency(product.price, true, true)}</strong></div>
-									<div>${message("Product.monthSales")}: <em>${product.monthSales}</em></div>
-								</li>
-							[/#list]
-						[/@product_list]
-					[/#if]
-				</ul>
-			</div>
-		</div>
 		<div class="span18 last">
 			<div class="path">
 				<ul>
