@@ -534,3 +534,150 @@ width: 132px;
     text-align: center;
     width: 125px;
 }
+/** 这是用户中心 所有css **/
+.border-bottom{border-bottom: solid 1px #DFDFDF;}
+.border-top{border-top: solid 1px #DFDFDF;}
+.padding-top-20{padding-top: 20px;}
+.font-size-18{ font-size: 18px;}
+.color-333{color: #333}
+.color-666{color: #666}
+.text-red{color: #FF0000;}
+.line-height-24{line-height: 24px;}
+.line-height-16{line-height: 16px;}
+.font-size-16{font-size: 16px;}
+/** 用户中心菜单 **/
+.user-article{width: 190px;border: solid 1px #dfdfdf;background-color: #fbfbfb;margin: 0;padding: 20px 30px 20px 18px;font-size: 14px;line-height: 14px;}
+.about_list{font-weight: bold; border-bottom: solid 1px #DFDFDF; padding-bottom: 20px;}
+.user-article .current{background:url(http://theme.xiaolajiao.com/themes/newxlj/images/user-greater-than.gif) no-repeat center right;}
+.user-article .current a { color: #ef3d39; }
+.about_menu li{margin: 20px 0 20px 0}
+.portal_list{margin-bottom: 40px;}
+
+/** 用户中心页面 **/
+.user-section {margin-left: 18px;width: 938px; border: solid 1px #DFDFDF;}
+.root .user-section{ width: 698px; }
+.user-section .row{padding: 20px 0 20px 40px}
+.user-section .row div{padding-top: 10px;padding-bottom: 10px;}
+.user-section .row h3{line-height: 18px; font-size: 18px; color: #333;}
+.user-section .user-head{ line-height: 25px; padding-left: 20px; }
+
+/** 我的订单列表   **/
+.uo-list-section{margin-left: 18px;width: 940px;}
+.root .uo-list-section{width: 700px;}
+.uo-list-section h2{font-weight: normal; line-height: 16px; padding-bottom: 20px;margin-bottom: 20px;width: 100%}
+.uo-list-section table{border-collapse:collapse;border-spacing:0;width: 100%;}
+.uo-list-section table td{border-left: solid 1px #DFDFDF;border-top: solid 1px #DFDFDF;border-right: solid 1px #DFDFDF; padding-left: 28px;}
+.uo-list-section table td .f6{ display: block; width: 80px; height: 30px; line-height: 30px;}
+.uo-list-section table th{font-weight: normal; background-color: #fbfbfb;line-height: 28px;padding-left: 28px; border: solid 1px #DFDFDF;text-align: left;}
+.uo-list-section ul{clear: both; overflow: hidden;}
+.uo-list-section ul li{float: left;padding-top: 38px;}
+.uo-list-section .order-list-img{width: 50px;padding-right: 20px;}
+.uo-list-section .order-list-title{width: 300px;padding-right: 20px;}
+.uo-list-section ul li img{width: 50px;height: 50px;}
+.uo-list-section table td {padding-bottom: 38px;}
+.uo-list-section .order-list-goods{width: 550px;}
+.uo-list-section .btn{width: 76px; height: 30px;line-height: 30px;}
+.uo-list-section .order-list-pay{width: 170px;}
+/** 订单详细 **/
+.od-section{margin-left: 18px;width: 940px;}
+.root .od-section{width: 700px;}
+.od-section h4{font-size: 16px;color: #333;font-weight: normal;line-height: 16px;padding-bottom: 20px;margin-bottom: 20px;width: 100%;border-bottom: solid 1px #DFDFDF;clear: both;overflow: hidden;}
+.od-section table{border-collapse:collapse;border-spacing:0;width: 100%; border: solid 1px #DFDFDF;}
+.od-section table td{border: solid 1px #DFDFDF; padding-left: 28px;}
+.od-section table th{font-weight: normal; background-color: #fbfbfb;line-height: 40px;padding-left: 28px; border: solid 1px #DFDFDF;text-align: left;}
+.od-section .order-list-goods ul{clear: both; overflow: hidden;}
+.od-section .order-list-goods ul li{float: left;padding-top: 38px;}
+.od-section .order-list-img{width: 50px;padding-right: 20px;}
+.od-section .order-list-title{width: 300px;padding-right: 20px;}
+.od-section .order-list-goods ul li img{width: 50px;height: 50px;}
+.od-section table td ul:last-child{margin-bottom: 38px;}
+.od-section .od-order-status{padding-top: 30px;}
+.od-section .od-order-status ol{width: 100%;overflow: hidden;margin: 0;padding: 0;}
+.od-section .od-order-status ol li{float: left;width: 175px;text-align: center;}
+.root .od-section .od-order-status ol li{width: 130px;}
+.od-section .od-order-status ol li dd{line-height: 30px;}
+.od-section .od-red-first{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/od-red-first.gif") no-repeat; color: #fff;}
+.od-section .od-red-status{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/od-red-status.gif") no-repeat; color: #fff;}
+.od-section .od-gray-status{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/od-gray-status.gif") no-repeat;}
+.od-section .od-gray-last{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/od-gray-last.gif") no-repeat;}
+.root .od-section .od-red-first{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/ods-red-first.gif"); color: #fff;}
+.root .od-section .od-red-status{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/ods-red-status.gif"); color: #fff;}
+.root .od-section .od-gray-status{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/ods-gray-status.gif");}
+.root .od-section .od-gray-last{background: url("http://theme.xiaolajiao.com/themes/newxlj/images/ods-gray-last.gif");}
+.od-section .od-price{text-align: right; clear: both;overflow: hidden;padding-right: 40px;}
+.od-section .od-price ul{float: right;}
+.od-section .od-price span{width: 100px;display: table-cell; text-align: right;}
+.od-section .od-section-foot{margin-top: 20px;border: solid 1px #DFDFDF;padding: 30px 20px 30px 20px;line-height: 40px;}
+.od-section .od-section-foot h5{color: #333;}
+.od-section .od-section-foot .delivery-time{padding-bottom: 10px;}
+.od-section .btn{width: 76px;line-height: 30px;height: 30px;}
+
+
+/** 物流查询 **/
+.logistic-section{margin-left: 18px;width: 940px;}
+.root .logistic-section{width: 700px;}
+.logistic-section h4{font-size: 16px;color: #333;font-weight: normal;line-height: 16px;padding-bottom: 20px;margin-bottom: 20px;width: 100%}
+.logistic-section table{border-collapse:collapse;border-spacing:0;width: 100%;line-height: 40px;}
+.logistic-section table th{font-weight: normal; background-color: #fbfbfb; border: solid 1px #DFDFDF;text-align: center;width: 50%}
+.logistic-section table td{width: 50%;border: solid 1px #DFDFDF;text-align: center;}
+/*.logistic-section .no-td-logistic{width: 100%;}*/
+
+/** 物流查询结果 **/
+.logistic-desc{border: solid 1px #DFDFDF;overflow: hidden;}
+.logistic-desc .logistic-desc-title{padding-left: 20px;background-color: #f7f8f8; line-height: 40px;}
+.logistic-desc .logistic-desc-content{padding: 20px 0 20px 20px;line-height: 24px;}
+
+/** 退换货流程和返修流程 **/
+.rr-section{margin-left: 18px;width: 940px;}
+.root .rr-section{width: 700px;}
+.rr-section h4{font-size: 16px;color: #333; padding-bottom: 20px;margin-bottom: 20px;border-bottom: solid 1px #DFDFDF;}
+.rr-section .rr-section-content{border: solid 1px #DFDFDF;}
+.rr-section p{padding: 17px 0 22px 20px;line-height: 24px;}
+.rr-section .rr-section-img{border-top: solid 1px #DFDFDF;border-bottom: solid 1px #DFDFDF; margin: 0 auto;text-align: center;padding: 20px 0 20px 0;}
+
+/** 收货地址 **/
+.address-section{margin-left: 18px;width: 940px;}
+.root .address-section{width: 700px;}
+.address-section h4{font-size: 16px;color: #333; padding-bottom: 20px;margin-bottom: 20px;border-bottom: solid 1px #DFDFDF;}
+
+/** 我的优惠券 **/
+.bonus-section{margin-left: 18px;width: 940px;}
+.root .bonus-section{width: 700px;}
+.bonus-section h4{font-size: 16px;color: #333;font-weight: normal;line-height: 16px;padding-bottom: 20px;margin-bottom: 20px;width: 100%;border-bottom: solid 1px #DFDFDF;}
+.bonus-section table{width:100%;line-height: 38px;text-align: center;border-collapse:collapse;border-spacing:0;margin-bottom: 20px;}
+.bonus-section table th{border: solid 1px #DFDFDF;font-weight: normal;color: #333;background-color: #fbfbfb;}
+.bonus-section table td{border: solid 1px #DFDFDF;}
+.bonus-section .bonus-sn{width: 30%}
+.bonus-section .bonus-amount{width: 15%}
+.bonus-section .min-goods-amount{width: 15%}
+.bonus-section .bonus-end-date{width: 25%}
+.bonus-section .bonus-status{width: 15%}
+.bonus-section .bonus-input{border: solid 1px #DFDFDF;line-height: 38px; margin-right: 10px;padding-left: 10px; color: #999;width: 344px; height: 38px;}
+.bonus-section-add{position: relative;}
+.bonus-section-add label{position: absolute;top: 50px;left: 0px;}
+.bonus-section-add input.error{border: solid 1px #f00;}
+.bonus-section-add label.error{color: #f00;}
+.bonus-section-add-error{margin-top: 40px; color: #f00;}
+
+/** 我的收藏 **/
+.collect-section{margin-left: 18px;width: 940px;}
+.root .collect-section{width: 700px;}
+.collect-section h4{font-size: 16px;color: #333;font-weight: normal;line-height: 16px;padding-bottom: 20px;margin-bottom: 20px;width: 100%;border-bottom: solid 1px #DFDFDF;}
+.collect-section ul{width: 100%;border-collapse: collapse;border-spacing: 0px;}
+.collect-section li{width: 32%;float: left;height: 320px;text-align: center; display: inline;border: solid 1px #DFDFDF;margin-right: 10px;margin-bottom: 20px;}
+.collect-section .collect-thumb{text-align: center;padding: 20px 0 20px 0;}
+.collect-section .collect-thumb img{display: inline;width: 150px;height: 150px;}
+.collect-section .collect-title{padding: 10px 0 10px 0;}
+.collect-section .collect-price{padding-bottom: 10px;}
+.collect-section .btn{width: 137px;height: 30px;line-height: 30px;}
+
+/** 商品评价 **/
+.comment-section{margin-left: 18px;width: 940px;}
+.root .comment-section{width: 700px;}
+.comment-section h4{font-size: 16px;color: #333;font-weight: normal;line-height: 16px;padding-bottom: 20px;margin-bottom: 20px;width: 100%;border-bottom: solid 1px #DFDFDF;}
+.comment-section .comment-introduce{padding: 18px;line-height: 30px;border: solid 1px #dfdfdf;}
+.comment-section .comment-list{color: #333;padding-bottom: 20px;padding-top: 20px;}
+.comment-section table{border-collapse:collapse;border-spacing:0;width: 100%;text-align: center;line-height: 40px;}
+.comment-section table th{font-weight: normal; background-color: #fbfbfb; border: solid 1px #DFDFDF;width: 20%}
+.comment-section table td{border: solid 1px #DFDFDF;}
+

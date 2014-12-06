@@ -346,6 +346,15 @@ $().ready(function() {
 						[/#if]
               </ul>
    </div>
+    <div class="picture" id="imglist">
+    	[#if product.productImages?has_content]
+							[#list product.productImages as productImage]
+								<a href="javascript:;"><img src="${productImage.thumbnail}" title="${productImage.title}" class="onbg" /></a>
+							[/#list]
+						[#else]
+							<a href="javascript:;"><img src="${setting.defaultThumbnailProductImage}" class="onbg" /></a>
+						[/#if]
+           </div>
     <span id="goodsPicPrev" title="上一张" class="icon-slides icon-slides-prev" style="height: 460px;">上一张</span> <span id="goodsPicNext" title="下一张" class="icon-slides icon-slides-next" style="height: 460px;">下一张</span> </div>
          <div class="textInfo">
     <div class="clearfix">
@@ -362,7 +371,7 @@ $().ready(function() {
 			[/#if]
       </font></p> 
       <div class="dd">
-      <p> 价<span style="margin-left:27px;"></span>格：<b class="price-num" >￥698.50元</b></p>
+      <p> 价<span style="margin-left:27px;"></span>格：<b class="price-num" >￥${product.price}元</b></p>
             <p>商品评价：
             	<span style="text-decoration:none; padding-left:8px;margin-top:-5px" class="goodsToComment icon-star icon-star-${(product.score * 2)?string("0")}"> </span>
             	<span style="cursor:pointer;" id="view_comment_count">(共${product.scoreCount}人评价)</span>
@@ -371,30 +380,27 @@ $().ready(function() {
       </div> 
      </div>
       <div style=" clear:both"></div>
-      
       [#if product.specifications?has_content]
-						<div id="specification" class="specification clearfix">
-							<div class="title">${message("shop.product.specificationTitle")}</div>
-							[#assign specificationValues = product.goods.specificationValues /]
-							[#list product.specifications as specification]
-								<dl>
-									<dt>
-										<span title="${specification.name}">${abbreviate(specification.name, 8)}:</span>
-									</dt>
-									[#list specification.specificationValues as specificationValue]
-										[#if specificationValues?seq_contains(specificationValue)]
-											<dd>
-												<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
-											</dd>
-										[/#if]
-									[/#list]
-								</dl>
-							[/#list]
-						</div>
-					[/#if]
-      
-      
-                <div style="clear:both"></div>
+			<div id="specification" class="specification clearfix">
+				<div class="title">${message("shop.product.specificationTitle")}</div>
+					[#assign specificationValues = product.goods.specificationValues /]
+						[#list product.specifications as specification]
+							<dl>
+								<dt>
+									<span title="${specification.name}">${abbreviate(specification.name, 8)}:</span>
+								</dt>
+								[#list specification.specificationValues as specificationValue]
+									[#if specificationValues?seq_contains(specificationValue)]
+										<dd>
+											<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
+										</dd>
+									[/#if]
+								[/#list]
+							</dl>
+						[/#list]
+					</div>
+				[/#if]
+           <div style="clear:both"></div>
        <ul class="dd  clearfix">  
       <li>
                               <a class="btn btn-primary btn_fp" id="addCart" href="javascript:void(0);" data-gid="118" data-cid="38" data-thumb="http://image.xiaolajiao.com/images/201404/thumb_img/118_thumb_G_1396421240282.jpg?v=20141202">

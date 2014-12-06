@@ -13,7 +13,7 @@
 		<meta name="description" content="[@seo.description?interpret /]" />
 	[/#if]
 [/@seo]
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/product.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.lazyload.js"></script>
@@ -158,48 +158,63 @@ $().ready(function() {
 </head>
 <body>
 	[#include "/shop/include/header.ftl" /]
+	
+	 <script type="text/javascript" src="http://theme.xiaolajiao.com/themes/newxlj/script/category.js?v=20141202"></script>
+ <div class="container">
+		<h3 class="pro-title">${message("shop.product.path", productKeyword)}</h3>
+          <div class="xlj-fitting">
+                <span>排序方式：</span>
+                <ul>
+                    <li class="first"><a href="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=0&sort=goods_name&order=ASC&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1"><i>
+                                        </i>按模板名称</a></li>
+                    <li ><a href="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=0&sort=shop_price&order=ASC&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1"><i>
+                                        </i>按价格高低</a></li>
+                    <li class="current"><a href="javascript:void(0);"><i>
+                    </i>按上架时间</a></li>
+                </ul>
+                <div class="more">
+                <div class="filter-stock">
+                <input name="text" type="hidden" id="fittShow" value="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=1&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1&sort=goods_id&order=DESC" />
+                <input name="text" type="hidden" id="fittHidn" value="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=0&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1&sort=goods_id&order=DESC" />
+                <input name="text" type="hidden" id="fittId" value="0" />
+                <input name="checkbox" type="checkbox" id="FilterPro"  /><label for="FilterPro">显示特惠商品</label></a>
+                                    
+                </div>
+            </div>
+          </div>
+        <div class="fitting-list-box clearfix">
+        	<div class="fitting-box">
+        		<ul>
+                                                                	<li class="tehui">
+                    	<div class="item-content" id="list_207">
+       						<a class="fitting-img" href="goods-207.html" title=""><img id="cart_207" src="http://image.xiaolajiao.com/images/201411/thumb_img/207_thumb_G_1416793645509.jpg?v=20141202" alt=""></a>
+                            <span class="item-title">红辣椒移动版3G手机（麻辣白）</span>
+                            <span class="item-price">￥698.50 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="207"  data-sid="0"><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">精品</span>
+                                					</div>
+                    </li>
+                                                                    	<li class="tehui">
+                    	<div class="item-content" id="list_99">
+       						<a class="fitting-img" href="goods-99.html" title=""><img id="cart_99" src="http://image.xiaolajiao.com/images/201406/thumb_img/99_thumb_G_1402483549328.jpg?v=20141202" alt=""></a>
+                            <span class="item-title">红辣椒移动版3G手机（爽辣蓝）</span>
+                            <span class="item-price">￥698.50 元</span>
+                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="99"  data-sid="0"><i>+</i>加入购物车</a>
+                                                                                                                <span class="item-flag">精品</span>
+                                					</div>
+                    </li>
+                                                                      </ul>
+           </div>
+        </div>
+ 
+ 
+  
+
+</div>
+	
+	
+	
 	<div class="container productList">
-		<div class="span6">
-			<div class="hotProductCategory">
-				[@product_category_root_list]
-					[#list productCategories as category]
-						<dl[#if !category_has_next] class="last"[/#if]>
-							<dt>
-								<a href="${base}${category.path}">${category.name}</a>
-							</dt>
-							[@product_category_children_list productCategoryId = category.id count = 4]
-								[#list productCategories as productCategory]
-									<dd>
-										<a href="${base}${productCategory.path}">${productCategory.name}</a>
-									</dd>
-								[/#list]
-							[/@product_category_children_list]
-						</dl>
-					[/#list]
-				[/@product_category_root_list]
-			</div>
-			<div class="hotProduct">
-				<div class="title">${message("shop.product.hotProduct")}</div>
-				<ul>
-					[@product_list count = 10 orderBy="monthSales desc"]
-						[#list products as product]
-							<li[#if !product_has_next] class="last"[/#if]>
-								<a href="${base}${product.path}" title="${product.name}">${abbreviate(product.name, 30)}</a>
-								[#if product.scoreCount > 0]
-									<div>
-										<div>${message("Product.score")}: </div>
-										<div class="score${(product.score * 2)?string("0")}"></div>
-										<div>${product.score?string("0.0")}</div>
-									</div>
-								[/#if]
-								<div>${message("Product.price")}: <strong>${currency(product.price, true, true)}</strong></div>
-								<div>${message("Product.monthSales")}: <em>${product.monthSales}</em></div>
-							</li>
-						[/#list]
-					[/@product_list]
-				</ul>
-			</div>
-		</div>
 		<div class="span18 last">
 			<div class="path">
 				<ul>

@@ -11,7 +11,7 @@ $().ready(function() {
 	
 	var username = getCookie("username");
 	if (username != null) {
-		$headerUsername.text("${message("shop.header.welcome")}, " + username+"<span class'sep'>|</span>").show();
+		$headerUsername.html("${message("shop.header.welcome")}, " + username).show();
 		$headerLogout.show();
 	} else {
 		$headerLogin.show();
@@ -53,11 +53,11 @@ $().ready(function() {
             <p>
             	<a href="${base}/login.jhtml"  id="headerLogin" class="headerLogin">${message("shop.header.login")}<span class="sep">|</span></a>
             	
-            	<a href="${base}/register.jhtml" id="headerRegister" class="headerRegister">${message("shop.header.register")}<span class="sep">|</span></a>
+            	<a href="${base}/register.jhtml" id="headerRegister" class="headerRegister">${message("shop.header.register")}</a>
             	
-            	<a href="${base}/register.jhtml" id="headerUsername" class="headerUsername"></a>
+            	<a href="${base}/member/index.jhtml" id="headerUsername" class="headerUsername"></a>
             	
-            	<a href="${base}/logout.jhtml" id="headerLogout" class="headerLogout">[${message("shop.header.logout")}]</a>
+            	<a href="${base}/logout.jhtml" id="headerLogout" class="headerLogout"><span class="sep">|</span>[${message("shop.header.logout")}]</a>
             </p>
         </div>
     </div>

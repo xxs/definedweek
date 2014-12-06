@@ -5,7 +5,8 @@
 <title>${message("shop.order.info")}[#if systemShowPowered] - Powered By SHOP++[/#if]</title>
 <meta name="author" content="SHOP++ Team" />
 <meta name="copyright" content="SHOP++" />
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/shop/css/user.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/order.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.lSelect.js"></script>
