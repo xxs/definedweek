@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2014-12-06 23:28:30
+Date: 2014-12-07 19:05:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-12-06 12:54:43', '技术部', 'admin@163.net', '', '\0', null, '2014-12-06 12:54:43', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-12-07 11:14:07', '技术部', 'admin@163.net', '', '\0', null, '2014-12-07 11:14:07', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for xx_admin_role
@@ -4161,25 +4161,25 @@ CREATE TABLE `xx_navigation` (
 -- Records of xx_navigation
 -- ----------------------------
 INSERT INTO `xx_navigation` VALUES ('1', '2014-11-03 00:00:17', '2014-12-02 22:43:48', null, '\0', '会员中心', '0', '/member/index.jhtml', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('2', '2014-11-03 00:00:18', '2014-12-04 21:47:14', null, '\0', '购物指南', '0', '/article/list/3.jhtml', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('3', '2014-11-03 00:00:19', '2014-12-02 22:19:59', null, '\0', '关于我们', '0', '/article/list/7.jhtml', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('4', '2014-11-03 00:00:20', '2014-12-02 22:38:14', null, '\0', '首页', '1', '/', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('12', '2014-11-03 00:00:28', '2014-12-02 22:08:05', null, '\0', '帮助中心', '2', '#', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('13', '2014-11-03 00:00:29', '2014-12-02 22:19:59', null, '\0', '支付方式', '2', '#', null, '1', '', ',12,', '12');
-INSERT INTO `xx_navigation` VALUES ('14', '2014-11-03 00:00:30', '2014-12-02 23:05:35', null, '\0', '配送方式', '2', '#', null, '1', '', ',12,', '12');
-INSERT INTO `xx_navigation` VALUES ('15', '2014-11-03 00:00:31', '2014-12-02 23:06:02', null, '\0', '购物指南', '2', '#', null, '1', '', ',12,', '12');
-INSERT INTO `xx_navigation` VALUES ('16', '2014-11-03 00:00:32', '2014-12-02 23:07:34', null, '\0', '服务支持', '2', '/friend_link.jhtml', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('17', '2014-11-03 00:00:33', '2014-12-02 23:07:34', null, '', '相关下载', '2', '/article/list/4.jhtml', null, '1', '', ',16,', '16');
-INSERT INTO `xx_navigation` VALUES ('18', '2014-11-03 00:00:34', '2014-12-02 23:07:43', null, '', '售后政策', '2', '/article/list/5.jhtml', null, '1', '', ',16,', '16');
-INSERT INTO `xx_navigation` VALUES ('19', '2014-11-03 00:00:35', '2014-12-02 23:07:50', null, '\0', '物流发展', '2', 'http://www.shopxx.net', null, '1', '', ',16,', '16');
-INSERT INTO `xx_navigation` VALUES ('20', '2014-11-03 00:00:36', '2014-12-02 23:08:21', null, '\0', '369基地', '2', 'http://bbs.shopxx.net', null, '0', '', ',', null);
-INSERT INTO `xx_navigation` VALUES ('21', '2014-11-15 15:38:03', '2014-12-02 23:08:21', null, '\0', '服务网点', '2', '/product/list/2.jhtml', null, '1', '', ',20,', '20');
-INSERT INTO `xx_navigation` VALUES ('22', '2014-11-15 15:38:24', '2014-12-03 12:26:44', null, '\0', '品牌发展', '2', '/product/list/10.jhtml', null, '1', '', ',20,', '20');
-INSERT INTO `xx_navigation` VALUES ('23', '2014-11-15 15:42:37', '2014-12-02 23:09:18', null, '\0', '合作发展', '2', '/member/product_category.jhtml', null, '1', '', ',20,', '20');
-INSERT INTO `xx_navigation` VALUES ('24', '2014-11-15 15:43:09', '2014-12-02 23:11:35', null, '\0', '关于369', '2', '/product/list/2.jhtml', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('2', '2014-11-03 00:00:18', '2014-12-04 21:47:14', null, '\0', '购物指南', '0', '/', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('3', '2014-11-03 00:00:19', '2014-12-02 22:19:59', null, '\0', '关于我们', '0', '/', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('4', '2014-11-03 00:00:20', '2014-12-02 22:38:14', null, '\0', '首页', '1', '#', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('12', '2014-11-03 00:00:28', '2014-12-02 22:08:05', null, '\0', '帮助中心', '2', '/', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('13', '2014-11-03 00:00:29', '2014-12-02 22:19:59', null, '\0', '支付方式', '2', '/', null, '1', '', ',12,', '12');
+INSERT INTO `xx_navigation` VALUES ('14', '2014-11-03 00:00:30', '2014-12-02 23:05:35', null, '\0', '配送方式', '2', '/', null, '1', '', ',12,', '12');
+INSERT INTO `xx_navigation` VALUES ('15', '2014-11-03 00:00:31', '2014-12-02 23:06:02', null, '\0', '购物指南', '2', '/', null, '1', '', ',12,', '12');
+INSERT INTO `xx_navigation` VALUES ('16', '2014-11-03 00:00:32', '2014-12-02 23:07:34', null, '\0', '服务支持', '2', '/', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('17', '2014-11-03 00:00:33', '2014-12-02 23:07:34', null, '', '相关下载', '2', '/', null, '1', '', ',16,', '16');
+INSERT INTO `xx_navigation` VALUES ('18', '2014-11-03 00:00:34', '2014-12-02 23:07:43', null, '', '售后政策', '2', '/', null, '1', '', ',16,', '16');
+INSERT INTO `xx_navigation` VALUES ('19', '2014-11-03 00:00:35', '2014-12-02 23:07:50', null, '\0', '物流发展', '2', '/', null, '1', '', ',16,', '16');
+INSERT INTO `xx_navigation` VALUES ('20', '2014-11-03 00:00:36', '2014-12-02 23:08:21', null, '\0', '369基地', '2', '/', null, '0', '', ',', null);
+INSERT INTO `xx_navigation` VALUES ('21', '2014-11-15 15:38:03', '2014-12-02 23:08:21', null, '\0', '服务网点', '2', '/', null, '1', '', ',20,', '20');
+INSERT INTO `xx_navigation` VALUES ('22', '2014-11-15 15:38:24', '2014-12-03 12:26:44', null, '\0', '品牌发展', '2', '/', null, '1', '', ',20,', '20');
+INSERT INTO `xx_navigation` VALUES ('23', '2014-11-15 15:42:37', '2014-12-02 23:09:18', null, '\0', '合作发展', '2', '/', null, '1', '', ',20,', '20');
+INSERT INTO `xx_navigation` VALUES ('24', '2014-11-15 15:43:09', '2014-12-02 23:11:35', null, '\0', '关于369', '2', '/', null, '0', '', ',', null);
 INSERT INTO `xx_navigation` VALUES ('25', '2014-12-02 21:49:30', '2014-12-02 23:11:35', null, '', '加入我们', '2', '/', null, '1', '', ',24,', '24');
-INSERT INTO `xx_navigation` VALUES ('26', '2014-12-02 22:18:45', '2014-12-02 23:12:37', null, '\0', '联系我们', '2', '/product_category.jhtml', null, '1', '', ',24,', '24');
-INSERT INTO `xx_navigation` VALUES ('27', '2014-12-02 22:18:45', '2014-12-02 23:08:48', null, '\0', '了解我们', '2', '/product_category.jhtml', null, '1', '', ',24,', '24');
+INSERT INTO `xx_navigation` VALUES ('26', '2014-12-02 22:18:45', '2014-12-02 23:12:37', null, '\0', '联系我们', '2', '/', null, '1', '', ',24,', '24');
+INSERT INTO `xx_navigation` VALUES ('27', '2014-12-02 22:18:45', '2014-12-02 23:08:48', null, '\0', '了解我们', '2', '/', null, '1', '', ',24,', '24');
 INSERT INTO `xx_navigation` VALUES ('28', '2014-12-02 22:18:45', '2014-12-02 22:18:45', null, '\0', '关注我们', '2', '/', null, '0', '', ',', null);
 INSERT INTO `xx_navigation` VALUES ('29', '2014-12-02 22:18:45', '2014-12-02 23:16:35', null, '\0', '新浪微博', '2', '/', null, '1', '', ',28,', '28');
 INSERT INTO `xx_navigation` VALUES ('30', '2014-12-02 22:18:45', '2014-12-02 23:16:40', null, '\0', '腾讯微博', '2', '/', null, '1', '', ',28,', '28');
@@ -5091,58 +5091,6 @@ CREATE TABLE `xx_refunds` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for xx_returns
--- ----------------------------
-DROP TABLE IF EXISTS `xx_returns`;
-CREATE TABLE `xx_returns` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `create_date` datetime NOT NULL,
-  `modify_date` datetime NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `area` varchar(255) NOT NULL,
-  `delivery_corp` varchar(255) DEFAULT NULL,
-  `freight` decimal(21,6) DEFAULT NULL,
-  `memo` varchar(255) DEFAULT NULL,
-  `operator` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `shipper` varchar(255) NOT NULL,
-  `shipping_method` varchar(255) DEFAULT NULL,
-  `sn` varchar(100) NOT NULL,
-  `tracking_no` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) NOT NULL,
-  `orders` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sn` (`sn`),
-  KEY `FKD08A1F04B992E8EF` (`orders`),
-  CONSTRAINT `FKD08A1F04B992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_returns
--- ----------------------------
-
--- ----------------------------
--- Table structure for xx_returns_item
--- ----------------------------
-DROP TABLE IF EXISTS `xx_returns_item`;
-CREATE TABLE `xx_returns_item` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `create_date` datetime NOT NULL,
-  `modify_date` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `sn` varchar(255) NOT NULL,
-  `returns` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKE830D76E21D01242` (`returns`),
-  CONSTRAINT `FKE830D76E21D01242` FOREIGN KEY (`returns`) REFERENCES `xx_returns` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_returns_item
--- ----------------------------
-
--- ----------------------------
 -- Table structure for xx_review
 -- ----------------------------
 DROP TABLE IF EXISTS `xx_review`;
@@ -5286,60 +5234,6 @@ INSERT INTO `xx_seo` VALUES ('8', '2014-11-03 01:00:04', '2014-11-03 01:00:04', 
 INSERT INTO `xx_seo` VALUES ('9', '2014-11-03 01:00:05', '2014-11-03 01:00:05', '${brand.name}', '${brand.name}', '${brand.name}', '8');
 
 -- ----------------------------
--- Table structure for xx_shipping
--- ----------------------------
-DROP TABLE IF EXISTS `xx_shipping`;
-CREATE TABLE `xx_shipping` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `create_date` datetime NOT NULL,
-  `modify_date` datetime NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `area` varchar(255) NOT NULL,
-  `consignee` varchar(255) NOT NULL,
-  `delivery_corp` varchar(255) NOT NULL,
-  `delivery_corp_code` varchar(255) DEFAULT NULL,
-  `delivery_corp_url` varchar(255) DEFAULT NULL,
-  `freight` decimal(21,6) DEFAULT NULL,
-  `memo` varchar(255) DEFAULT NULL,
-  `operator` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `shipping_method` varchar(255) NOT NULL,
-  `sn` varchar(100) NOT NULL,
-  `tracking_no` varchar(255) DEFAULT NULL,
-  `zip_code` varchar(255) NOT NULL,
-  `orders` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sn` (`sn`),
-  KEY `FK3440E00DB992E8EF` (`orders`),
-  CONSTRAINT `FK3440E00DB992E8EF` FOREIGN KEY (`orders`) REFERENCES `xx_order` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_shipping
--- ----------------------------
-
--- ----------------------------
--- Table structure for xx_shipping_item
--- ----------------------------
-DROP TABLE IF EXISTS `xx_shipping_item`;
-CREATE TABLE `xx_shipping_item` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `create_date` datetime NOT NULL,
-  `modify_date` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `sn` varchar(255) NOT NULL,
-  `shipping` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKCCE65405FF407320` (`shipping`),
-  CONSTRAINT `FKCCE65405FF407320` FOREIGN KEY (`shipping`) REFERENCES `xx_shipping` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xx_shipping_item
--- ----------------------------
-
--- ----------------------------
 -- Table structure for xx_shipping_method
 -- ----------------------------
 DROP TABLE IF EXISTS `xx_shipping_method`;
@@ -5357,8 +5251,7 @@ CREATE TABLE `xx_shipping_method` (
   `name` varchar(255) NOT NULL,
   `default_delivery_corp` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK32A8355346542319` (`default_delivery_corp`),
-  CONSTRAINT `FK32A8355346542319` FOREIGN KEY (`default_delivery_corp`) REFERENCES `xx_delivery_corp` (`id`)
+  KEY `FK32A8355346542319` (`default_delivery_corp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
