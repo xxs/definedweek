@@ -34,20 +34,6 @@
 			</td>
 		</tr>
 		<tr>
-			<th>
-				${message("admin.index.official")}:
-			</th>
-			<td>
-				<a href="http://www.dedweek.com" target="_blank">http://www.dedweek.com</a>
-			</td>
-			<th>
-				${message("admin.index.bbs")}:
-			</th>
-			<td>
-				<a href="http://bbs.shopxx.net" target="_blank">http://bbs.shopxx.net</a>
-			</td>
-		</tr>
-		<tr>
 			<td colspan="4">
 				&nbsp;
 			</td>
@@ -115,18 +101,6 @@
 		</tr>
 		<tr>
 			<th>
-			</th>
-			<td>
-				${stockAlertProductCount}
-			</td>
-			<th>
-			</th>
-			<td>
-				${outOfStockProductCount}
-			</td>
-		</tr>
-		<tr>
-			<th>
 				${message("admin.index.waitingPaymentOrderCount")}:
 			</th>
 			<td>
@@ -175,7 +149,7 @@
 		</tr>
 		<tr>
 			<td class="powered" colspan="4">
-				COPYRIGHT © 2005-2013 SHOPXX.NET ALL RIGHTS RESERVED.
+				版权所有：dedweek 小小工作室 来自 自定义星期天 的支持
 			</td>
 		</tr>
 	</table>

@@ -30,7 +30,7 @@
 		[/@navigation_root_list]
 		<div class="col-contact">
 			<p class="phone">400-888-888888</p>
-			<p>仅收市话费，周一至周日9:00-21:00</p>
+			<p>服务时间：周一至周日9:00-18:00</p>
 			<a rel="nofollow" class="serive" href="#" target="_blank" ><span></span>在线客服</a> 
 		</div>
 	</div>        
