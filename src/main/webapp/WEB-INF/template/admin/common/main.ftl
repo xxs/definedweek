@@ -400,11 +400,14 @@ $().ready(function() {
 							<a href="../log/list.jhtml" target="iframe">${message("admin.main.log")}</a>
 						</dd>
 					[/@shiro.hasPermission]
+					<dd>
+						<a href="../monitor/jvm.jhtml" target="iframe">${message("admin.main.jvm")}</a>
+					</dd>
 				</dl>
 				<dl id="monitor">
 					<dt>${message("admin.main.monitorNav")}</dt>
 					<dd>
-						<a href="../jvm/jvm.jhtml" target="iframe">${message("admin.main.jvm")}</a>
+						<a href="../monitor/jvm.jhtml" target="iframe">${message("admin.main.jvm")}</a>
 					</dd>
 				</dl>
 			</td>
