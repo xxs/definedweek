@@ -81,15 +81,6 @@ $().ready(function() {
 	// 锁定规格值
 	lockSpecificationValue();
 	
-	// 商品图片放大镜
-	$zoom.jqzoom({
-		zoomWidth: 368,
-		zoomHeight: 368,
-		title: false,
-		showPreload: false,
-		preloadImages: false
-	});
-	
 	// 商品缩略图滚动
 	$scrollable.scrollable();
 	
@@ -321,13 +312,12 @@ $().ready(function() {
 <body>
 	[#include "/shop/include/header.ftl" /]
 	[#assign productCategory = product.productCategory /]
-	
-	<div class="container clearfix" id="loadinfos">
+<div class="container clearfix" id="loadinfos">
  <div id="ur_here">
 	<a href="${base}/">${message("shop.path.home")}</a>
 		[@product_category_parent_list productCategoryId = productCategory.id]
 			[#list productCategories as productCategory]
-					<code>&gt;</code><a href="${base}${productCategory.path}">${productCategory.name}</a>
+				<code>&gt;</code><a href="${base}${productCategory.path}">${productCategory.name}</a>
 			[/#list]
 		[/@product_category_parent_list]
 			<code>&gt;</code><a href="${base}${productCategory.path}">${productCategory.name}</a>
@@ -380,33 +370,38 @@ $().ready(function() {
       </div> 
      </div>
       <div style=" clear:both"></div>
+      
+      <div class="goods-info-color dd clearfix">
+            <p>可<span style="margin-left:27px;"></span>选：</p>
+            <ul>
+              <li class="select-on" title="银莲白"><a data-gid="180" href="javascript:void(0)">银莲白</a></li><li title="青木黑"><a data-gid="181" href="javascript:void(0)">青木黑</a></li>            </ul>
+       </div>
+      
       [#if product.specifications?has_content]
-			<div id="specification" class="specification clearfix">
-				<div class="title">${message("shop.product.specificationTitle")}</div>
+			<div id="specification" class=" clearfix">
 					[#assign specificationValues = product.goods.specificationValues /]
 						[#list product.specifications as specification]
-							<dl>
-								<dt>
-									<span title="${specification.name}">${abbreviate(specification.name, 8)}:</span>
-								</dt>
-								[#list specification.specificationValues as specificationValue]
+						<div class="goods-info-color dd clearfix">
+            				<p>${abbreviate(specification.name, 8)}：</p>
+            				<ul>
+            				[#list specification.specificationValues as specificationValue]
 									[#if specificationValues?seq_contains(specificationValue)]
-										<dd>
-											<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
-										</dd>
+										<li class="select-on" title="${specificationValue.name}">
+              								<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
+              							</li>
 									[/#if]
-								[/#list]
-							</dl>
+							[/#list]
+              				</ul>
 						[/#list]
 					</div>
 				[/#if]
            <div style="clear:both"></div>
        <ul class="dd  clearfix">  
       <li>
-                              <a class="btn btn-primary btn_fp" id="addCart" href="javascript:void(0);" data-gid="118" data-cid="38" data-thumb="http://image.xiaolajiao.com/images/201404/thumb_img/118_thumb_G_1396421240282.jpg?v=20141202">
-                    立即购买
-          </a>
-                              <a class="goods-collect-btn1" id="Favorites" data-gid="118" href="javascript:void(0)"><span></span> </a>
+      	<a class="btn btn-primary btn_fp" id="addCart" href="javascript:void(0);" data-gid="118" data-cid="38" data-thumb="http://image.xiaolajiao.com/images/201404/thumb_img/118_thumb_G_1396421240282.jpg?v=20141202">
+                    	立即购买
+        </a>
+        <a class="goods-collect-btn1" id="Favorites" data-gid="118" href="javascript:void(0)"><span></span> </a>
       </li>
       </ul>
      </div>
@@ -450,7 +445,6 @@ $().ready(function() {
 							[/#list]
 							[/#list]
                         </table>
-                          
                     </div>
                 </div>
         </div>

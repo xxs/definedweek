@@ -14,6 +14,15 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xxs.definedweek.Page;
 import com.xxs.definedweek.Pageable;
 import com.xxs.definedweek.ResourceNotFoundException;
 import com.xxs.definedweek.entity.Attribute;
@@ -29,14 +38,6 @@ import com.xxs.definedweek.service.ProductService;
 import com.xxs.definedweek.service.PromotionService;
 import com.xxs.definedweek.service.SearchService;
 import com.xxs.definedweek.service.TagService;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller - 商品
@@ -144,6 +145,7 @@ public class ProductController extends BaseController {
 		model.addAttribute("startPrice", startPrice);
 		model.addAttribute("endPrice", endPrice);
 		model.addAttribute("orderType", orderType);
+		Page<Product> plist =  searchService.search(keyword, startPrice, endPrice, orderType, pageable);
 		model.addAttribute("page", searchService.search(keyword, startPrice, endPrice, orderType, pageable));
 		return "shop/product/search";
 	}

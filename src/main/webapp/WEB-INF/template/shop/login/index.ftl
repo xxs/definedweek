@@ -6,7 +6,6 @@
 <meta name="author" content="SHOP++ Team" />
 <meta name="copyright" content="SHOP++" />
 <link href="${base}/resources/shop/css/index.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/shop/css/login.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/shop/css/user.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
@@ -109,18 +108,17 @@ $().ready(function() {
 </script>
 </head>
 <body>
-	[#include "/shop/include/header_simple.ftl" /]
-	
+	[#include "/shop/include/header.ftl" /]
 	<div class="block"> 
-   <div class="usBox clearfix"> 
-    <div class="login_form"> 
-     <div class="usBox_1 clearfix"> 
-      <h4>&nbsp;&nbsp;欢迎登录&nbsp;&nbsp;<span><a target="_blank" href="http://bbs.xiaolajiao.com/thread-13291-1-1.html">(账号不能登陆？请点击)</a></span></h4> 
-      <form name="formLogin" action="http://account.xiaolajiao.com/passport.php" method="post" id="formLogin"> 
-       <div class="login_tdon"> 
-        <input name="username" id="login_username" type="text" value="邮箱/手机号码/用户名" class="inputBg input_kuang4" /> 
-        <span class="error" id="login_usernameTip" style="display: none;"></span> 
-       </div> 
+   		<div class="usBox clearfix"> 
+    		<div class="login_form"> 
+     			<div class="usBox_1 clearfix"> 
+      				<h4>&nbsp;&nbsp;欢迎登录&nbsp;&nbsp;<span>
+      				<form name="formLogin" action="http://account.xiaolajiao.com/passport.php" method="post" id="formLogin"> 
+       					<div class="login_tdon"> 
+        					<input name="username" id="login_username" type="text" value="邮箱/手机号码/用户名" class="inputBg input_kuang4" /> 
+        					<span class="error" id="login_usernameTip" style="display: none;"></span> 
+       					</div> 
        <div class="login_tdon" id="pw"> 
         <input type="text" value="密码" id="spwd" class="inputBg input_kuang4 disText" maxlength="25" style="display: block;" /> 
         <input name="password" type="password" value="" id="login_password" class="inputBg input_kuang4" maxlength="25" autocomplete="off" style="display: none;" /> 

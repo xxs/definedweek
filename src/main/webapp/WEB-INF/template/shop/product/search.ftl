@@ -158,15 +158,18 @@ $().ready(function() {
 </head>
 <body>
 	[#include "/shop/include/header.ftl" /]
-	
-	 <script type="text/javascript" src="http://theme.xiaolajiao.com/themes/newxlj/script/category.js?v=20141202"></script>
- <div class="container">
+	<script type="text/javascript" src="http://theme.xiaolajiao.com/themes/newxlj/script/category.js?v=20141202"></script>
+ 	<div class="container">
 		<h3 class="pro-title">${message("shop.product.path", productKeyword)}</h3>
           <div class="xlj-fitting">
                 <span>排序方式：</span>
                 <ul>
                     <li class="first"><a href="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=0&sort=goods_name&order=ASC&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1"><i>
                                         </i>按模板名称</a></li>
+                                        
+                    <li>
+                    	<a href="javascript:;"[#if orderType == "salesDesc"] class="currentDesc current" title="${message("shop.product.cancel")}"[#else] class="desc"[/#if] orderType="salesDesc">${message("shop.product.salesDesc")}</a>
+                     </li>                   
                     <li ><a href="search.php?keywords=红辣椒移动版&category=0&brand=0&promote=0&sort=shop_price&order=ASC&min_price=&max_price=&action=&intro=&goods_type=0&sc_ds=0&outstock=0&page=1"><i>
                                         </i>按价格高低</a></li>
                     <li class="current"><a href="javascript:void(0);"><i>
@@ -184,32 +187,28 @@ $().ready(function() {
           </div>
         <div class="fitting-list-box clearfix">
         	<div class="fitting-box">
-        		<ul>
-                                                                	<li class="tehui">
-                    	<div class="item-content" id="list_207">
-       						<a class="fitting-img" href="goods-207.html" title=""><img id="cart_207" src="http://image.xiaolajiao.com/images/201411/thumb_img/207_thumb_G_1416793645509.jpg?v=20141202" alt=""></a>
-                            <span class="item-title">红辣椒移动版3G手机（麻辣白）</span>
-                            <span class="item-price">￥698.50 元</span>
-                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="207"  data-sid="0"><i>+</i>加入购物车</a>
-                                                                                                                <span class="item-flag">精品</span>
-                                					</div>
-                    </li>
-                                                                    	<li class="tehui">
-                    	<div class="item-content" id="list_99">
-       						<a class="fitting-img" href="goods-99.html" title=""><img id="cart_99" src="http://image.xiaolajiao.com/images/201406/thumb_img/99_thumb_G_1402483549328.jpg?v=20141202" alt=""></a>
-                            <span class="item-title">红辣椒移动版3G手机（爽辣蓝）</span>
-                            <span class="item-price">￥698.50 元</span>
-                                                                                    <a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="99"  data-sid="0"><i>+</i>加入购物车</a>
-                                                                                                                <span class="item-flag">精品</span>
-                                					</div>
-                    </li>
-                                                                      </ul>
+        		[#if page.content?has_content]
+						<ul>
+							[#list page.content?chunk(4) as row]
+								[#list row as product]
+									<li[#if !row_has_next] class="tehui"[/#if]>
+										<div class="item-content">
+										<a href="${base}${product.path}" class="fitting-img">
+											<img src="${base}/upload/image/blank.gif" data-original="[#if product.thumbnail??]${product.thumbnail}[#else]${setting.defaultThumbnailProductImage}[/#if]" />
+											<span class="item-title" title="${product.name}">${abbreviate(product.name, 60)}</span>
+											<span class="item-price">￥${currency(product.price, true)}元</span>
+                            				<a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="207"  data-sid="0"><i>+</i>加入购物车</a>
+                            				<span class="item-flag">精品</span>
+										</a>
+									</li>
+								[/#list]
+							[/#list]
+						</ul>
+					[#else]
+						${message("shop.product.noSearchResult", productKeyword)}
+					[/#if]
            </div>
         </div>
- 
- 
-  
-
 </div>
 	
 	

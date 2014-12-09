@@ -38,9 +38,6 @@ import com.xxs.definedweek.service.SearchService;
 
 /**
  * Service - 搜索
- * 
-
-
  */
 @Service("searchServiceImpl")
 @Transactional

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.service.impl;
 
 import java.math.BigDecimal;
@@ -44,9 +39,6 @@ import org.springframework.util.Assert;
 
 /**
  * Service - 商品
- * 
-
-
  */
 @Service("productServiceImpl")
 public class ProductServiceImpl extends BaseServiceImpl<Product, Long> implements ProductService, DisposableBean {
