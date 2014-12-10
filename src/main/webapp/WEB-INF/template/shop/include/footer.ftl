@@ -1,16 +1,16 @@
 <div class="xlj-footer container clearfix">
     <ul class="nums clearfix">
 		<li>
-			<a href="/article-220.html" rel="nofollow"> <span class="nums1"></span> <strong> <label>3小时</label> 部署更高效 </strong> </a> 
+			<a href="javascript:void(0);" rel="nofollow"> <span class="nums1"></span> <strong> <label>3小时</label> 更部署的高效 </strong> </a> 
 		</li>
 		<li>
-			<a href="/article-220.html" rel="nofollow"> <span class="nums2"></span> <strong> <label>15天</label> 送15天服务 </strong> </a> 
+			<a href="javascript:void(0);" rel="nofollow"> <span class="nums2"></span> <strong> <label>15天</label> 赠送15天服务 </strong> </a> 
 		</li>
 		<li>
-			<a href="/article-213.html" rel="nofollow"> <span class="nums3"></span> <strong> <label>12个双十一</label> 限时模板优惠 </strong> </a> 
+			<a href="javascript:void(0);" rel="nofollow"> <span class="nums3"></span> <strong> <label>12个双十一</label> 限时模板优惠 </strong> </a> 
 		</li>
 		<li class="last">
-			<a href="/poststation.html" rel="nofollow"> <span class="nums4"></span> <strong> <label>全系统</label> 更多技术选型 </strong> </a> 
+			<a href="javascript:void(0);" rel="nofollow"> <span class="nums4"></span> <strong> <label>全系统</label> 更多技术选型 </strong> </a> 
 		</li>
 	</ul>
 	<div class="footer-links clearfix">

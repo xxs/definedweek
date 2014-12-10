@@ -198,7 +198,7 @@ $().ready(function() {
 											<span class="item-title" title="${product.name}">${abbreviate(product.name, 60)}</span>
 											<span class="item-price">￥${currency(product.price, true)}元</span>
                             				<a class="item-buy goodsinfo" style="display:none" href="javascript:void(0);" data-cid="207"  data-sid="0"><i>+</i>加入购物车</a>
-                            				<span class="item-flag">精品</span>
+                            				<span class="item-flag">展示</span>
 										</a>
 									</li>
 								[/#list]

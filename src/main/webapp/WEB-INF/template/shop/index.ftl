@@ -60,7 +60,8 @@
 									<span class="item-desc">${abbreviate(product.name, 24)}</span>
 									<span class="item-price">${currency(product.price, true)}</span>
 									
-									<span class="hot-logo"></span>
+									<span class="item-flag">热销</span>
+									<!-- <span class="hot-logo"></span> -->
 									
 									<a class="item-buy" href="${base}${product.path}" target="_blank" >立即购买</a>
 								</div>

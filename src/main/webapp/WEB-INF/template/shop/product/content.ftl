@@ -370,13 +370,6 @@ $().ready(function() {
       </div> 
      </div>
       <div style=" clear:both"></div>
-      
-      <div class="goods-info-color dd clearfix">
-            <p>可<span style="margin-left:27px;"></span>选：</p>
-            <ul>
-              <li class="select-on" title="银莲白"><a data-gid="180" href="javascript:void(0)">银莲白</a></li><li title="青木黑"><a data-gid="181" href="javascript:void(0)">青木黑</a></li>            </ul>
-       </div>
-      
       [#if product.specifications?has_content]
 			<div id="specification" class=" clearfix">
 					[#assign specificationValues = product.goods.specificationValues /]
@@ -386,12 +379,13 @@ $().ready(function() {
             				<ul>
             				[#list specification.specificationValues as specificationValue]
 									[#if specificationValues?seq_contains(specificationValue)]
-										<li class="select-on" title="${specificationValue.name}">
-              								<a href="javascript:;" class="${specification.type}[#if product.specificationValues?seq_contains(specificationValue)] selected[/#if]" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
+										<li class="[#if product.specificationValues?seq_contains(specificationValue)] select-on[/#if]" title="${specificationValue.name}">
+              								<a href="javascript:;" class="${specification.type}" val="${specificationValue.id}">[#if specification.type == "text"]${specificationValue.name}[#else]<img src="${specificationValue.image}" alt="${specificationValue.name}" title="${specificationValue.name}" />[/#if]<span title="${message("shop.product.selected")}">&nbsp;</span></a>
               							</li>
 									[/#if]
 							[/#list]
               				</ul>
+              			</div>	
 						[/#list]
 					</div>
 				[/#if]
@@ -667,52 +661,6 @@ $().ready(function() {
 </div>
 	
 	<div class="container productContent">
-		<div class="span6">
-			<div class="hotProductCategory">
-				[@product_category_root_list]
-					[#list productCategories as category]
-						<dl[#if !category_has_next] class="last"[/#if]>
-							<dt>
-								<a href="${base}${category.path}">${category.name}</a>
-							</dt>
-							[@product_category_children_list productCategoryId = category.id count = 4]
-								[#list productCategories as productCategory]
-									<dd>
-										<a href="${base}${productCategory.path}">${productCategory.name}</a>
-									</dd>
-								[/#list]
-							[/@product_category_children_list]
-						</dl>
-					[/#list]
-				[/@product_category_root_list]
-			</div>
-			<div class="hotProduct">
-				<div class="title">${message("shop.product.hotProduct")}</div>
-				<ul>
-					[@product_list productCategoryId = productCategory.id count = 6 orderBy="monthSales desc"]
-						[#list products as product]
-							<li[#if !product_has_next] class="last"[/#if]>
-								<a href="${base}${product.path}" title="${product.name}">${abbreviate(product.name, 30)}</a>
-								[#if product.scoreCount > 0]
-									<div>
-										<div>${message("Product.score")}: </div>
-										<div class="score${(product.score * 2)?string("0")}"></div>
-										<div>${product.score?string("0.0")}</div>
-									</div>
-								[/#if]
-								<div>${message("Product.price")}: <strong>${currency(product.price, true, true)}</strong></div>
-								<div>${message("Product.monthSales")}: <em>${product.monthSales}</em></div>
-							</li>
-						[/#list]
-					[/@product_list]
-				</ul>
-			</div>
-			<div id="historyProduct" class="historyProduct">
-				<div class="title">${message("shop.product.historyProduct")}</div>
-				<ul></ul>
-				<a href="javascript:;" id="clearHistoryProduct" class="clearHistoryProduct">${message("shop.product.clearHistoryProduct")}</a>
-			</div>
-		</div>
 		<div class="span18 last">
 			<div class="path">
 				<ul>
