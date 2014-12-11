@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import javax.annotation.Resource;
@@ -19,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Controller - 预存款
- * 
-
-
  */
 @Controller("adminDepositController")
 @RequestMapping("/admin/deposit")

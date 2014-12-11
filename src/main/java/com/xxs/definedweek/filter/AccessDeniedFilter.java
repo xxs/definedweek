@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.filter;
 
 import java.io.IOException;
@@ -19,9 +14,6 @@ import sun.misc.BASE64Decoder;
 
 /**
  * Filter - 限制访问
- * 
-
-
  */
 public class AccessDeniedFilter implements Filter {
 

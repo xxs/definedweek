@@ -12,7 +12,7 @@
 	<div class="wrap">
 		<div class="error">
 			<dl>
-				<dt>${message("admin.error.message")}</dt>
+				<dt>${message("admin.error.message")}么么么么么么么么么么么么么么么么么么么么</dt>
 				[#if content??]
 					<dd>${content}</dd>
 				[/#if]

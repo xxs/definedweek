@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import javax.annotation.Resource;
@@ -16,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Controller - 存储插件
- * 
-
-
  */
 @Controller("adminStoragePluginController")
 @RequestMapping("/admin/storage_plugin")

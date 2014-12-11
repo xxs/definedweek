@@ -12,9 +12,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * 筛选
- * 
-
-
  */
 public class Filter implements Serializable {
 

@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.controller.admin;
 
 import javax.annotation.Resource;
@@ -23,9 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller - 品牌
- * 
-
-
  */
 @Controller("adminBrandController")
 @RequestMapping("/admin/brand")

@@ -26,9 +26,6 @@ import org.apache.shiro.web.util.WebUtils;
 
 /**
  * Filter - 权限认证
- * 
-
-
  */
 public class AuthenticationFilter extends FormAuthenticationFilter {
 

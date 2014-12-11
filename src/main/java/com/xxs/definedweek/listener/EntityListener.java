@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.listener;
 
 import java.util.Date;
@@ -14,9 +9,6 @@ import com.xxs.definedweek.entity.BaseEntity;
 
 /**
  * Listener - 创建日期、修改日期处理
- * 
-
-
  */
 public class EntityListener {
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2014-12-10 22:54:04
+Date: 2014-12-11 21:32:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `xx_admin` (
 -- ----------------------------
 -- Records of xx_admin
 -- ----------------------------
-INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-12-10 21:36:26', '技术部', 'admin@163.net', '', '\0', null, '2014-12-10 21:36:26', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+INSERT INTO `xx_admin` VALUES ('1', '2014-11-03 00:03:36', '2014-12-11 21:06:15', '技术部', 'admin@163.net', '', '\0', null, '2014-12-11 21:06:15', '0', null, '管理员', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 -- ----------------------------
 -- Table structure for xx_admin_role
@@ -5472,6 +5472,7 @@ CREATE TABLE `xx_specification_value` (
   `image` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `specification` bigint(20) NOT NULL,
+  `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK5E624376629A04C2` (`specification`),
   CONSTRAINT `FK5E624376629A04C2` FOREIGN KEY (`specification`) REFERENCES `xx_specification` (`id`)
@@ -5480,25 +5481,25 @@ CREATE TABLE `xx_specification_value` (
 -- ----------------------------
 -- Records of xx_specification_value
 -- ----------------------------
-INSERT INTO `xx_specification_value` VALUES ('49', '2014-11-03 00:13:33', '2014-11-18 12:19:39', '1', null, '7.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('50', '2014-11-03 00:13:34', '2014-11-18 12:19:49', '1', null, '3.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('51', '2014-11-03 00:13:35', '2014-11-18 12:19:49', '2', null, '4.0.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('59', '2014-11-03 00:13:43', '2014-11-18 12:20:06', '1', null, '5.0', '5');
-INSERT INTO `xx_specification_value` VALUES ('60', '2014-11-03 00:13:44', '2014-11-18 12:20:06', '2', null, '6.0', '5');
-INSERT INTO `xx_specification_value` VALUES ('67', '2014-11-03 00:13:51', '2014-11-18 12:20:02', '1', null, '1.0', '6');
-INSERT INTO `xx_specification_value` VALUES ('68', '2014-11-03 00:13:52', '2014-11-18 12:20:02', '2', null, '2.0', '6');
-INSERT INTO `xx_specification_value` VALUES ('77', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '2', null, '8.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('78', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '3', null, '9.x', '3');
-INSERT INTO `xx_specification_value` VALUES ('79', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '4', null, '9.5', '3');
-INSERT INTO `xx_specification_value` VALUES ('80', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '3', null, '4.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('81', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '4', null, '5.0.1', '4');
-INSERT INTO `xx_specification_value` VALUES ('82', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'opencms', '7');
-INSERT INTO `xx_specification_value` VALUES ('83', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jeecms', '7');
-INSERT INTO `xx_specification_value` VALUES ('84', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jspxcms', '7');
-INSERT INTO `xx_specification_value` VALUES ('85', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'javashop', '7');
-INSERT INTO `xx_specification_value` VALUES ('86', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'shopxx', '7');
-INSERT INTO `xx_specification_value` VALUES ('87', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jeecms', '7');
-INSERT INTO `xx_specification_value` VALUES ('88', '2014-12-10 22:12:12', '2014-12-10 22:12:12', null, null, 'es', '7');
+INSERT INTO `xx_specification_value` VALUES ('49', '2014-11-03 00:13:33', '2014-11-18 12:19:39', '1', null, '7.x', '3', '');
+INSERT INTO `xx_specification_value` VALUES ('50', '2014-11-03 00:13:34', '2014-11-18 12:19:49', '1', null, '3.1', '4', '');
+INSERT INTO `xx_specification_value` VALUES ('51', '2014-11-03 00:13:35', '2014-11-18 12:19:49', '2', null, '4.0.1', '4', '');
+INSERT INTO `xx_specification_value` VALUES ('59', '2014-11-03 00:13:43', '2014-11-18 12:20:06', '1', null, '5.0', '5', '');
+INSERT INTO `xx_specification_value` VALUES ('60', '2014-11-03 00:13:44', '2014-11-18 12:20:06', '2', null, '6.0', '5', '');
+INSERT INTO `xx_specification_value` VALUES ('67', '2014-11-03 00:13:51', '2014-11-18 12:20:02', '1', null, '1.0', '6', '');
+INSERT INTO `xx_specification_value` VALUES ('68', '2014-11-03 00:13:52', '2014-11-18 12:20:02', '2', null, '2.0', '6', '');
+INSERT INTO `xx_specification_value` VALUES ('77', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '2', null, '8.x', '3', '');
+INSERT INTO `xx_specification_value` VALUES ('78', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '3', null, '9.x', '3', '');
+INSERT INTO `xx_specification_value` VALUES ('79', '2014-11-15 13:24:34', '2014-11-18 12:19:39', '4', null, '9.5', '3', '');
+INSERT INTO `xx_specification_value` VALUES ('80', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '3', null, '4.1', '4', '');
+INSERT INTO `xx_specification_value` VALUES ('81', '2014-11-15 13:25:44', '2014-11-18 12:19:49', '4', null, '5.0.1', '4', '');
+INSERT INTO `xx_specification_value` VALUES ('82', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'opencms', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('83', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jeecms', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('84', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jspxcms', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('85', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'javashop', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('86', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'shopxx', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('87', '2014-11-18 12:17:05', '2014-12-10 22:12:12', null, null, 'jeecms', '7', '');
+INSERT INTO `xx_specification_value` VALUES ('88', '2014-12-10 22:12:12', '2014-12-10 22:12:12', null, null, 'es', '7', '');
 
 -- ----------------------------
 -- Table structure for xx_tag

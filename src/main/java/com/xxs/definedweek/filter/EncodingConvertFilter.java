@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.filter;
 
 import java.io.IOException;
@@ -18,9 +13,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * Filter - 编码格式转换
- * 
-
-
  */
 public class EncodingConvertFilter extends OncePerRequestFilter {
 

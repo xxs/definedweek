@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * Interceptor - 列表查询
- * 
-
-
  */
 public class ListInterceptor extends HandlerInterceptorAdapter {
 

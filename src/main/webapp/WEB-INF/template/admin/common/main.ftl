@@ -403,6 +403,14 @@ $().ready(function() {
 					<dd>
 						<a href="../monitor/jvm.jhtml" target="iframe">${message("admin.main.jvm")}</a>
 					</dd>
+					<dd>
+						<a href="../db_backup/backup.jhtml" target="iframe">备份</a>
+					</dd>
+					[@shiro.hasPermission name="admin:log"]
+						<dd>
+							<a href="../db_backup/list.jhtml" target="iframe">数据库备份</a>
+						</dd>
+					[/@shiro.hasPermission]
 				</dl>
 				<dl id="monitor">
 					<dt>${message("admin.main.monitorNav")}</dt>

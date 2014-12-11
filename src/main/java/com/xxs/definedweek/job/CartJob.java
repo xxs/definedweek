@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.job;
 
 import javax.annotation.Resource;
@@ -15,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * Job - 购物车
- * 
-
-
  */
 @Component("cartJob")
 @Lazy(false)

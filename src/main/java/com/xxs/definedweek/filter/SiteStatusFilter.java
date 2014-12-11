@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.filter;
 
 import java.io.IOException;
@@ -21,9 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * Filter - 网站状态
- * 
-
-
  */
 @Component("siteStatusFilter")
 public class SiteStatusFilter extends OncePerRequestFilter {

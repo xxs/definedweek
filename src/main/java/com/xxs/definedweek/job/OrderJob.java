@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.job;
 
 import javax.annotation.Resource;
@@ -15,9 +10,6 @@ import com.xxs.definedweek.service.OrderService;
 
 /**
  * Job - 订单
- * 
-
-
  */
 @Component("orderJob")
 @Lazy(false)

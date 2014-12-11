@@ -74,6 +74,7 @@
 				/admin/role/** = perms["admin:role"]
 				/admin/message/** = perms["admin:message"]
 				/admin/log/** = perms["admin:log"]
+				/admin/db_backup/** = perms["admin:log"]
 
 				/admin/** = authc
 			</value>
