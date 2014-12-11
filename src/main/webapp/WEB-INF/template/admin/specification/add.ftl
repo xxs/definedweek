@@ -48,6 +48,9 @@ $().ready(function() {
 						<input type="text" name="specificationValues[' + specificationValueIndex + '].name" maxlength="200" class="text specificationValuesName" \/>
 					<\/td>
 					<td>
+						<input type="text" name="specificationValues[' + specificationValueIndex + '].description" maxlength="200" class="text specificationValuesDescription" \/>
+					<\/td>
+					<td>
 						<span class="fieldSet">
 							<input type="text" name="specificationValues[' + specificationValueIndex + '].image" maxlength="200" class="text specificationValuesImage" disabled="disabled" \/>
 							<input type="button" class="button browserButton" value="${message("admin.browser.select")}" disabled="disabled" \/>
@@ -70,6 +73,9 @@ $().ready(function() {
 					<\/td>
 					<td>
 						<input type="text" name="specificationValues[' + specificationValueIndex + '].name" class="text specificationValuesName" maxlength="200" \/>
+					<\/td>
+					<td>
+						<input type="text" name="specificationValues[' + specificationValueIndex + '].description" class="text specificationValuesDescription" maxlength="200" \/>
 					<\/td>
 					<td>
 						<span class="fieldSet">
@@ -181,6 +187,9 @@ $().ready(function() {
 					${message("admin.specification.specificationValueName")}
 				</td>
 				<td>
+					${message("admin.specification.specificationValueDescription")}
+				</td>
+				<td>
 					${message("admin.specification.specificationValueImage")}
 				</td>
 				<td>
@@ -196,6 +205,9 @@ $().ready(function() {
 				</td>
 				<td>
 					<input type="text" name="specificationValues[0].name" class="text specificationValuesName" maxlength="200" />
+				</td>
+				<td>
+					<input type="text" name="specificationValues[0].description" class="text specificationValuesDescription" maxlength="200" />
 				</td>
 				<td>
 					<span class="fieldSet">
