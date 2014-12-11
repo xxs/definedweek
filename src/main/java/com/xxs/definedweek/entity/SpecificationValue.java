@@ -1,8 +1,3 @@
-/*
-
-
-
- */
 package com.xxs.definedweek.entity;
 
 import java.util.HashSet;
@@ -22,9 +17,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Entity - 规格值
- * 
-
-
  */
 @Entity
 @Table(name = "xx_specification_value")
@@ -38,6 +30,9 @@ public class SpecificationValue extends OrderEntity {
 
 	/** 图片 */
 	private String image;
+	
+	/** 描述 */
+	private String description;
 
 	/** 规格 */
 	private Specification specification;
@@ -65,6 +60,27 @@ public class SpecificationValue extends OrderEntity {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * 获取描述
+	 * 
+	 * @return 描述
+	 */
+	@Length(max = 200)
+	@Column(nullable = false)
+	public String getDescription() {
+		return description;
+	}
+	
+	/**
+	 * 设置描述
+	 * 
+	 * @param description
+	 *            描述
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
